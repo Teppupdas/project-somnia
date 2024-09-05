@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://8qhpmlocmgej"]
+
+[ext_resource type="Script" path="res://Skrypty/PlayerControler.gd" id="1_f6crp"]
+[ext_resource type="Texture2D" uid="uid://bsxmaewj7d4f1" path="res://Charakterek/PlayerPlaceholder.png" id="2_5m3xt"]
+[ext_resource type="Texture2D" uid="uid://xvkehi28g46d" path="res://CalySwiat/drzewqo.png" id="3_eo4ki"]
+[ext_resource type="Texture2D" uid="uid://5h6g81sk27il" path="res://4K size.png" id="4_628y8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qt4xt"]
+radius = 73.53
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f56u4"]
+radius = 21.21
+height = 91.01
+
+[node name="Node2D_YSort" type="Node2D"]
+y_sort_enabled = true
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_f6crp")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_5m3xt")
+offset = Vector2(0, -75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_qt4xt")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position_smoothing_speed = 1.0
+
+[node name="Label1" type="Label" parent="CharacterBody2D"]
+offset_left = -1868.0
+offset_top = -1024.0
+offset_right = -1573.0
+offset_bottom = -965.0
+theme_override_font_sizes/font_size = 43
+text = "111111111111"
+
+[node name="Label2" type="Label" parent="CharacterBody2D"]
+offset_left = -1834.0
+offset_top = 872.0
+offset_right = -1320.0
+offset_bottom = 1009.0
+theme_override_font_sizes/font_size = 100
+text = "222222222"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(802, -12)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("3_eo4ki")
+offset = Vector2(48, -272)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_f56u4")
+
+[node name="4kSize" type="Sprite2D" parent="."]
+position = Vector2(-3376, -2353)
+texture = ExtResource("4_628y8")
