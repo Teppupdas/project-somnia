@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 #@onready var animatedSprite = $Sprite2D
 #@onready var animationPlayer = $AnimationPlayer
-#@onready var animationTree = $AnimationTree
+@onready var animationTree = $AnimationTree
+@onready var animationMode = animationTree.get("parameters/playback")
 
 @onready var label1 = $Label1
 @onready var label2 = $Label2
@@ -12,8 +13,8 @@ extends CharacterBody2D
 
 
 var moveVector = Vector2.ZERO
-var currentMoveSpeed = STANDARD_SPEED
 const STANDARD_SPEED = 800 #standardowa i maksymalna;    dla klawiatury
+var currentMoveSpeed = STANDARD_SPEED
 var moveSpeedMultiplier #korekta dla joysitcka; wolniejsze chodzenie
 
 
@@ -22,7 +23,7 @@ var canDash = true
 var dashDirection
 const DASH_SPEED = 3000 #nie może się mnożyć z joystickiem
 const DASH_LENGTH = 0.2
-const DASH_COOLDOWN = 1
+const DASH_COOLDOWN = 0.5
 
 
 
@@ -46,20 +47,18 @@ func _process(delta):
 
 
 
-
-	#if moveVector == Vector2.ZERO:     #gdy to animacja dasha sie pierdoli.........................trzeba manager animacji zrobic
-		#animationTree["parameters/Tranzycja/transition_request"] = "Stanie"  #zmiana animacji na stanie
-	#elif dashing:
-		#animationTree["parameters/Tranzycja/transition_request"] = "Daszowanie"  #zmiana animacji na daszowanie
-		#animationTree.set("parameters/DashArkusze/blend_position", Vector2(dashDirection.normalized().x, -dashDirection.normalized().y))    #ustawia kierunek animacji
-	#else:
-		#animationTree["parameters/Tranzycja/transition_request"] = "Poruszanie"  #zmiana animacji na chodzenie
-		#animationTree.set("parameters/PoruszanieArkusze/blend_position", Vector2(moveVector.normalized().x, -moveVector.normalized().y))    #ustawia kierunek animacji
-
-
-
-		
-
+	#ANIMACJE  robić na tym czy na AnimationNodeBlendTree ??? chyba dobrze robie bo jakis typ poweidzial ze to drugie jest do gier 3D
+	if moveVector == Vector2.ZERO and !dashing:
+		animationMode.travel("Stanie")
+		#pass			
+	else:
+		if dashing:
+			animationMode.travel("Dashowanie")
+		else:
+			animationMode.travel("Chodzenie")
+			animationTree.set("parameters/Stanie/blend_position", Vector2(moveVector.normalized().x, -moveVector.normalized().y))
+			animationTree.set("parameters/Chodzenie/blend_position", Vector2(moveVector.normalized().x, -moveVector.normalized().y))
+			animationTree.set("parameters/Dashowanie/blend_position", Vector2(moveVector.normalized().x, -moveVector.normalized().y))
 
 
 
@@ -69,7 +68,7 @@ func _process(delta):
 
 
 
-	
+
 
 
 
@@ -99,12 +98,9 @@ func _physics_process(delta):
 	if dashing:
 		#if moveVector == Vector2.ZERO:
 			#zatrzymać daszowanie? Sprawdzić jak jest w Hades 
+			# i sprawdzić w Hades na padzie jak prędkość poruszania wpływa na animacje!
 		set_velocity(dashDirection.normalized() * currentMoveSpeed)
 		move_and_slide()
 	else:
 		set_velocity(moveVector.normalized() * currentMoveSpeed * moveSpeedMultiplier)
 		move_and_slide()
-
-
-
-	

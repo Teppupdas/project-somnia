@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsxmaewj7d4f1"
-path="res://.godot/imported/PlayerPlaceholder.png-5102586912c78156410418ef96b68479.ctex"
+uid="uid://dc4ck82d1bh1w"
+path="res://.godot/imported/Stanie_SW_0000.png-889375f5e3577780ba4dd7062c30a382.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Charakterek/PlayerPlaceholder.png"
-dest_files=["res://.godot/imported/PlayerPlaceholder.png-5102586912c78156410418ef96b68479.ctex"]
+source_file="res://Charakterek/Stanie/Stanie_SW/Stanie_SW_0000.png"
+dest_files=["res://.godot/imported/Stanie_SW_0000.png-889375f5e3577780ba4dd7062c30a382.ctex"]
 
 [params]
 

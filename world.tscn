@@ -1,12 +1,722 @@
-[gd_scene load_steps=7 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=203 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" path="res://Skrypty/PlayerControler.gd" id="1_f6crp"]
-[ext_resource type="Texture2D" uid="uid://bsxmaewj7d4f1" path="res://Charakterek/PlayerPlaceholder.png" id="2_5m3xt"]
+[ext_resource type="Texture2D" uid="uid://nqlydssnx0xx" path="res://Charakterek/Dash/Dash_SW/Dash_SW_0001.png" id="2_8l70m"]
+[ext_resource type="Texture2D" uid="uid://batdprky3l4sr" path="res://Charakterek/Stanie/Stanie_S/Stanie_S_0000.png" id="2_ke3bb"]
+[ext_resource type="Texture2D" uid="uid://dc4ck82d1bh1w" path="res://Charakterek/Stanie/Stanie_SW/Stanie_SW_0000.png" id="2_pj11p"]
 [ext_resource type="Texture2D" uid="uid://xvkehi28g46d" path="res://CalySwiat/drzewqo.png" id="3_eo4ki"]
+[ext_resource type="Texture2D" uid="uid://dprmn5onhvbcy" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0001.png" id="3_turag"]
 [ext_resource type="Texture2D" uid="uid://5h6g81sk27il" path="res://4K size.png" id="4_628y8"]
+[ext_resource type="Texture2D" uid="uid://ckk74t8yej3gq" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0002.png" id="4_sob40"]
+[ext_resource type="Texture2D" uid="uid://ie4okslh1jaf" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0003.png" id="5_2x6qm"]
+[ext_resource type="Texture2D" uid="uid://doaoixiso7u7f" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0004.png" id="6_0t4ot"]
+[ext_resource type="Texture2D" uid="uid://dxgvfrfuqtbmo" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0005.png" id="7_ln2u8"]
+[ext_resource type="Texture2D" uid="uid://bhear8mbraihy" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0006.png" id="8_soq65"]
+[ext_resource type="Texture2D" uid="uid://40cmven20jb0" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0007.png" id="9_fya4l"]
+[ext_resource type="Texture2D" uid="uid://d07eble3eqoyl" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0008.png" id="10_nm1jn"]
+[ext_resource type="Texture2D" uid="uid://jp0m54kedp1f" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0009.png" id="11_5y40e"]
+[ext_resource type="Texture2D" uid="uid://jv2t1rof1e68" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0010.png" id="12_4u10u"]
+[ext_resource type="Texture2D" uid="uid://5051m1qlun6v" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0011.png" id="13_nwi3o"]
+[ext_resource type="Texture2D" uid="uid://d0giyy8b6udgu" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0012.png" id="14_ouefm"]
+[ext_resource type="Texture2D" uid="uid://dsnptahc4pglv" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0013.png" id="15_61i8w"]
+[ext_resource type="Texture2D" uid="uid://cd0p1i0obwbsx" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0014.png" id="16_w5xne"]
+[ext_resource type="Texture2D" uid="uid://ddrml5fploa5c" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0015.png" id="17_i5ivl"]
+[ext_resource type="Texture2D" uid="uid://lchln4ok4xom" path="res://Charakterek/Chodzenie/Chodzenie_S/Chodzenie_S_0016.png" id="18_wa0c7"]
+[ext_resource type="Texture2D" uid="uid://bvdojgg2nnf56" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0001.png" id="19_y6ac2"]
+[ext_resource type="Texture2D" uid="uid://dnst1wiygqmvb" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0002.png" id="20_aycmv"]
+[ext_resource type="Texture2D" uid="uid://bu6xjb11htqe6" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0003.png" id="21_2h4lf"]
+[ext_resource type="Texture2D" uid="uid://desctlud2iv48" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0004.png" id="22_gcn6p"]
+[ext_resource type="Texture2D" uid="uid://bncheqop3xuuj" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0005.png" id="23_dbdmp"]
+[ext_resource type="Texture2D" uid="uid://beknbute8hytj" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0006.png" id="24_c1wa5"]
+[ext_resource type="Texture2D" uid="uid://bwcs8d805gxt6" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0007.png" id="25_3nh00"]
+[ext_resource type="Texture2D" uid="uid://ifbrhdlv2rv5" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0008.png" id="26_1t0xl"]
+[ext_resource type="Texture2D" uid="uid://kvla515hnll7" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0009.png" id="27_ecicv"]
+[ext_resource type="Texture2D" uid="uid://1dg4a4kn70gw" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0010.png" id="28_dpmpc"]
+[ext_resource type="Texture2D" uid="uid://5pv66khnphkg" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0011.png" id="29_ty2gu"]
+[ext_resource type="Texture2D" uid="uid://dpbwv3ososkuq" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0012.png" id="30_yhrn4"]
+[ext_resource type="Texture2D" uid="uid://cpp57yco6ce7" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0013.png" id="31_e06tq"]
+[ext_resource type="Texture2D" uid="uid://cjwaplje7v28j" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0014.png" id="32_q4xgh"]
+[ext_resource type="Texture2D" uid="uid://c6bblmv1uat1c" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0015.png" id="33_4pheq"]
+[ext_resource type="Texture2D" uid="uid://c3kaq2y1xnxpf" path="res://Charakterek/Chodzenie/Chodzenie_N/Chodzenie_N_0016.png" id="34_2dis3"]
+[ext_resource type="Texture2D" uid="uid://cpxa73retdr4k" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0001.png" id="35_gpvpx"]
+[ext_resource type="Texture2D" uid="uid://8ipdk7pgrjhs" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0002.png" id="36_nbwdp"]
+[ext_resource type="Texture2D" uid="uid://cqetksv0gg45o" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0003.png" id="37_e5ajq"]
+[ext_resource type="Texture2D" uid="uid://esbe5wamlsxc" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0004.png" id="38_stocu"]
+[ext_resource type="Texture2D" uid="uid://25ex88mminng" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0005.png" id="39_16h0y"]
+[ext_resource type="Texture2D" uid="uid://bf7w3m8ukgfc4" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0006.png" id="40_f6cwg"]
+[ext_resource type="Texture2D" uid="uid://cwpy83xgj5c5c" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0007.png" id="41_vqvwq"]
+[ext_resource type="Texture2D" uid="uid://bqe00gskl3dal" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0008.png" id="42_gylro"]
+[ext_resource type="Texture2D" uid="uid://3spcwa60g8y3" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0009.png" id="43_m7c8o"]
+[ext_resource type="Texture2D" uid="uid://du6amr1fmm6fs" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0010.png" id="44_mhlm3"]
+[ext_resource type="Texture2D" uid="uid://dd1q2fel27mvd" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0011.png" id="45_v18ow"]
+[ext_resource type="Texture2D" uid="uid://c1c0jb6jir8m" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0012.png" id="46_v57yv"]
+[ext_resource type="Texture2D" uid="uid://c1d6u1yfx5da1" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0013.png" id="47_kvold"]
+[ext_resource type="Texture2D" uid="uid://brw11jya7olr8" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0014.png" id="48_dhjn8"]
+[ext_resource type="Texture2D" uid="uid://6ee1jflss8v4" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0015.png" id="49_y8yy3"]
+[ext_resource type="Texture2D" uid="uid://dlcx5g85j6g3o" path="res://Charakterek/Chodzenie/Chodzenie_E/Chodzenie_E_0016.png" id="50_25fbq"]
+[ext_resource type="Texture2D" uid="uid://bhy2noc3n0dhe" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0001.png" id="51_i7xmy"]
+[ext_resource type="Texture2D" uid="uid://da8eyv1msvkn5" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0002.png" id="52_ww8jd"]
+[ext_resource type="Texture2D" uid="uid://djlggfkc80a4x" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0003.png" id="53_dsn4b"]
+[ext_resource type="Texture2D" uid="uid://bpywdkhe7p6u8" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0004.png" id="54_63no2"]
+[ext_resource type="Texture2D" uid="uid://8tlgdfw6i3f5" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0005.png" id="55_eu2c5"]
+[ext_resource type="Texture2D" uid="uid://dvxj5g5m14dl2" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0006.png" id="56_1fb0i"]
+[ext_resource type="Texture2D" uid="uid://dslm0frdag8qe" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0007.png" id="57_pjq2f"]
+[ext_resource type="Texture2D" uid="uid://b2ca33kgx0w5s" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0008.png" id="58_q0o62"]
+[ext_resource type="Texture2D" uid="uid://beox7kag8w4es" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0009.png" id="59_6vaor"]
+[ext_resource type="Texture2D" uid="uid://uhqg5t3asu8e" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0010.png" id="60_n5wpa"]
+[ext_resource type="Texture2D" uid="uid://drypgoyapdi1w" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0011.png" id="61_elmpc"]
+[ext_resource type="Texture2D" uid="uid://d2ataht061tmu" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0012.png" id="62_k5nem"]
+[ext_resource type="Texture2D" uid="uid://d0k0vk70tw7lv" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0013.png" id="63_gbyyi"]
+[ext_resource type="Texture2D" uid="uid://c7pcyql5webul" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0014.png" id="64_08oj4"]
+[ext_resource type="Texture2D" uid="uid://bipj2p6ig6k3c" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0015.png" id="65_10icj"]
+[ext_resource type="Texture2D" uid="uid://cj7oa7uodnxvj" path="res://Charakterek/Chodzenie/Chodzenie_W/Chodzenie_W_0016.png" id="66_0nt1p"]
+[ext_resource type="Texture2D" uid="uid://cgbmrb8wu1lxn" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0001.png" id="68_fysvg"]
+[ext_resource type="Texture2D" uid="uid://bgcxm1mmbnhhx" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0002.png" id="69_8ug68"]
+[ext_resource type="Texture2D" uid="uid://6n7lxxaqapw4" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0003.png" id="70_hfu3g"]
+[ext_resource type="Texture2D" uid="uid://c5gw24ie4dacj" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0004.png" id="71_40ar7"]
+[ext_resource type="Texture2D" uid="uid://ba06hh30mcaty" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0005.png" id="72_5hux3"]
+[ext_resource type="Texture2D" uid="uid://cqrx4ofnrx4s0" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0006.png" id="73_pea70"]
+[ext_resource type="Texture2D" uid="uid://c27d23ravlv5k" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0007.png" id="74_acgq1"]
+[ext_resource type="Texture2D" uid="uid://v4yvp66mfkvw" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0008.png" id="75_ousab"]
+[ext_resource type="Texture2D" uid="uid://cv53k5knl236h" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0009.png" id="76_xm0bl"]
+[ext_resource type="Texture2D" uid="uid://eox6diemyjwe" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0010.png" id="77_antpc"]
+[ext_resource type="Texture2D" uid="uid://bv830i4ybok06" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0011.png" id="78_fb1c6"]
+[ext_resource type="Texture2D" uid="uid://b73kjgiiglk80" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0012.png" id="79_v4c1x"]
+[ext_resource type="Texture2D" uid="uid://btxc284ri30a" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0013.png" id="80_d8goo"]
+[ext_resource type="Texture2D" uid="uid://8kf0kb6rd8en" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0014.png" id="81_ywtwk"]
+[ext_resource type="Texture2D" uid="uid://bc1cyj6tohha" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0015.png" id="82_x0t3j"]
+[ext_resource type="Texture2D" uid="uid://c1g8am48dsymn" path="res://Charakterek/Chodzenie/Chodzenie_SE/Chodzenie_SE_0016.png" id="83_u06g8"]
+[ext_resource type="Texture2D" uid="uid://bs5haaw3ayara" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0001.png" id="84_ve684"]
+[ext_resource type="Texture2D" uid="uid://cssadc5vnges8" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0002.png" id="85_owbpx"]
+[ext_resource type="Texture2D" uid="uid://7j24k3t3r4pl" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0003.png" id="86_bhpjw"]
+[ext_resource type="Texture2D" uid="uid://dyp1ddwa3rtgm" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0004.png" id="87_y22d2"]
+[ext_resource type="Texture2D" uid="uid://q8isgxrjjqak" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0005.png" id="88_q6txx"]
+[ext_resource type="Texture2D" uid="uid://c5blalcxay4ob" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0006.png" id="89_0wd6c"]
+[ext_resource type="Texture2D" uid="uid://f3418bks86qr" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0007.png" id="90_kulr4"]
+[ext_resource type="Texture2D" uid="uid://b8na0iqoj8dr4" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0008.png" id="91_tm87b"]
+[ext_resource type="Texture2D" uid="uid://dquatlhv3s0ho" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0009.png" id="92_0h3eq"]
+[ext_resource type="Texture2D" uid="uid://dvrv0d0i7h8n6" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0010.png" id="93_01xec"]
+[ext_resource type="Texture2D" uid="uid://djalyklaa88wu" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0011.png" id="94_4fpb7"]
+[ext_resource type="Texture2D" uid="uid://cubuhiefg1kmq" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0012.png" id="95_su45i"]
+[ext_resource type="Texture2D" uid="uid://bxukiq7ch6mfh" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0013.png" id="96_wes5d"]
+[ext_resource type="Texture2D" uid="uid://coeoqt6lb70wc" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0014.png" id="97_8om2a"]
+[ext_resource type="Texture2D" uid="uid://b68o1176oxkfd" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0015.png" id="98_6yqiv"]
+[ext_resource type="Texture2D" uid="uid://cx315bqpqn4sr" path="res://Charakterek/Chodzenie/Chodzenie_SW/Chodzenie_SW_0016.png" id="99_e3rgo"]
+[ext_resource type="Texture2D" uid="uid://bx10cdayg3xge" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0001.png" id="100_2fes2"]
+[ext_resource type="Texture2D" uid="uid://dmv548ncybi8j" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0002.png" id="101_uf33t"]
+[ext_resource type="Texture2D" uid="uid://dqkw87qsrwcck" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0003.png" id="102_8npti"]
+[ext_resource type="Texture2D" uid="uid://cv8uek1sk2i0u" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0004.png" id="103_dwojy"]
+[ext_resource type="Texture2D" uid="uid://ckhy4dpg773g4" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0005.png" id="104_idwrn"]
+[ext_resource type="Texture2D" uid="uid://b6cja0eltd7t1" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0006.png" id="105_y0y4m"]
+[ext_resource type="Texture2D" uid="uid://drps4a0ktwhxx" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0007.png" id="106_o6ore"]
+[ext_resource type="Texture2D" uid="uid://crbkrggidfkyt" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0008.png" id="107_583u4"]
+[ext_resource type="Texture2D" uid="uid://dalnirn87iby4" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0009.png" id="108_ygqty"]
+[ext_resource type="Texture2D" uid="uid://bm65v7smrm4wn" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0010.png" id="109_5q6ry"]
+[ext_resource type="Texture2D" uid="uid://dhsvn0khrhota" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0011.png" id="110_xnf0j"]
+[ext_resource type="Texture2D" uid="uid://di6bdx1ylu6ui" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0012.png" id="111_dqprs"]
+[ext_resource type="Texture2D" uid="uid://rcj4sq33u7xg" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0013.png" id="112_tlhgr"]
+[ext_resource type="Texture2D" uid="uid://0o84whrmr5wy" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0014.png" id="113_oyuc1"]
+[ext_resource type="Texture2D" uid="uid://d0eg57wgafpmu" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0015.png" id="114_7m7ta"]
+[ext_resource type="Texture2D" uid="uid://de72iayp0dpr7" path="res://Charakterek/Chodzenie/Chodzenie_NE/Chodzenie_NE_0016.png" id="115_3nrp3"]
+[ext_resource type="Texture2D" uid="uid://c30j2r30f6fob" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0001.png" id="116_yvp6l"]
+[ext_resource type="Texture2D" uid="uid://ivgendc40yr5" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0002.png" id="117_luda0"]
+[ext_resource type="Texture2D" uid="uid://c8ncd7bc6swvs" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0003.png" id="118_4tr1i"]
+[ext_resource type="Texture2D" uid="uid://4kktwa7khckx" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0004.png" id="119_qci50"]
+[ext_resource type="Texture2D" uid="uid://d4nydq4buyrjk" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0005.png" id="120_m5o5n"]
+[ext_resource type="Texture2D" uid="uid://dtckyscjyki7y" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0006.png" id="121_k1q02"]
+[ext_resource type="Texture2D" uid="uid://dgqbsua18jhvn" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0007.png" id="122_vp6en"]
+[ext_resource type="Texture2D" uid="uid://d3lplfvtvyugv" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0008.png" id="123_b303b"]
+[ext_resource type="Texture2D" uid="uid://b8763cghqmp7y" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0009.png" id="124_d44bs"]
+[ext_resource type="Texture2D" uid="uid://cfqxqcvavdj0y" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0010.png" id="125_687ls"]
+[ext_resource type="Texture2D" uid="uid://cscwl5kd45uww" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0011.png" id="126_c8b1i"]
+[ext_resource type="Texture2D" uid="uid://cythuerejh4r8" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0012.png" id="127_dmbjo"]
+[ext_resource type="Texture2D" uid="uid://ddr2owxv2xfly" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0013.png" id="128_bifu4"]
+[ext_resource type="Texture2D" uid="uid://dtn03u2wqg58d" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0014.png" id="129_u608s"]
+[ext_resource type="Texture2D" uid="uid://tgt6ywvo6clo" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0015.png" id="130_6l6te"]
+[ext_resource type="Texture2D" uid="uid://ciyhjt0ue6kpa" path="res://Charakterek/Chodzenie/Chodzenie_NW/Chodzenie_NW_0016.png" id="131_atkwj"]
+[ext_resource type="Texture2D" uid="uid://dgc80gn5fr2id" path="res://Charakterek/Stanie/Stanie_E/Stanie_E_0000.png" id="132_ko6b6"]
+[ext_resource type="Texture2D" uid="uid://c0xtm0ythocys" path="res://Charakterek/Stanie/Stanie_N/Stanie_N_0000.png" id="133_52oo2"]
+[ext_resource type="Texture2D" uid="uid://b55f0impqdleq" path="res://Charakterek/Stanie/Stanie_NE/Stanie_NE_0000.png" id="134_h25uq"]
+[ext_resource type="Texture2D" uid="uid://nxekdulk4u7g" path="res://Charakterek/Stanie/Stanie_NW/Stanie_NW_0000.png" id="135_r727a"]
+[ext_resource type="Texture2D" uid="uid://b0il7016ry8h" path="res://Charakterek/Stanie/Stanie_SE/Stanie_SE_0000.png" id="136_q1x0a"]
+[ext_resource type="Texture2D" uid="uid://crw2hlmx4x637" path="res://Charakterek/Stanie/Stanie_W/Stanie_W_0000.png" id="137_ktkbg"]
+[ext_resource type="Texture2D" uid="uid://hoecrjo24f5m" path="res://Charakterek/Dash/Dash_E/Dash_E_0001.png" id="139_ro0i7"]
+[ext_resource type="Texture2D" uid="uid://c56r4vqv73j1" path="res://Charakterek/Dash/Dash_N/Dash_N_0001.png" id="140_3wsi4"]
+[ext_resource type="Texture2D" uid="uid://bbrxvhmtbaoer" path="res://Charakterek/Dash/Dash_NE/Dash_NE_0001.png" id="141_ivxct"]
+[ext_resource type="Texture2D" uid="uid://1uwjitw08l2c" path="res://Charakterek/Dash/Dash_NW/Dash_NW_0001.png" id="142_8je01"]
+[ext_resource type="Texture2D" uid="uid://c2q5udcv3wwiu" path="res://Charakterek/Dash/Dash_S/Dash_S_0001.png" id="143_744tu"]
+[ext_resource type="Texture2D" uid="uid://ckj2dejuqex8v" path="res://Charakterek/Dash/Dash_SE/Dash_SE_0001.png" id="144_xcx6n"]
+[ext_resource type="Texture2D" uid="uid://s5o75cvvxu6l" path="res://Charakterek/Dash/Dash_W/Dash_W_0001.png" id="145_ud4l8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qt4xt"]
 radius = 73.53
+
+[sub_resource type="Animation" id="Animation_85n0w"]
+resource_name = "Chodzenie_E"
+length = 0.6672
+loop_mode = 1
+step = 0.0417
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833334, 0.125, 0.166667, 0.208333, 0.2502, 0.291667, 0.333533, 0.3752, 0.416867, 0.458533, 0.5004, 0.542067, 0.583733, 0.6254),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("35_gpvpx"), ExtResource("36_nbwdp"), ExtResource("37_e5ajq"), ExtResource("38_stocu"), ExtResource("39_16h0y"), ExtResource("40_f6cwg"), ExtResource("41_vqvwq"), ExtResource("42_gylro"), ExtResource("43_m7c8o"), ExtResource("44_mhlm3"), ExtResource("45_v18ow"), ExtResource("46_v57yv"), ExtResource("47_kvold"), ExtResource("48_dhjn8"), ExtResource("49_y8yy3"), ExtResource("50_25fbq")]
+}
+
+[sub_resource type="Animation" id="Animation_0ggdq"]
+resource_name = "Chodzenie_N"
+length = 0.6672
+loop_mode = 1
+step = 0.0417
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833334, 0.125, 0.166667, 0.208333, 0.2502, 0.291867, 0.333533, 0.3752, 0.416867, 0.458533, 0.5004, 0.542067, 0.583733, 0.6254),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("19_y6ac2"), ExtResource("20_aycmv"), ExtResource("21_2h4lf"), ExtResource("22_gcn6p"), ExtResource("23_dbdmp"), ExtResource("24_c1wa5"), ExtResource("25_3nh00"), ExtResource("26_1t0xl"), ExtResource("27_ecicv"), ExtResource("28_dpmpc"), ExtResource("29_ty2gu"), ExtResource("30_yhrn4"), ExtResource("31_e06tq"), ExtResource("32_q4xgh"), ExtResource("33_4pheq"), ExtResource("34_2dis3")]
+}
+
+[sub_resource type="Animation" id="Animation_bijdl"]
+resource_name = "Chodzenie_NE"
+length = 0.6672
+loop_mode = 1
+step = 0.0417
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833334, 0.125, 0.166667, 0.208333, 0.2502, 0.291667, 0.333533, 0.3752, 0.416867, 0.458533, 0.5004, 0.542067, 0.583733, 0.6254),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("100_2fes2"), ExtResource("101_uf33t"), ExtResource("102_8npti"), ExtResource("103_dwojy"), ExtResource("104_idwrn"), ExtResource("105_y0y4m"), ExtResource("106_o6ore"), ExtResource("107_583u4"), ExtResource("108_ygqty"), ExtResource("109_5q6ry"), ExtResource("110_xnf0j"), ExtResource("111_dqprs"), ExtResource("112_tlhgr"), ExtResource("113_oyuc1"), ExtResource("114_7m7ta"), ExtResource("115_3nrp3")]
+}
+
+[sub_resource type="Animation" id="Animation_ur5i1"]
+resource_name = "Chodzenie_NW"
+length = 0.6672
+loop_mode = 1
+step = 0.0417
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833334, 0.125, 0.166667, 0.208333, 0.2502, 0.291667, 0.333533, 0.3752, 0.416867, 0.458533, 0.5004, 0.542067, 0.583733, 0.6254),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("116_yvp6l"), ExtResource("117_luda0"), ExtResource("118_4tr1i"), ExtResource("119_qci50"), ExtResource("120_m5o5n"), ExtResource("121_k1q02"), ExtResource("122_vp6en"), ExtResource("123_b303b"), ExtResource("124_d44bs"), ExtResource("125_687ls"), ExtResource("126_c8b1i"), ExtResource("127_dmbjo"), ExtResource("128_bifu4"), ExtResource("129_u608s"), ExtResource("130_6l6te"), ExtResource("131_atkwj")]
+}
+
+[sub_resource type="Animation" id="Animation_ey8e2"]
+resource_name = "Chodzenie_S"
+length = 0.6672
+loop_mode = 1
+step = 0.0417
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833334, 0.125, 0.166667, 0.208333, 0.2502, 0.291867, 0.333533, 0.3752, 0.416867, 0.458533, 0.5004, 0.542067, 0.583733, 0.6254),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_turag"), ExtResource("4_sob40"), ExtResource("5_2x6qm"), ExtResource("6_0t4ot"), ExtResource("7_ln2u8"), ExtResource("8_soq65"), ExtResource("9_fya4l"), ExtResource("10_nm1jn"), ExtResource("11_5y40e"), ExtResource("12_4u10u"), ExtResource("13_nwi3o"), ExtResource("14_ouefm"), ExtResource("15_61i8w"), ExtResource("16_w5xne"), ExtResource("17_i5ivl"), ExtResource("18_wa0c7")]
+}
+
+[sub_resource type="Animation" id="Animation_dwl0v"]
+resource_name = "Chodzenie_SE"
+length = 0.6672
+loop_mode = 1
+step = 0.0417
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833334, 0.125, 0.166667, 0.208333, 0.2502, 0.291667, 0.333533, 0.3752, 0.416867, 0.458533, 0.5004, 0.542067, 0.583733, 0.6254),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("68_fysvg"), ExtResource("69_8ug68"), ExtResource("70_hfu3g"), ExtResource("71_40ar7"), ExtResource("72_5hux3"), ExtResource("73_pea70"), ExtResource("74_acgq1"), ExtResource("75_ousab"), ExtResource("76_xm0bl"), ExtResource("77_antpc"), ExtResource("78_fb1c6"), ExtResource("79_v4c1x"), ExtResource("80_d8goo"), ExtResource("81_ywtwk"), ExtResource("82_x0t3j"), ExtResource("83_u06g8")]
+}
+
+[sub_resource type="Animation" id="Animation_bu2jn"]
+resource_name = "Chodzenie_SW"
+length = 0.6672
+loop_mode = 1
+step = 0.0417
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833334, 0.125, 0.166667, 0.208333, 0.2502, 0.291667, 0.333533, 0.3752, 0.416867, 0.458533, 0.5004, 0.542067, 0.583733, 0.6254),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("84_ve684"), ExtResource("85_owbpx"), ExtResource("86_bhpjw"), ExtResource("87_y22d2"), ExtResource("88_q6txx"), ExtResource("89_0wd6c"), ExtResource("90_kulr4"), ExtResource("91_tm87b"), ExtResource("92_0h3eq"), ExtResource("93_01xec"), ExtResource("94_4fpb7"), ExtResource("95_su45i"), ExtResource("96_wes5d"), ExtResource("97_8om2a"), ExtResource("98_6yqiv"), ExtResource("99_e3rgo")]
+}
+
+[sub_resource type="Animation" id="Animation_0kdyd"]
+resource_name = "Chodzenie_W"
+length = 0.6672
+loop_mode = 1
+step = 0.0417
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833334, 0.125, 0.166667, 0.208333, 0.2502, 0.291667, 0.333533, 0.3752, 0.416867, 0.458533, 0.5004, 0.542067, 0.583733, 0.6254),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("51_i7xmy"), ExtResource("52_ww8jd"), ExtResource("53_dsn4b"), ExtResource("54_63no2"), ExtResource("55_eu2c5"), ExtResource("56_1fb0i"), ExtResource("57_pjq2f"), ExtResource("58_q0o62"), ExtResource("59_6vaor"), ExtResource("60_n5wpa"), ExtResource("61_elmpc"), ExtResource("62_k5nem"), ExtResource("63_gbyyi"), ExtResource("64_08oj4"), ExtResource("65_10icj"), ExtResource("66_0nt1p")]
+}
+
+[sub_resource type="Animation" id="Animation_nr0x5"]
+resource_name = "Stanie_E"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("132_ko6b6")]
+}
+
+[sub_resource type="Animation" id="Animation_0d2np"]
+resource_name = "Stanie_N"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("133_52oo2")]
+}
+
+[sub_resource type="Animation" id="Animation_x3p1j"]
+resource_name = "Stanie_NE"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("134_h25uq")]
+}
+
+[sub_resource type="Animation" id="Animation_ff0n3"]
+resource_name = "Stanie_NW"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("135_r727a")]
+}
+
+[sub_resource type="Animation" id="Animation_fe87h"]
+resource_name = "Stanie_S"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ke3bb")]
+}
+
+[sub_resource type="Animation" id="Animation_1d83s"]
+resource_name = "Stanie_SE"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("136_q1x0a")]
+}
+
+[sub_resource type="Animation" id="Animation_bpmnm"]
+resource_name = "Stanie_SW"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_pj11p")]
+}
+
+[sub_resource type="Animation" id="Animation_70q3u"]
+resource_name = "Stanie_W"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("137_ktkbg")]
+}
+
+[sub_resource type="Animation" id="Animation_s27i5"]
+resource_name = "Dash_E"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("139_ro0i7")]
+}
+
+[sub_resource type="Animation" id="Animation_qcl5x"]
+resource_name = "Dash_N"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("140_3wsi4")]
+}
+
+[sub_resource type="Animation" id="Animation_b1nsd"]
+resource_name = "Dash_NE"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("141_ivxct")]
+}
+
+[sub_resource type="Animation" id="Animation_px533"]
+resource_name = "Dash_NW"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("142_8je01")]
+}
+
+[sub_resource type="Animation" id="Animation_ssel6"]
+resource_name = "Dash_S"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("143_744tu")]
+}
+
+[sub_resource type="Animation" id="Animation_ew3i5"]
+resource_name = "Dash_SE"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("144_xcx6n")]
+}
+
+[sub_resource type="Animation" id="Animation_01c72"]
+resource_name = "Dash_SW"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_8l70m")]
+}
+
+[sub_resource type="Animation" id="Animation_yvn6v"]
+resource_name = "Dash_W"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("145_ud4l8")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hvrvl"]
+_data = {
+"Chodzenie_E": SubResource("Animation_85n0w"),
+"Chodzenie_N": SubResource("Animation_0ggdq"),
+"Chodzenie_NE": SubResource("Animation_bijdl"),
+"Chodzenie_NW": SubResource("Animation_ur5i1"),
+"Chodzenie_S": SubResource("Animation_ey8e2"),
+"Chodzenie_SE": SubResource("Animation_dwl0v"),
+"Chodzenie_SW": SubResource("Animation_bu2jn"),
+"Chodzenie_W": SubResource("Animation_0kdyd"),
+"Dash_E": SubResource("Animation_s27i5"),
+"Dash_N": SubResource("Animation_qcl5x"),
+"Dash_NE": SubResource("Animation_b1nsd"),
+"Dash_NW": SubResource("Animation_px533"),
+"Dash_S": SubResource("Animation_ssel6"),
+"Dash_SE": SubResource("Animation_ew3i5"),
+"Dash_SW": SubResource("Animation_01c72"),
+"Dash_W": SubResource("Animation_yvn6v"),
+"Stanie_E": SubResource("Animation_nr0x5"),
+"Stanie_N": SubResource("Animation_0d2np"),
+"Stanie_NE": SubResource("Animation_x3p1j"),
+"Stanie_NW": SubResource("Animation_ff0n3"),
+"Stanie_S": SubResource("Animation_fe87h"),
+"Stanie_SE": SubResource("Animation_1d83s"),
+"Stanie_SW": SubResource("Animation_bpmnm"),
+"Stanie_W": SubResource("Animation_70q3u")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u1od5"]
+animation = &"Chodzenie_N"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q34t3"]
+animation = &"Chodzenie_E"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rn7ng"]
+animation = &"Chodzenie_S"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dfv2l"]
+animation = &"Chodzenie_W"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oyqie"]
+animation = &"Chodzenie_NW"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ckupv"]
+animation = &"Chodzenie_NE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vr4dp"]
+animation = &"Chodzenie_SE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xsk3j"]
+animation = &"Chodzenie_SW"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ylxnd"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_u1od5")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_q34t3")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_rn7ng")
+blend_point_2/pos = Vector2(0, -1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_dfv2l")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_oyqie")
+blend_point_4/pos = Vector2(-0.71, 0.71)
+blend_point_5/node = SubResource("AnimationNodeAnimation_ckupv")
+blend_point_5/pos = Vector2(0.71, 0.71)
+blend_point_6/node = SubResource("AnimationNodeAnimation_vr4dp")
+blend_point_6/pos = Vector2(0.71, -0.71)
+blend_point_7/node = SubResource("AnimationNodeAnimation_xsk3j")
+blend_point_7/pos = Vector2(-0.71, -0.71)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b1uy4"]
+animation = &"Dash_N"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y0xma"]
+animation = &"Dash_S"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rwmsr"]
+animation = &"Dash_E"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c0heq"]
+animation = &"Dash_W"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5n1kr"]
+animation = &"Dash_SW"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_40fd5"]
+animation = &"Dash_SE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ddu1o"]
+animation = &"Dash_NE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hopxb"]
+animation = &"Dash_NW"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_54gx5"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_b1uy4")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_y0xma")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_rwmsr")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_c0heq")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_5n1kr")
+blend_point_4/pos = Vector2(-0.71, -0.71)
+blend_point_5/node = SubResource("AnimationNodeAnimation_40fd5")
+blend_point_5/pos = Vector2(0.71, -0.71)
+blend_point_6/node = SubResource("AnimationNodeAnimation_ddu1o")
+blend_point_6/pos = Vector2(0.71, 0.71)
+blend_point_7/node = SubResource("AnimationNodeAnimation_hopxb")
+blend_point_7/pos = Vector2(-0.71, 0.71)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qkuk8"]
+animation = &"Stanie_W"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l0lpo"]
+animation = &"Stanie_S"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ytnw5"]
+animation = &"Stanie_E"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ruw17"]
+animation = &"Stanie_N"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nl5vx"]
+animation = &"Stanie_NE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u2e2c"]
+animation = &"Stanie_NW"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_514pw"]
+animation = &"Stanie_SW"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gfsjn"]
+animation = &"Stanie_SE"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_jri72"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_qkuk8")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_l0lpo")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ytnw5")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ruw17")
+blend_point_3/pos = Vector2(0, 1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_nl5vx")
+blend_point_4/pos = Vector2(0.71, 0.71)
+blend_point_5/node = SubResource("AnimationNodeAnimation_u2e2c")
+blend_point_5/pos = Vector2(-0.71, 0.71)
+blend_point_6/node = SubResource("AnimationNodeAnimation_514pw")
+blend_point_6/pos = Vector2(-0.71, -0.71)
+blend_point_7/node = SubResource("AnimationNodeAnimation_gfsjn")
+blend_point_7/pos = Vector2(0.71, -0.71)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sytx8"]
+states/Chodzenie/node = SubResource("AnimationNodeBlendSpace2D_ylxnd")
+states/Chodzenie/position = Vector2(529, 100)
+states/Dashowanie/node = SubResource("AnimationNodeBlendSpace2D_54gx5")
+states/Dashowanie/position = Vector2(529, 172)
+states/Stanie/node = SubResource("AnimationNodeBlendSpace2D_jri72")
+states/Stanie/position = Vector2(529, 29)
+states/Start/position = Vector2(209, 100)
+graph_offset = Vector2(-85, -55)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f56u4"]
 radius = 21.21
@@ -18,12 +728,24 @@ y_sort_enabled = true
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_f6crp")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_5m3xt")
-offset = Vector2(0, -75)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CircleShape2D_qt4xt")
+
+[node name="Sprite2Dgracz" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_ke3bb")
+offset = Vector2(0, -75)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+libraries = {
+"": SubResource("AnimationLibrary_hvrvl")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D"]
+tree_root = SubResource("AnimationNodeStateMachine_sytx8")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Chodzenie/blend_position = Vector2(-0.00290275, 0)
+parameters/Dashowanie/blend_position = Vector2(0, 0)
+parameters/Stanie/blend_position = Vector2(-0.00282884, -0.884956)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position_smoothing_speed = 1.0
