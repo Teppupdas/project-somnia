@@ -22,7 +22,7 @@ var dashing = false
 var canDash = true
 var dashDirection
 const DASH_SPEED = 3000 #nie może się mnożyć z joystickiem
-const DASH_LENGTH = 0.2
+const DASH_LENGTH = 0.3
 const DASH_COOLDOWN = 0.5
 
 
