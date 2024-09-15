@@ -1,6 +1,7 @@
-[gd_scene load_steps=84 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=89 format=3 uid="uid://8qhpmlocmgej"]
 
-[ext_resource type="Script" path="res://Skrypty/PlayerControler.gd" id="1_f6crp"]
+[ext_resource type="Script" path="res://Skrypty/Player.gd" id="1_f6crp"]
+[ext_resource type="Script" path="res://Skrypty/UserInterface.gd" id="1_pbntp"]
 [ext_resource type="Texture2D" uid="uid://ba3tmkn7xgdo0" path="res://Charakterek/Chodzenie/Chodzenie_E.png" id="2_x3rcc"]
 [ext_resource type="Texture2D" uid="uid://xvkehi28g46d" path="res://CalySwiat/drzewqo.png" id="3_eo4ki"]
 [ext_resource type="Texture2D" uid="uid://dplsdhchrm75l" path="res://Charakterek/Chodzenie/Chodzenie_N.png" id="3_tn6jl"]
@@ -26,10 +27,12 @@
 [ext_resource type="Texture2D" uid="uid://5bph5f3vqsl2" path="res://Charakterek/Stanie/Stanie_SE.png" id="24_aus7g"]
 [ext_resource type="Texture2D" uid="uid://cb35uxslal7t1" path="res://Charakterek/Stanie/Stanie_SW.png" id="25_vf8vy"]
 [ext_resource type="Texture2D" uid="uid://bopb57qhise5r" path="res://Charakterek/Stanie/Stanie_W.png" id="26_gflrp"]
+[ext_resource type="Script" path="res://Dziao/Dzialko.gd" id="28_bvl2h"]
+[ext_resource type="Texture2D" uid="uid://cyursrb1y2esd" path="res://Dziao/dzialako.png" id="28_d34pn"]
 [ext_resource type="Texture2D" uid="uid://dthyfv1fgpfkc" path="res://Charakterek/Chodzenie/Chodzenie_S.png" id="66_mmmag"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qt4xt"]
-radius = 73.53
+radius = 50.0
 
 [sub_resource type="Animation" id="Animation_85n0w"]
 resource_name = "Chodzenie_E"
@@ -591,6 +594,21 @@ tracks/1/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_1surb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
 [sub_resource type="Animation" id="Animation_nr0x5"]
 resource_name = "Stanie_E"
 loop_mode = 1
@@ -815,21 +833,6 @@ tracks/1/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_1surb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2Dgracz:hframes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [16]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hvrvl"]
 _data = {
 "Chodzenie_E": SubResource("Animation_85n0w"),
@@ -998,47 +1001,63 @@ states/Stanie/position = Vector2(529, 29)
 states/Start/position = Vector2(209, 100)
 graph_offset = Vector2(-85, -55)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_56jup"]
+radius = 60.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f56u4"]
 radius = 21.21
 height = 91.01
 
-[node name="Node2D_YSort" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elsen"]
+size = Vector2(200, 80)
+
+[node name="Root" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_pbntp")
+
+[node name="Serduszka" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Gracz" type="CharacterBody2D" parent="YSort"]
+collision_layer = 2
 script = ExtResource("1_f6crp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Gracz"]
 shape = SubResource("CircleShape2D_qt4xt")
 
-[node name="Sprite2Dgracz" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2Dgracz" type="Sprite2D" parent="YSort/Gracz"]
 offset = Vector2(0, -75)
 hframes = 16
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YSort/Gracz"]
 libraries = {
 "": SubResource("AnimationLibrary_hvrvl")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D"]
+[node name="AnimationTree" type="AnimationTree" parent="YSort/Gracz"]
 tree_root = SubResource("AnimationNodeStateMachine_sytx8")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Chodzenie/blend_position = Vector2(-0.00290275, 0)
 parameters/Dashowanie/blend_position = Vector2(0, 0)
 parameters/Stanie/blend_position = Vector2(-0.00282884, -0.884956)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="YSort/Gracz"]
 position_smoothing_speed = 1.0
 
-[node name="Label1" type="Label" parent="CharacterBody2D"]
+[node name="Label1" type="Label" parent="YSort/Gracz"]
 offset_left = -1868.0
-offset_top = -1024.0
+offset_top = -971.0
 offset_right = -1573.0
-offset_bottom = -965.0
+offset_bottom = -912.0
 theme_override_font_sizes/font_size = 43
 text = "111111111111"
 
-[node name="Label2" type="Label" parent="CharacterBody2D"]
+[node name="Label2" type="Label" parent="YSort/Gracz"]
 offset_left = -1834.0
 offset_top = 872.0
 offset_right = -1320.0
@@ -1046,17 +1065,41 @@ offset_bottom = 1009.0
 theme_override_font_sizes/font_size = 100
 text = "222222222"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(802, -12)
+[node name="playerHurtBox" type="Area2D" parent="YSort/Gracz"]
+collision_layer = 2
+collision_mask = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Gracz/playerHurtBox"]
+shape = SubResource("CircleShape2D_56jup")
+
+[node name="Drzewo1" type="StaticBody2D" parent="YSort"]
+position = Vector2(-498, -12)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="YSort/Drzewo1"]
 texture = ExtResource("3_eo4ki")
 offset = Vector2(48, -272)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Drzewo1"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_f56u4")
 
-[node name="4kSize" type="Sprite2D" parent="."]
+[node name="Dzialko" type="StaticBody2D" parent="YSort"]
+position = Vector2(1587, -17)
+collision_mask = 0
+script = ExtResource("28_bvl2h")
+
+[node name="Sprite2D" type="Sprite2D" parent="YSort/Dzialko"]
+position = Vector2(300, 95)
+texture = ExtResource("28_d34pn")
+offset = Vector2(-47.72, -56.225)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Dzialko"]
+position = Vector2(300, 95)
+shape = SubResource("RectangleShape2D_elsen")
+
+[node name="4kSize" type="Sprite2D" parent="YSort"]
 position = Vector2(-3376, -2353)
 texture = ExtResource("4_628y8")
+
+[connection signal="area_entered" from="YSort/Gracz/playerHurtBox" to="YSort/Gracz" method="_on_player_hurt_box_area_entered"]

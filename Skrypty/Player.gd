@@ -1,12 +1,18 @@
 extends CharacterBody2D
 
-#@onready var animatedSprite = $Sprite2D
-#@onready var animationPlayer = $AnimationPlayer
+
 @onready var animationTree = $AnimationTree
 @onready var animationMode = animationTree.get("parameters/playback")
 
 @onready var label1 = $Label1
 @onready var label2 = $Label2
+
+
+@export var maxHealth = 20
+@onready var currentHealth: int = maxHealth
+signal healthChanged
+
+
 
 
 
@@ -22,19 +28,20 @@ var dashing = false
 var canDash = true
 var dashDirection
 const DASH_SPEED = 3000 #nie może się mnożyć z joystickiem
-const DASH_LENGTH = 0.3
+const DASH_LENGTH = 0.5
 const DASH_COOLDOWN = 0.5
 
 
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	healthChanged.emit(currentHealth)
 
 
 
 func _process(delta):
 
-	label1.set_text("FPS: " + str(Engine.get_frames_per_second()))
+	#label1.set_text("FPS: " + str(Engine.get_frames_per_second()))
+	label1.set_text("Życie: " + str(currentHealth))
 
 	if canDash:
 		label2.text = "+"
@@ -47,18 +54,16 @@ func _process(delta):
 
 
 
-	#ANIMACJE  robić na tym czy na AnimationNodeBlendTree ??? chyba dobrze robie bo jakis typ poweidzial ze to drugie jest do gier 3D
+	#ANIMACJE
 	if moveVector == Vector2.ZERO and !dashing:
 		animationMode.travel("Stanie")
-		#pass			
+	elif dashing:
+		animationMode.travel("Dashowanie")
 	else:
-		if dashing:
-			animationMode.travel("Dashowanie")
-		else:
-			animationMode.travel("Chodzenie")
-			animationTree.set("parameters/Stanie/blend_position", Vector2(moveVector.normalized().x, -moveVector.normalized().y))
-			animationTree.set("parameters/Chodzenie/blend_position", Vector2(moveVector.normalized().x, -moveVector.normalized().y))
-			animationTree.set("parameters/Dashowanie/blend_position", Vector2(moveVector.normalized().x, -moveVector.normalized().y))
+		animationMode.travel("Chodzenie")
+		animationTree.set("parameters/Stanie/blend_position", Vector2(moveVector.normalized().x, -moveVector.normalized().y))
+		animationTree.set("parameters/Chodzenie/blend_position", Vector2(moveVector.normalized().x, -moveVector.normalized().y))
+		animationTree.set("parameters/Dashowanie/blend_position", Vector2(moveVector.normalized().x, -moveVector.normalized().y))
 
 
 
@@ -78,8 +83,8 @@ func _physics_process(delta):
 
 	moveSpeedMultiplier = clamp(moveVector.length(), 0, 1)
 
-	
-	
+
+
 	#Dash
 	if moveVector != Vector2.ZERO and Input.is_action_just_pressed("dash") and canDash:
 		dashing = true
@@ -104,3 +109,16 @@ func _physics_process(delta):
 	else:
 		set_velocity(moveVector.normalized() * currentMoveSpeed * moveSpeedMultiplier)
 		move_and_slide()
+		
+		#move_and_collide(moveVector.normalized() * currentMoveSpeed * moveSpeedMultiplier / 50)
+
+
+
+
+func _on_player_hurt_box_area_entered(area: Area2D) -> void:
+	if area.name == "hitBox":
+		area.get_parent().queue_free()
+		currentHealth -=1
+		if currentHealth == 0:
+			currentHealth = maxHealth
+		healthChanged.emit(currentHealth)
