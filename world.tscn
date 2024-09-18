@@ -1,7 +1,8 @@
-[gd_scene load_steps=89 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=90 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" path="res://Skrypty/Player.gd" id="1_f6crp"]
 [ext_resource type="Script" path="res://Skrypty/UserInterface.gd" id="1_pbntp"]
+[ext_resource type="Texture2D" uid="uid://bbgqhs3ji5vlg" path="res://Interfejsik/pauaa.png" id="2_84nhc"]
 [ext_resource type="Texture2D" uid="uid://ba3tmkn7xgdo0" path="res://Charakterek/Chodzenie/Chodzenie_E.png" id="2_x3rcc"]
 [ext_resource type="Texture2D" uid="uid://xvkehi28g46d" path="res://CalySwiat/drzewqo.png" id="3_eo4ki"]
 [ext_resource type="Texture2D" uid="uid://dplsdhchrm75l" path="res://Charakterek/Chodzenie/Chodzenie_N.png" id="3_tn6jl"]
@@ -1012,9 +1013,44 @@ height = 91.01
 size = Vector2(200, 80)
 
 [node name="Root" type="Node"]
+process_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 script = ExtResource("1_pbntp")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_right = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_84nhc")
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TextureRect"]
+custom_minimum_size = Vector2(1000, 2000)
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 2000.0
+alignment = 1
+
+[node name="Label1" type="Label" parent="CanvasLayer/TextureRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 120
+text = "resume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/TextureRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 120
+text = "exit"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Serduszka" type="HBoxContainer" parent="CanvasLayer"]
 offset_right = 40.0

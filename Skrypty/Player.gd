@@ -85,7 +85,7 @@ func _physics_process(delta):
 
 
 
-	#Dash
+	#Dasha aktywacja
 	if moveVector != Vector2.ZERO and Input.is_action_just_pressed("dash") and canDash:
 		dashing = true
 		canDash = false
@@ -104,19 +104,17 @@ func _physics_process(delta):
 		#if moveVector == Vector2.ZERO:
 			#zatrzymać daszowanie? Sprawdzić jak jest w Hades 
 			# i sprawdzić w Hades na padzie jak prędkość poruszania wpływa na animacje!
-		set_velocity(dashDirection.normalized() * currentMoveSpeed)
-		move_and_slide()
+		set_velocity(dashDirection.normalized() * currentMoveSpeed)  #ustawia prędkość na daszowanie
 	else:
-		set_velocity(moveVector.normalized() * currentMoveSpeed * moveSpeedMultiplier)
-		move_and_slide()
-		
-		#move_and_collide(moveVector.normalized() * currentMoveSpeed * moveSpeedMultiplier / 50)
-
+		set_velocity(moveVector.normalized() * currentMoveSpeed * moveSpeedMultiplier) #ustawia prędkość na standardową
+	
+	
+	move_and_slide() #poruszanie się to powoduje
 
 
 
 func _on_player_hurt_box_area_entered(area: Area2D) -> void:
-	if area.name == "hitBox":
+	if area.name == "hitBox" and !dashing:
 		area.get_parent().queue_free()
 		currentHealth -=1
 		if currentHealth == 0:

@@ -4,6 +4,14 @@ extends CanvasLayer
 @onready var player = $"../YSort/Gracz"
 @onready var heartPrefab = preload("res://Interfejsik/serce.tscn")
 
+@onready var pauzyMenu = $TextureRect
+@onready var Label1 = $TextureRect/VBoxContainer/Label1
+@onready var Label2 = $TextureRect/VBoxContainer/Label2
+var pauzaAktywna
+var opcjaWybrana
+
+
+
 
 
 func _ready() -> void:
@@ -15,10 +23,63 @@ func _ready() -> void:
 
 
 
+	pauzaAktywna = false
+	pauzyMenu.hide()
+	pasekSerc.show()
+	get_tree().paused = false
+	opcjaWybrana = 1
+
+
 
 
 func _process(delta: float) -> void:
-	pass
+	if pauzaAktywna:
+		if Input.is_action_just_pressed("pauza"):
+			pauzaAktywna = false
+			pauzyMenu.hide()
+			pasekSerc.show()
+			get_tree().paused = false
+			opcjaWybrana = 1
+
+
+		if Input.is_action_just_pressed("potwierdz"):
+			match opcjaWybrana:
+				1:
+					pauzaAktywna = false
+					pauzyMenu.hide()
+					pasekSerc.show()
+					get_tree().paused = false
+				2:
+					get_tree().quit()
+
+
+		if Input.is_action_just_pressed("gora"):
+			match opcjaWybrana:
+				1:
+					opcjaWybrana = 2
+				2:
+					opcjaWybrana = 1
+		if Input.is_action_just_pressed("dol"):
+			match opcjaWybrana:
+				1:
+					opcjaWybrana = 2
+				2:
+					opcjaWybrana = 1
+
+
+		match opcjaWybrana:
+			1:
+				Label1.set("theme_override_colors/font_color", Color8(220, 20, 60))
+				Label2.set("theme_override_colors/font_color", Color8(255, 255, 255))
+			2:
+				Label1.set("theme_override_colors/font_color", Color8(255,255,255))
+				Label2.set("theme_override_colors/font_color", Color8(220, 20, 60))
+
+	elif Input.is_action_just_pressed("pauza"):
+		pauzaAktywna = true
+		get_tree().paused = true
+		pasekSerc.hide()
+		pauzyMenu.show()
 
 
 
@@ -38,85 +99,3 @@ func updateHearts(currentHealth):
 
 	for i in range(currentHealth, hearts.size()):
 		hearts[i].update(false)
-
-
-
-
-
-
-
-
-
-#Wszystko co poniżej to stara pauza
-
-#extends CanvasLayer
-
-#onready var PauzaWszystko
-#@onready var Label1 = $VBoxContainer/Label1
-#@onready var Label2 = $VBoxContainer/Label2
-
-
-
-
-#var pauzaAktywna
-#var opcjaWybrana
-
-
-#func _ready():
-	#pauzaAktywna = false
-	##hide()
-	#get_tree().paused = false
-	#opcjaWybrana = 1
-
-
-#func _process(delta):
-
-
-
-
-
-
-	#if pauzaAktywna:
-		#if Input.is_action_just_pressed("cancel_ui") or Input.is_action_just_pressed("pause"):
-			#pauzaAktywna = false
-			#hide()
-			#get_tree().paused = false
-			#opcjaWybrana = 1
-
-
-		#if Input.is_action_just_pressed("accept_ui"):
-			#match opcjaWybrana:
-				#1:
-					#pauzaAktywna = false
-					#hide()
-					#get_tree().paused = false
-				#2:
-					#get_tree().quit()
-
-
-		#if Input.is_action_just_pressed("up_ui"):
-			#match opcjaWybrana:
-				#1:
-					#opcjaWybrana = 2
-				#2:
-					#opcjaWybrana = 1
-		#if Input.is_action_just_pressed("down_ui"):
-			#match opcjaWybrana:
-				#1:
-					#opcjaWybrana = 2
-				#2:
-					#opcjaWybrana = 1
-
-
-		#match opcjaWybrana:
-			#1:
-				#Label1.set("theme_override_colors/font_color", Color8(220, 20, 60))
-				#Label2.set("theme_override_colors/font_color", Color8(255, 255, 255))
-			#2:
-				#Label1.set("theme_override_colors/font_color", Color8(255,255,255))
-				#Label2.set("theme_override_colors/font_color", Color8(220, 20, 60))
-
-	#elif Input.is_action_just_pressed("pause"):
-		#pauzaAktywna = true
-		#get_tree().paused = true
-		#show()
