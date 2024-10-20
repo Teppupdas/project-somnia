@@ -40,8 +40,8 @@ func _ready():
 
 func _process(delta):
 
-	#label1.set_text("FPS: " + str(Engine.get_frames_per_second()))
-	label1.set_text("Życie: " + str(currentHealth))
+	label1.set_text("FPS: " + str(Engine.get_frames_per_second()))
+	#label1.set_text("Życie: " + str(currentHealth))
 
 	if canDash:
 		label2.text = "+"
