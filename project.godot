@@ -72,6 +72,11 @@ potwierdz={
 2d_physics/layer_2="gracz"
 2d_physics/layer_3="pocisk"
 
+[physics]
+
+common/physics_ticks_per_second=120
+
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

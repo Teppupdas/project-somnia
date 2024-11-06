@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var pasekSerc = $Serduszka
-@onready var player = $"../YSort/Gracz"
+@onready var player = $"../World YSort/Gracz"
 @onready var heartPrefab = preload("res://Interfejsik/serce.tscn")
 
 @onready var pauzyMenu = $TextureRect

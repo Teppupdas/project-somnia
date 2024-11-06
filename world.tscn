@@ -1,36 +1,44 @@
-[gd_scene load_steps=90 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=97 format=3 uid="uid://8qhpmlocmgej"]
 
+[ext_resource type="Script" path="res://Skrypty/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" path="res://Skrypty/Player.gd" id="1_f6crp"]
 [ext_resource type="Script" path="res://Skrypty/UserInterface.gd" id="1_pbntp"]
 [ext_resource type="Texture2D" uid="uid://bbgqhs3ji5vlg" path="res://Interfejsik/pauaa.png" id="2_84nhc"]
-[ext_resource type="Texture2D" uid="uid://ba3tmkn7xgdo0" path="res://Charakterek/Chodzenie/Chodzenie_E.png" id="2_x3rcc"]
+[ext_resource type="Texture2D" uid="uid://ba3tmkn7xgdo0" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_E.png" id="2_x3rcc"]
 [ext_resource type="Texture2D" uid="uid://xvkehi28g46d" path="res://CalySwiat/drzewqo.png" id="3_eo4ki"]
-[ext_resource type="Texture2D" uid="uid://dplsdhchrm75l" path="res://Charakterek/Chodzenie/Chodzenie_N.png" id="3_tn6jl"]
+[ext_resource type="Texture2D" uid="uid://dplsdhchrm75l" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_N.png" id="3_tn6jl"]
+[ext_resource type="Script" path="res://Skrypty/Kamera.gd" id="3_w3pet"]
+[ext_resource type="Texture2D" uid="uid://cv7lf171obmyx" path="res://CalySwiat/trafka.png" id="4_57ajs"]
 [ext_resource type="Texture2D" uid="uid://5h6g81sk27il" path="res://4K size.png" id="4_628y8"]
-[ext_resource type="Texture2D" uid="uid://bmeo4oigejubl" path="res://Charakterek/Chodzenie/Chodzenie_NE.png" id="4_v8iwe"]
-[ext_resource type="Texture2D" uid="uid://cqty2jx1hd6bc" path="res://Charakterek/Chodzenie/Chodzenie_NW.png" id="5_po0cm"]
-[ext_resource type="Texture2D" uid="uid://dbdabpa73y4m5" path="res://Charakterek/Chodzenie/Chodzenie_SE.png" id="7_xeobm"]
-[ext_resource type="Texture2D" uid="uid://c46ywgnyqfhqi" path="res://Charakterek/Chodzenie/Chodzenie_SW.png" id="8_1geaf"]
-[ext_resource type="Texture2D" uid="uid://bbqiyvqvr4yyt" path="res://Charakterek/Chodzenie/Chodzenie_W.png" id="9_xworx"]
-[ext_resource type="Texture2D" uid="uid://c387xod2jpf3h" path="res://Charakterek/Dash/Dash_E.png" id="10_0vari"]
-[ext_resource type="Texture2D" uid="uid://cx7cf1njyc8hs" path="res://Charakterek/Dash/Dash_N.png" id="11_2hn57"]
-[ext_resource type="Texture2D" uid="uid://bed7n4op1m61g" path="res://Charakterek/Dash/Dash_NE.png" id="12_qio8e"]
-[ext_resource type="Texture2D" uid="uid://cjwiftadj546x" path="res://Charakterek/Dash/Dash_NW.png" id="13_xirku"]
-[ext_resource type="Texture2D" uid="uid://bxhvtyfnywwwd" path="res://Charakterek/Dash/Dash_S.png" id="14_dyq6b"]
-[ext_resource type="Texture2D" uid="uid://c4h5s8h3bs60m" path="res://Charakterek/Dash/Dash_SE.png" id="15_csxjx"]
-[ext_resource type="Texture2D" uid="uid://bpmh2stpxao3s" path="res://Charakterek/Dash/Dash_SW.png" id="16_neydv"]
-[ext_resource type="Texture2D" uid="uid://colwbxkx1ph2u" path="res://Charakterek/Dash/Dash_W.png" id="17_lgi8q"]
-[ext_resource type="Texture2D" uid="uid://qj87obrwibx0" path="res://Charakterek/Stanie/Stanie_E.png" id="19_1rcgw"]
-[ext_resource type="Texture2D" uid="uid://bqyc2yn6iuaj4" path="res://Charakterek/Stanie/Stanie_N.png" id="20_07oiv"]
-[ext_resource type="Texture2D" uid="uid://eu200vl8qqlc" path="res://Charakterek/Stanie/Stanie_NE.png" id="21_x87wj"]
-[ext_resource type="Texture2D" uid="uid://egw4u6sgan7b" path="res://Charakterek/Stanie/Stanie_NW.png" id="22_3lsaw"]
-[ext_resource type="Texture2D" uid="uid://c6n1feoowxc5r" path="res://Charakterek/Stanie/Stanie_S.png" id="23_y7iwx"]
-[ext_resource type="Texture2D" uid="uid://5bph5f3vqsl2" path="res://Charakterek/Stanie/Stanie_SE.png" id="24_aus7g"]
-[ext_resource type="Texture2D" uid="uid://cb35uxslal7t1" path="res://Charakterek/Stanie/Stanie_SW.png" id="25_vf8vy"]
-[ext_resource type="Texture2D" uid="uid://bopb57qhise5r" path="res://Charakterek/Stanie/Stanie_W.png" id="26_gflrp"]
+[ext_resource type="Texture2D" uid="uid://bmeo4oigejubl" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_NE.png" id="4_v8iwe"]
+[ext_resource type="Texture2D" uid="uid://cqty2jx1hd6bc" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_NW.png" id="5_po0cm"]
+[ext_resource type="Texture2D" uid="uid://dpq2b8jd2wu4l" path="res://CalySwiat/in1.png" id="6_6qc55"]
+[ext_resource type="Texture2D" uid="uid://dbdabpa73y4m5" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_SE.png" id="7_xeobm"]
+[ext_resource type="Texture2D" uid="uid://c46ywgnyqfhqi" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_SW.png" id="8_1geaf"]
+[ext_resource type="Texture2D" uid="uid://bbqiyvqvr4yyt" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_W.png" id="9_xworx"]
+[ext_resource type="Texture2D" uid="uid://c387xod2jpf3h" path="res://Charakterki/Atoja/Dash/Dash_E.png" id="10_0vari"]
+[ext_resource type="Texture2D" uid="uid://cx7cf1njyc8hs" path="res://Charakterki/Atoja/Dash/Dash_N.png" id="11_2hn57"]
+[ext_resource type="Texture2D" uid="uid://bed7n4op1m61g" path="res://Charakterki/Atoja/Dash/Dash_NE.png" id="12_qio8e"]
+[ext_resource type="Texture2D" uid="uid://cjwiftadj546x" path="res://Charakterki/Atoja/Dash/Dash_NW.png" id="13_xirku"]
+[ext_resource type="Texture2D" uid="uid://bxhvtyfnywwwd" path="res://Charakterki/Atoja/Dash/Dash_S.png" id="14_dyq6b"]
+[ext_resource type="Texture2D" uid="uid://c4h5s8h3bs60m" path="res://Charakterki/Atoja/Dash/Dash_SE.png" id="15_csxjx"]
+[ext_resource type="Texture2D" uid="uid://bpmh2stpxao3s" path="res://Charakterki/Atoja/Dash/Dash_SW.png" id="16_neydv"]
+[ext_resource type="Texture2D" uid="uid://colwbxkx1ph2u" path="res://Charakterki/Atoja/Dash/Dash_W.png" id="17_lgi8q"]
+[ext_resource type="Texture2D" uid="uid://qj87obrwibx0" path="res://Charakterki/Atoja/Stanie/Stanie_E.png" id="19_1rcgw"]
+[ext_resource type="Texture2D" uid="uid://bqyc2yn6iuaj4" path="res://Charakterki/Atoja/Stanie/Stanie_N.png" id="20_07oiv"]
+[ext_resource type="Texture2D" uid="uid://eu200vl8qqlc" path="res://Charakterki/Atoja/Stanie/Stanie_NE.png" id="21_x87wj"]
+[ext_resource type="Texture2D" uid="uid://egw4u6sgan7b" path="res://Charakterki/Atoja/Stanie/Stanie_NW.png" id="22_3lsaw"]
+[ext_resource type="Texture2D" uid="uid://c6n1feoowxc5r" path="res://Charakterki/Atoja/Stanie/Stanie_S.png" id="23_y7iwx"]
+[ext_resource type="Texture2D" uid="uid://5bph5f3vqsl2" path="res://Charakterki/Atoja/Stanie/Stanie_SE.png" id="24_aus7g"]
+[ext_resource type="Texture2D" uid="uid://cb35uxslal7t1" path="res://Charakterki/Atoja/Stanie/Stanie_SW.png" id="25_vf8vy"]
+[ext_resource type="Texture2D" uid="uid://bopb57qhise5r" path="res://Charakterki/Atoja/Stanie/Stanie_W.png" id="26_gflrp"]
 [ext_resource type="Script" path="res://Dziao/Dzialko.gd" id="28_bvl2h"]
 [ext_resource type="Texture2D" uid="uid://cyursrb1y2esd" path="res://Dziao/dzialako.png" id="28_d34pn"]
-[ext_resource type="Texture2D" uid="uid://dthyfv1fgpfkc" path="res://Charakterek/Chodzenie/Chodzenie_S.png" id="66_mmmag"]
+[ext_resource type="Texture2D" uid="uid://dud0s10wjefj0" path="res://CalySwiat/out1.png" id="34_g7egq"]
+[ext_resource type="Texture2D" uid="uid://dthyfv1fgpfkc" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_S.png" id="66_mmmag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ji7yj"]
+size = Vector2(244, 65)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qt4xt"]
 radius = 50.0
@@ -1132,8 +1140,14 @@ height = 91.01
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elsen"]
 size = Vector2(200, 80)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rodtt"]
+size = Vector2(241, 113)
+
 [node name="Root" type="Node"]
 process_mode = 1
+script = ExtResource("1_6b4vu")
+Loc1 = "AAADwor"
+Loc2 = "Domek1"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -1176,37 +1190,65 @@ vertical_alignment = 1
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="YSort" type="Node2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
+script = ExtResource("3_w3pet")
+
+[node name="World Backgorund" type="Node2D" parent="."]
+
+[node name="Trawka1" type="Polygon2D" parent="World Backgorund" groups=["AAADwor"]]
+texture_repeat = 2
+texture = ExtResource("4_57ajs")
+polygon = PackedVector2Array(1842, -1934, 2503, -1930, 2506, -1757, 2889, -1756, 2898, -1930, 3567, -1935, 3547, -2879, 4901, -2723, 4922, 1771, -3414, 1778, -3399, -4270, 1831, -4244)
+
+[node name="4kSize" type="Sprite2D" parent="World Backgorund"]
+position = Vector2(-3376, -2353)
+texture = ExtResource("4_628y8")
+
+[node name="zabka in" type="StaticBody2D" parent="World Backgorund" groups=["Domek1"]]
+position = Vector2(2695, -2478)
+
+[node name="Sprite2D" type="Sprite2D" parent="World Backgorund/zabka in"]
+texture = ExtResource("6_6qc55")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Backgorund/zabka in"]
+polygon = PackedVector2Array(-105, 553, -110, 721, -901, 667, -932, -590, 907, -581, 931, 643, 108, 724, 110, 554, 867, 565, 863, -462, -862, -456, -865, 560)
+
+[node name="Area2D" type="Area2D" parent="World Backgorund/zabka in"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Backgorund/zabka in/Area2D"]
+position = Vector2(0, 700)
+shape = SubResource("RectangleShape2D_ji7yj")
+
+[node name="World YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Gracz" type="CharacterBody2D" parent="YSort"]
+[node name="Gracz" type="CharacterBody2D" parent="World YSort"]
 collision_layer = 2
 script = ExtResource("1_f6crp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Gracz"]
-shape = SubResource("CircleShape2D_qt4xt")
-
-[node name="Sprite2Dgracz" type="Sprite2D" parent="YSort/Gracz"]
-texture = ExtResource("9_xworx")
+[node name="Sprite2Dgracz" type="Sprite2D" parent="World YSort/Gracz"]
 offset = Vector2(0, -75)
 hframes = 16
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="YSort/Gracz"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz"]
+shape = SubResource("CircleShape2D_qt4xt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World YSort/Gracz"]
 libraries = {
 "": SubResource("AnimationLibrary_hvrvl")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="YSort/Gracz"]
+[node name="AnimationTree" type="AnimationTree" parent="World YSort/Gracz"]
 tree_root = SubResource("AnimationNodeStateMachine_sytx8")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Chodzenie/blend_position = Vector2(0.976522, 0.0106382)
 parameters/Dashowanie/blend_position = Vector2(0.980924, -0.0106384)
 parameters/Stanie/blend_position = Vector2(0.980924, 0.0212766)
 
-[node name="Camera2D" type="Camera2D" parent="YSort/Gracz"]
-position_smoothing_speed = 1.0
-
-[node name="Label1" type="Label" parent="YSort/Gracz"]
+[node name="Label1" type="Label" parent="World YSort/Gracz"]
 offset_left = -1868.0
 offset_top = -971.0
 offset_right = -1573.0
@@ -1214,7 +1256,7 @@ offset_bottom = -912.0
 theme_override_font_sizes/font_size = 43
 text = "111111111111"
 
-[node name="Label2" type="Label" parent="YSort/Gracz"]
+[node name="Label2" type="Label" parent="World YSort/Gracz"]
 offset_left = -1834.0
 offset_top = 872.0
 offset_right = -1320.0
@@ -1222,41 +1264,62 @@ offset_bottom = 1009.0
 theme_override_font_sizes/font_size = 100
 text = "222222222"
 
-[node name="playerHurtBox" type="Area2D" parent="YSort/Gracz"]
+[node name="playerHurtBox" type="Area2D" parent="World YSort/Gracz"]
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Gracz/playerHurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz/playerHurtBox"]
 shape = SubResource("CircleShape2D_56jup")
 
-[node name="Drzewo1" type="StaticBody2D" parent="YSort"]
+[node name="Drzewo1" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
 position = Vector2(-498, -12)
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="YSort/Drzewo1"]
+[node name="Sprite2D" type="Sprite2D" parent="World YSort/Drzewo1"]
 texture = ExtResource("3_eo4ki")
 offset = Vector2(48, -272)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Drzewo1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Drzewo1"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_f56u4")
 
-[node name="Dzialko" type="StaticBody2D" parent="YSort"]
+[node name="Żabka out" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
+position = Vector2(2696, -1951)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="World YSort/Żabka out"]
+texture = ExtResource("34_g7egq")
+offset = Vector2(0, -300)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World YSort/Żabka out" groups=["AAADwor"]]
+position = Vector2(153, -300)
+scale = Vector2(0.418702, 1.13707)
+polygon = PackedVector2Array(-2554.24, 171.911, -2573.35, 296.793, -2310.63, 296.793, -2267.64, 284.481, -832.251, 282.722, -820.31, 432.229, -631.631, 429.591, -641.185, -26.8455, -103.81, -29.4838, -84.7031, 429.591, 96.8101, 433.108, 103.975, 282.722, 1541.75, 284.481, 1589.52, 296.793, 1873.73, 301.19, 1849.85, 190.379, 1687.44, 174.549, 1692.22, -314.426, -2396.61, -346.087, -2377.5, 158.719)
+
+[node name="Dzialko" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
 position = Vector2(1587, -17)
 collision_mask = 0
 script = ExtResource("28_bvl2h")
 
-[node name="Sprite2D" type="Sprite2D" parent="YSort/Dzialko"]
+[node name="Sprite2D" type="Sprite2D" parent="World YSort/Dzialko"]
 position = Vector2(300, 95)
 texture = ExtResource("28_d34pn")
 offset = Vector2(-47.72, -56.225)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Dzialko"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Dzialko"]
 position = Vector2(300, 95)
 shape = SubResource("RectangleShape2D_elsen")
 
-[node name="4kSize" type="Sprite2D" parent="YSort"]
-position = Vector2(-3376, -2353)
-texture = ExtResource("4_628y8")
+[node name="Foldrere" type="Node2D" parent="World YSort"]
 
-[connection signal="area_entered" from="YSort/Gracz/playerHurtBox" to="YSort/Gracz" method="_on_player_hurt_box_area_entered"]
+[node name="Area2D" type="Area2D" parent="World YSort/Foldrere"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Foldrere/Area2D"]
+position = Vector2(2697, -2023)
+shape = SubResource("RectangleShape2D_rodtt")
+
+[connection signal="body_entered" from="World Backgorund/zabka in/Area2D" to="." method="TestDomek1_exit"]
+[connection signal="area_entered" from="World YSort/Gracz/playerHurtBox" to="World YSort/Gracz" method="_on_player_hurt_box_area_entered"]
+[connection signal="body_entered" from="World YSort/Foldrere/Area2D" to="." method="TestDomek1_entry"]
