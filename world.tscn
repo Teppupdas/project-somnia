@@ -1146,8 +1146,6 @@ size = Vector2(241, 113)
 [node name="Root" type="Node"]
 process_mode = 1
 script = ExtResource("1_6b4vu")
-Loc1 = "AAADwor"
-Loc2 = "Domek1"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -1205,22 +1203,25 @@ polygon = PackedVector2Array(1842, -1934, 2503, -1930, 2506, -1757, 2889, -1756,
 position = Vector2(-3376, -2353)
 texture = ExtResource("4_628y8")
 
-[node name="zabka in" type="StaticBody2D" parent="World Backgorund" groups=["Domek1"]]
+[node name="TestDomek1In" type="StaticBody2D" parent="World Backgorund" groups=["TestDomek1"]]
+visible = false
 position = Vector2(2695, -2478)
 
-[node name="Sprite2D" type="Sprite2D" parent="World Backgorund/zabka in"]
+[node name="Sprite2D" type="Sprite2D" parent="World Backgorund/TestDomek1In"]
 texture = ExtResource("6_6qc55")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Backgorund/zabka in"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Backgorund/TestDomek1In"]
 polygon = PackedVector2Array(-105, 553, -110, 721, -901, 667, -932, -590, 907, -581, 931, 643, 108, 724, 110, 554, 867, 565, 863, -462, -862, -456, -865, 560)
+disabled = true
 
-[node name="Area2D" type="Area2D" parent="World Backgorund/zabka in"]
+[node name="Area2D" type="Area2D" parent="World Backgorund/TestDomek1In"]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World Backgorund/zabka in/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Backgorund/TestDomek1In/Area2D"]
 position = Vector2(0, 700)
 shape = SubResource("RectangleShape2D_ji7yj")
+disabled = true
 
 [node name="World YSort" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1283,15 +1284,15 @@ offset = Vector2(48, -272)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_f56u4")
 
-[node name="Żabka out" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
+[node name="TestDomek1Out" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
 position = Vector2(2696, -1951)
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="World YSort/Żabka out"]
+[node name="Sprite2D" type="Sprite2D" parent="World YSort/TestDomek1Out"]
 texture = ExtResource("34_g7egq")
 offset = Vector2(0, -300)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World YSort/Żabka out" groups=["AAADwor"]]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World YSort/TestDomek1Out"]
 position = Vector2(153, -300)
 scale = Vector2(0.418702, 1.13707)
 polygon = PackedVector2Array(-2554.24, 171.911, -2573.35, 296.793, -2310.63, 296.793, -2267.64, 284.481, -832.251, 282.722, -820.31, 432.229, -631.631, 429.591, -641.185, -26.8455, -103.81, -29.4838, -84.7031, 429.591, 96.8101, 433.108, 103.975, 282.722, 1541.75, 284.481, 1589.52, 296.793, 1873.73, 301.19, 1849.85, 190.379, 1687.44, 174.549, 1692.22, -314.426, -2396.61, -346.087, -2377.5, 158.719)
@@ -1310,16 +1311,16 @@ offset = Vector2(-47.72, -56.225)
 position = Vector2(300, 95)
 shape = SubResource("RectangleShape2D_elsen")
 
-[node name="Foldrere" type="Node2D" parent="World YSort"]
+[node name="FoldrerAktywator" type="Node2D" parent="World YSort" groups=["AAADwor"]]
 
-[node name="Area2D" type="Area2D" parent="World YSort/Foldrere"]
+[node name="Area2D" type="Area2D" parent="World YSort/FoldrerAktywator"]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Foldrere/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/FoldrerAktywator/Area2D"]
 position = Vector2(2697, -2023)
 shape = SubResource("RectangleShape2D_rodtt")
 
-[connection signal="body_entered" from="World Backgorund/zabka in/Area2D" to="." method="TestDomek1_exit"]
+[connection signal="body_entered" from="World Backgorund/TestDomek1In/Area2D" to="." method="TestDomek1_exit"]
 [connection signal="area_entered" from="World YSort/Gracz/playerHurtBox" to="World YSort/Gracz" method="_on_player_hurt_box_area_entered"]
-[connection signal="body_entered" from="World YSort/Foldrere/Area2D" to="." method="TestDomek1_entry"]
+[connection signal="body_entered" from="World YSort/FoldrerAktywator/Area2D" to="." method="TestDomek1_entry"]
