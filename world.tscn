@@ -1204,10 +1204,10 @@ position = Vector2(-3376, -2353)
 texture = ExtResource("4_628y8")
 
 [node name="TestDomek1In" type="StaticBody2D" parent="World Backgorund" groups=["TestDomek1"]]
-visible = false
 position = Vector2(2695, -2478)
 
 [node name="Sprite2D" type="Sprite2D" parent="World Backgorund/TestDomek1In"]
+modulate = Color(1, 1, 1, 0)
 texture = ExtResource("6_6qc55")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Backgorund/TestDomek1In"]

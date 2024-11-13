@@ -1,7 +1,6 @@
 extends Node
 
 
-
 func TestDomek1_entry(body: Node2D):
 	print("Gracz enter")
 	switch("AAADwor", false)
@@ -19,12 +18,18 @@ func switch(group_name, active):
 		abiduaka(node, active)
 	
 func abiduaka(node, active):
-	if node.has_method("set_visible"):
-		node.set_visible(active)
 	#set_process_mode(0 if active else 4) # to wymaga cos tam set =defeared
 	if "disabled" in node:
+		print("aha")
 		#node.disabled = !active
 		node.set_deferred("disabled", !active)
+		
+	#if node.has_method("set_visible"):
+	#node.set_visible(active)
+	if "modulate" in node:
+		print("madlute")
+		var tween = get_tree().create_tween()
+		tween.tween_property(node, "modulate:a", 1.0 if active else 0.0, 0.1) #wartosc alfa, czas trawnia
 		
 	for child in node.get_children():
 		abiduaka(child, active)
@@ -35,11 +40,13 @@ func abiduaka(node, active):
 		
 #auto import nazwy grup. Możliwy?
 #wylaczanie monitoring w area2d zamiast disabled w koliderach
-#animacja przejscia zamiast gwaltownego przelaczenia widocznosci
 #pojedyncze wywolanie funkcji zamiast podowjengo i wgl zautomatyzowane
 #nazwy zmienic sygnalow
+
+#Najpierw wylaczanie widocznosci potem wlaczanie?!?!?
 
 #Czy rysować 2d czy 3d
 #rybie oko?
 #Pietra itp sprawdzic
 #okreslic pod jakim katem renderowac
+#blokowanie kamery marginesy w budynkach
