@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpq2b8jd2wu4l"
-path="res://.godot/imported/in1.png-3d4af2cef5533808e84bf6ed60c1ebab.ctex"
+uid="uid://d0133ffuapiow"
+path="res://.godot/imported/3d_orto_in.png-6fdb49873d2665396dc12228f5991a0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CalySwiat/in1.png"
-dest_files=["res://.godot/imported/in1.png-3d4af2cef5533808e84bf6ed60c1ebab.ctex"]
+source_file="res://CalySwiat/3d_orto_in.png"
+dest_files=["res://.godot/imported/3d_orto_in.png-6fdb49873d2665396dc12228f5991a0a.ctex"]
 
 [params]
 

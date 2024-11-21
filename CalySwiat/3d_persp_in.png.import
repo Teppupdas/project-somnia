@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dud0s10wjefj0"
-path="res://.godot/imported/out1.png-c02627b450ecc7082d2eee680b33674d.ctex"
+uid="uid://cvj3v2dsgiri4"
+path="res://.godot/imported/3d_persp_in.png-4b24a15fb9984316e644f8958cc3adb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CalySwiat/out1.png"
-dest_files=["res://.godot/imported/out1.png-c02627b450ecc7082d2eee680b33674d.ctex"]
+source_file="res://CalySwiat/3d_persp_in.png"
+dest_files=["res://.godot/imported/3d_persp_in.png-4b24a15fb9984316e644f8958cc3adb3.ctex"]
 
 [params]
 

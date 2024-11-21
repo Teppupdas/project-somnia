@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=101 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" path="res://Skrypty/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" path="res://Skrypty/Player.gd" id="1_f6crp"]
@@ -12,9 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://5h6g81sk27il" path="res://4K size.png" id="4_628y8"]
 [ext_resource type="Texture2D" uid="uid://bmeo4oigejubl" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_NE.png" id="4_v8iwe"]
 [ext_resource type="Texture2D" uid="uid://cqty2jx1hd6bc" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_NW.png" id="5_po0cm"]
-[ext_resource type="Texture2D" uid="uid://dpq2b8jd2wu4l" path="res://CalySwiat/in1.png" id="6_6qc55"]
+[ext_resource type="Texture2D" uid="uid://dpq2b8jd2wu4l" path="res://CalySwiat/2d_in.png" id="6_6qc55"]
 [ext_resource type="Texture2D" uid="uid://dbdabpa73y4m5" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_SE.png" id="7_xeobm"]
 [ext_resource type="Texture2D" uid="uid://c46ywgnyqfhqi" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_SW.png" id="8_1geaf"]
+[ext_resource type="Texture2D" uid="uid://d0133ffuapiow" path="res://CalySwiat/3d_orto_in.png" id="8_38b17"]
 [ext_resource type="Texture2D" uid="uid://bbqiyvqvr4yyt" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_W.png" id="9_xworx"]
 [ext_resource type="Texture2D" uid="uid://c387xod2jpf3h" path="res://Charakterki/Atoja/Dash/Dash_E.png" id="10_0vari"]
 [ext_resource type="Texture2D" uid="uid://cx7cf1njyc8hs" path="res://Charakterki/Atoja/Dash/Dash_N.png" id="11_2hn57"]
@@ -34,11 +35,15 @@
 [ext_resource type="Texture2D" uid="uid://bopb57qhise5r" path="res://Charakterki/Atoja/Stanie/Stanie_W.png" id="26_gflrp"]
 [ext_resource type="Script" path="res://Dziao/Dzialko.gd" id="28_bvl2h"]
 [ext_resource type="Texture2D" uid="uid://cyursrb1y2esd" path="res://Dziao/dzialako.png" id="28_d34pn"]
-[ext_resource type="Texture2D" uid="uid://dud0s10wjefj0" path="res://CalySwiat/out1.png" id="34_g7egq"]
+[ext_resource type="Texture2D" uid="uid://dud0s10wjefj0" path="res://CalySwiat/2d_out.png" id="34_g7egq"]
+[ext_resource type="Texture2D" uid="uid://1wmam8y4cr27" path="res://CalySwiat/3d_orto_out.png" id="38_ohwfu"]
 [ext_resource type="Texture2D" uid="uid://dthyfv1fgpfkc" path="res://Charakterki/Atoja/Chodzenie/Chodzenie_S.png" id="66_mmmag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ji7yj"]
 size = Vector2(244, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buol0"]
+size = Vector2(219, 75)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qt4xt"]
 radius = 50.0
@@ -1143,6 +1148,9 @@ size = Vector2(200, 80)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rodtt"]
 size = Vector2(241, 113)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p08bh"]
+size = Vector2(225, 87)
+
 [node name="Root" type="Node"]
 process_mode = 1
 script = ExtResource("1_6b4vu")
@@ -1197,7 +1205,7 @@ script = ExtResource("3_w3pet")
 [node name="Trawka1" type="Polygon2D" parent="World Backgorund" groups=["AAADwor"]]
 texture_repeat = 2
 texture = ExtResource("4_57ajs")
-polygon = PackedVector2Array(1842, -1934, 2503, -1930, 2506, -1757, 2889, -1756, 2898, -1930, 3567, -1935, 3547, -2879, 4901, -2723, 4922, 1771, -3414, 1778, -3399, -4270, 1831, -4244)
+polygon = PackedVector2Array(1842, -1934, 2503, -1930, 2506, -1757, 2889, -1756, 2898, -1930, 3567, -1935, 3547, -2879, 10129, -2880, 10434, 1791, -3414, 1778, -3399, -4270, 1831, -4244)
 
 [node name="4kSize" type="Sprite2D" parent="World Backgorund"]
 position = Vector2(-3376, -2353)
@@ -1205,6 +1213,7 @@ texture = ExtResource("4_628y8")
 
 [node name="TestDomek1In" type="StaticBody2D" parent="World Backgorund" groups=["TestDomek1"]]
 position = Vector2(2695, -2478)
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="World Backgorund/TestDomek1In"]
 modulate = Color(1, 1, 1, 0)
@@ -1221,6 +1230,27 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World Backgorund/TestDomek1In/Area2D"]
 position = Vector2(0, 700)
 shape = SubResource("RectangleShape2D_ji7yj")
+disabled = true
+
+[node name="Test_3d_orto_In" type="StaticBody2D" parent="World Backgorund" groups=["Test3D_orto"]]
+position = Vector2(5200, -3000)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="World Backgorund/Test_3d_orto_In"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("8_38b17")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Backgorund/Test_3d_orto_In"]
+polygon = PackedVector2Array(1030, 250, -223, 233, -1020, 441, -1023, 1077, 439, 1074, 443, 1250, -1215, 1270, -1108, -15, 1236, -28, 1168, 1256, 672, 1259, 672, 1074, 1027, 1070)
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="World Backgorund/Test_3d_orto_In"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Backgorund/Test_3d_orto_In/Area2D"]
+position = Vector2(558.5, 1066.5)
+shape = SubResource("RectangleShape2D_buol0")
 disabled = true
 
 [node name="World YSort" type="Node2D" parent="."]
@@ -1272,6 +1302,8 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz/playerHurtBox"]
 shape = SubResource("CircleShape2D_56jup")
 
+[node name="FoldrerAktywator" type="Node2D" parent="World YSort" groups=["AAADwor"]]
+
 [node name="Drzewo1" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
 position = Vector2(-498, -12)
 collision_mask = 0
@@ -1283,19 +1315,6 @@ offset = Vector2(48, -272)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Drzewo1"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_f56u4")
-
-[node name="TestDomek1Out" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
-position = Vector2(2696, -1951)
-collision_mask = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="World YSort/TestDomek1Out"]
-texture = ExtResource("34_g7egq")
-offset = Vector2(0, -300)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World YSort/TestDomek1Out"]
-position = Vector2(153, -300)
-scale = Vector2(0.418702, 1.13707)
-polygon = PackedVector2Array(-2554.24, 171.911, -2573.35, 296.793, -2310.63, 296.793, -2267.64, 284.481, -832.251, 282.722, -820.31, 432.229, -631.631, 429.591, -641.185, -26.8455, -103.81, -29.4838, -84.7031, 429.591, 96.8101, 433.108, 103.975, 282.722, 1541.75, 284.481, 1589.52, 296.793, 1873.73, 301.19, 1849.85, 190.379, 1687.44, 174.549, 1692.22, -314.426, -2396.61, -346.087, -2377.5, 158.719)
 
 [node name="Dzialko" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
 position = Vector2(1587, -17)
@@ -1311,16 +1330,48 @@ offset = Vector2(-47.72, -56.225)
 position = Vector2(300, 95)
 shape = SubResource("RectangleShape2D_elsen")
 
-[node name="FoldrerAktywator" type="Node2D" parent="World YSort" groups=["AAADwor"]]
+[node name="TestDomek1Out" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
+position = Vector2(2696, -1951)
+collision_mask = 0
 
-[node name="Area2D" type="Area2D" parent="World YSort/FoldrerAktywator"]
+[node name="Sprite2D" type="Sprite2D" parent="World YSort/TestDomek1Out"]
+texture = ExtResource("34_g7egq")
+offset = Vector2(0, -300)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World YSort/TestDomek1Out"]
+position = Vector2(153, -300)
+scale = Vector2(0.418702, 1.13707)
+polygon = PackedVector2Array(-2554.24, 171.911, -2573.35, 296.793, -2310.63, 296.793, -2267.64, 284.481, -832.251, 282.722, -820.31, 432.229, -631.631, 429.591, -641.185, -26.8455, -103.81, -29.4838, -84.7031, 429.591, 96.8101, 433.108, 103.975, 282.722, 1541.75, 284.481, 1589.52, 296.793, 1873.73, 301.19, 1849.85, 190.379, 1687.44, 174.549, 1692.22, -314.426, -2396.61, -346.087, -2377.5, 158.719)
+
+[node name="Area2D" type="Area2D" parent="World YSort/TestDomek1Out"]
+position = Vector2(-2696, 1951)
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/FoldrerAktywator/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/TestDomek1Out/Area2D"]
 position = Vector2(2697, -2023)
 shape = SubResource("RectangleShape2D_rodtt")
 
+[node name="Test_3d_orto_Out" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
+position = Vector2(5200, -3000)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="World YSort/Test_3d_orto_Out"]
+texture = ExtResource("38_ohwfu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World YSort/Test_3d_orto_Out"]
+polygon = PackedVector2Array(1031, 1081, 669, 1079, 665, 683, 446, 683, 443, 1078, -1023, 1077, -1032, -29, 1030, -38)
+
+[node name="Area2D" type="Area2D" parent="World YSort/Test_3d_orto_Out"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Test_3d_orto_Out/Area2D"]
+position = Vector2(556.5, 916)
+shape = SubResource("RectangleShape2D_p08bh")
+
 [connection signal="body_entered" from="World Backgorund/TestDomek1In/Area2D" to="." method="TestDomek1_exit"]
+[connection signal="body_entered" from="World Backgorund/Test_3d_orto_In/Area2D" to="." method="orto_exit"]
 [connection signal="area_entered" from="World YSort/Gracz/playerHurtBox" to="World YSort/Gracz" method="_on_player_hurt_box_area_entered"]
-[connection signal="body_entered" from="World YSort/FoldrerAktywator/Area2D" to="." method="TestDomek1_entry"]
+[connection signal="body_entered" from="World YSort/TestDomek1Out/Area2D" to="." method="TestDomek1_entry"]
+[connection signal="body_entered" from="World YSort/Test_3d_orto_Out/Area2D" to="." method="orto_entry"]

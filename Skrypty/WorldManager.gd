@@ -10,6 +10,26 @@ func TestDomek1_exit(body: Node2D):
 	print("Gracz exit")
 	switch("TestDomek1", false)
 	switch("AAADwor", true)
+	
+func orto_entry(body: Node2D) -> void:
+	switch("AAADwor", false)
+	switch("Test3D_orto", true)
+
+
+func orto_exit(body: Node2D) -> void:
+	switch("Test3D_orto", false)
+	switch("AAADwor", true)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
