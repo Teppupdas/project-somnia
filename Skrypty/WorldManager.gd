@@ -2,12 +2,12 @@ extends Node
 
 
 func TestDomek1_entry(body: Node2D):
-	print("Gracz enter")
+	#print("Gracz enter")
 	switch("AAADwor", false)
 	switch("TestDomek1", true)
 
 func TestDomek1_exit(body: Node2D):
-	print("Gracz exit")
+	#print("Gracz exit")
 	switch("TestDomek1", false)
 	switch("AAADwor", true)
 	
@@ -40,14 +40,12 @@ func switch(group_name, active):
 func abiduaka(node, active):
 	#set_process_mode(0 if active else 4) # to wymaga cos tam set =defeared
 	if "disabled" in node:
-		print("aha")
 		#node.disabled = !active
 		node.set_deferred("disabled", !active)
 		
 	#if node.has_method("set_visible"):
 	#node.set_visible(active)
 	if "modulate" in node:
-		print("madlute")
 		var tween = get_tree().create_tween()
 		tween.tween_property(node, "modulate:a", 1.0 if active else 0.0, 0.1) #wartosc alfa, czas trawnia
 		

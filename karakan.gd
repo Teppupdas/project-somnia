@@ -1,19 +1,18 @@
 extends CharacterBody2D
 
-var maxHealth
+var maxHealth: int = 10
 var currentHealth
 
 func _ready() -> void:
-	pass
+	currentHealth = maxHealth
 
 
 func _process(delta: float) -> void:
 	pass
 
-
-func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if area.name == "playerHitBox": # and !dashing:
-		
-		currentHealth -=1
-		if currentHealth == 0:
-			currentHealth = maxHealth
+func dealDamage(damage: int):
+		currentHealth -= damage
+		print("Karakan życie: " + str(currentHealth))
+		if currentHealth <= 0:
+			print("martwy karakan")
+			queue_free()

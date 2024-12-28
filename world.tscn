@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=153 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" path="res://Skrypty/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" path="res://Skrypty/Player.gd" id="1_f6crp"]
@@ -2123,7 +2123,10 @@ states/Start/position = Vector2(209, 100)
 graph_offset = Vector2(24, -24)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_56jup"]
-radius = 60.0
+radius = 55.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ddr7"]
+radius = 30.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f56u4"]
 radius = 21.21
@@ -2243,8 +2246,12 @@ disabled = true
 [node name="World YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Karakan" parent="World YSort" instance=ExtResource("55_lecbo")]
+position = Vector2(7289, 279)
+
 [node name="Gracz" type="CharacterBody2D" parent="World YSort"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_f6crp")
 
 [node name="Sprite2Dgracz" type="Sprite2D" parent="World YSort/Gracz"]
@@ -2262,11 +2269,11 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="World YSort/Gracz"]
 tree_root = SubResource("AnimationNodeStateMachine_sytx8")
 anim_player = NodePath("../AnimationPlayer")
-parameters/AtakRekaSilny1/blend_position = Vector2(0, 0)
-parameters/AtakRekaSzybki1/blend_position = Vector2(-0.377843, 0.348993)
-parameters/Chodzenie/blend_position = Vector2(0.976522, 0.0106382)
-parameters/Dashowanie/blend_position = Vector2(0.980924, -0.0106384)
-parameters/Stanie/blend_position = Vector2(0.000733733, 0.989362)
+parameters/AtakRekaSilny1/blend_position = Vector2(0.000733733, -1.19497)
+parameters/AtakRekaSzybki1/blend_position = Vector2(-0.00366837, -1.32704)
+parameters/Chodzenie/blend_position = Vector2(-0.000733674, -1.32075)
+parameters/Dashowanie/blend_position = Vector2(-0.000733674, -1.25786)
+parameters/Stanie/blend_position = Vector2(-0.00220102, -1.22013)
 
 [node name="Label1" type="Label" parent="World YSort/Gracz"]
 offset_left = -1868.0
@@ -2285,20 +2292,23 @@ theme_override_font_sizes/font_size = 100
 text = "222222222"
 
 [node name="playerHurtBox" type="Area2D" parent="World YSort/Gracz"]
-collision_layer = 2
-collision_mask = 4
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz/playerHurtBox"]
 shape = SubResource("CircleShape2D_56jup")
 
 [node name="playerHitBox" type="Area2D" parent="World YSort/Gracz"]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 4
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz/playerHitBox"]
-shape = SubResource("CircleShape2D_56jup")
+shape = SubResource("CircleShape2D_6ddr7")
+debug_color = Color(1, 0.00183215, 0.0773995, 0.42)
 
-[node name="FoldrerAktywator" type="Node2D" parent="World YSort" groups=["AAADwor"]]
+[node name="FolderAktywator" type="Node2D" parent="World YSort" groups=["AAADwor"]]
 
 [node name="Drzewo1" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
 position = Vector2(-498, -12)
@@ -2366,11 +2376,9 @@ collision_mask = 2
 position = Vector2(556.5, 916)
 shape = SubResource("RectangleShape2D_p08bh")
 
-[node name="Karakan" parent="." instance=ExtResource("55_lecbo")]
-position = Vector2(7289, 279)
-
 [connection signal="body_entered" from="World Backgorund/TestDomek1In/Area2D" to="." method="TestDomek1_exit"]
 [connection signal="body_entered" from="World Backgorund/Test_3d_orto_In/Area2D" to="." method="orto_exit"]
 [connection signal="area_entered" from="World YSort/Gracz/playerHurtBox" to="World YSort/Gracz" method="_on_player_hurt_box_area_entered"]
+[connection signal="body_entered" from="World YSort/Gracz/playerHitBox" to="World YSort/Gracz" method="_on_player_hit_box_body_entered"]
 [connection signal="body_entered" from="World YSort/TestDomek1Out/Area2D" to="." method="TestDomek1_entry"]
 [connection signal="body_entered" from="World YSort/Test_3d_orto_Out/Area2D" to="." method="orto_entry"]
