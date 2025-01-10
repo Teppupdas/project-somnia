@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 @onready var pasekSerc = $Serduszka
-@onready var player = $"../World YSort/Gracz"
 @onready var heartPrefab = preload("res://Interfejsik/serce.tscn")
 
 @onready var pauzyMenu = $TextureRect
@@ -16,12 +15,6 @@ var opcjaWybrana
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN) #ukrycie myszki
-	
-	setMaxHeart(player.maxHealth)
-	updateHearts(player.currentHealth)
-	player.healthChanged.connect(updateHearts)
-
-
 
 	pauzaAktywna = false
 	pauzyMenu.hide()
@@ -84,12 +77,11 @@ func _process(delta: float) -> void:
 
 
 
-func setMaxHeart(max: int):
-	# Upewniamy się, że HBoxContainer istnieje
-	if pasekSerc:
-		for i in range(max):
-			var heart = heartPrefab.instantiate()
-			pasekSerc.add_child(heart)
+func setMaxHeart(maxHealth: int):
+	for i in range(maxHealth):
+		print(maxHealth)
+		var heart = heartPrefab.instantiate()
+		pasekSerc.add_child(heart)
 
 func updateHearts(currentHealth):
 	var hearts = pasekSerc.get_children()

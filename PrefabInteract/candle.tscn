@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cj4r8n0rwo44d"]
 
-[ext_resource type="Script" path="res://Skrypty/candle.gd" id="1_4jlnw"]
+[ext_resource type="Script" path="res://Skrypty/Interakcje/candle.gd" id="1_4jlnw"]
 [ext_resource type="Texture2D" uid="uid://est8n6suyvle" path="res://CalySwiat/candle.png" id="1_u3yco"]
 
 [sub_resource type="Animation" id="Animation_7oyhh"]

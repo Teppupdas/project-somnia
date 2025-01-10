@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if playerInArea and Input.is_action_just_pressed("potwierdz") and not zapalona:
-		saveNode.setCandle(name) #wysyla do save node ze swieczka chce zmienic
+		saveNode.setCandle(self) #wysyla do save node ze swieczka chce zmienic
 		saveNode.saveGame()
 
 

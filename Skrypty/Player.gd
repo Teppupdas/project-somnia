@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var UI = $"../../CanvasLayer"
 
 @onready var animationTree = $AnimationTree
 @onready var animationPlayer = $AnimationPlayer
@@ -9,10 +10,8 @@ extends CharacterBody2D
 @onready var label2 = $Label2
 
 
-@export var maxHealth = 20
-@onready var currentHealth: int = maxHealth
-signal healthChanged
-
+var maxHealth = 5
+var currentHealth: int = maxHealth
 
 
 
@@ -42,15 +41,15 @@ var trafieni: Array = []  # Lista już trafionych przeciwników
 
 
 func _ready():
-	healthChanged.emit(currentHealth)
+	pass
 
 
 
 
 func _process(delta):
 
-	label1.set_text("FPS: " + str(Engine.get_frames_per_second()))
-	#label1.set_text("Życie: " + str(currentHealth))
+	#label1.set_text("FPS: " + str(Engine.get_frames_per_second()))
+	label1.set_text("maxŻycie: " + str(maxHealth))
 
 	if canDash:
 		label2.text = "+"
@@ -145,8 +144,10 @@ func _on_player_hurt_box_area_entered(area: Area2D) -> void:
 		area.get_parent().queue_free()
 		currentHealth -=1
 		if currentHealth == 0:
-			currentHealth = maxHealth
-		healthChanged.emit(currentHealth)
+			get_tree().reload_current_scene()
+			# obecnie gdy nie ma przypisanej swieczki to nic sie nie dzieje. 
+			#rozwiazanie: nie dac graczwoi zginac zanim zapali pierwsza swieczke
+		UI.updateHearts(currentHealth)
 
 
 func _on_player_hit_box_body_entered(body: Node2D) -> void:
