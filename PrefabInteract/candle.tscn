@@ -1,7 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj4r8n0rwo44d"]
+[gd_scene load_steps=9 format=3 uid="uid://cj4r8n0rwo44d"]
 
 [ext_resource type="Script" path="res://Skrypty/Interakcje/candle.gd" id="1_4jlnw"]
 [ext_resource type="Texture2D" uid="uid://est8n6suyvle" path="res://CalySwiat/candle.png" id="1_u3yco"]
+[ext_resource type="Shader" path="res://Shadery/Highlight.gdshader" id="2_f4g63"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5s27"]
+shader = ExtResource("2_f4g63")
+shader_parameter/visible = true
+shader_parameter/speed = 1.0
+shader_parameter/line_width = 0.1
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/pause_duration = 0.15
+shader_parameter/offset = 2.0
 
 [sub_resource type="Animation" id="Animation_7oyhh"]
 resource_name = "zapalona"
@@ -48,6 +58,7 @@ size = Vector2(167, 267)
 script = ExtResource("1_4jlnw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_m5s27")
 texture = ExtResource("1_u3yco")
 offset = Vector2(0, -52.045)
 vframes = 2
@@ -57,19 +68,6 @@ frame = 1
 libraries = {
 "": SubResource("AnimationLibrary_j5upc")
 }
-
-[node name="UI" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -21.5
-offset_right = 21.5
-offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 30
-text = "Zapal"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

@@ -10,8 +10,8 @@ extends CharacterBody2D
 @onready var label2 = $Label2
 
 
-var maxHealth = 5
-var currentHealth: int = maxHealth
+var maxHealth: int
+var currentHealth: int 
 
 
 
@@ -49,7 +49,8 @@ func _ready():
 func _process(delta):
 
 	#label1.set_text("FPS: " + str(Engine.get_frames_per_second()))
-	label1.set_text("maxŻycie: " + str(maxHealth))
+	#label1.set_text("maxŻycie: " + str(maxHealth))
+	label1.set_text(str($"../../save".storyState))
 
 	if canDash:
 		label2.text = "+"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=160 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" path="res://Skrypty/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" path="res://Skrypty/Player.gd" id="1_f6crp"]
@@ -56,6 +56,9 @@
 [ext_resource type="Texture2D" uid="uid://cbqegbtk1hcgf" path="res://Charakterki/Player/AtakRekaSilny1/AtakRekaSilny1_W.png" id="49_ce5w4"]
 [ext_resource type="PackedScene" uid="uid://sdkyy54ll57c" path="res://PrefabEnemy/karakan.tscn" id="55_lecbo"]
 [ext_resource type="PackedScene" uid="uid://cj4r8n0rwo44d" path="res://PrefabInteract/candle.tscn" id="56_7fx65"]
+[ext_resource type="Texture2D" uid="uid://dvxlwq1ed3mcy" path="res://CalySwiat/kiedro10czaha.png" id="58_54fh3"]
+[ext_resource type="Script" path="res://Skrypty/Interakcje/kiedro10czaha.gd" id="58_aji7q"]
+[ext_resource type="Shader" path="res://Shadery/Highlight.gdshader" id="59_xw8qp"]
 [ext_resource type="Texture2D" uid="uid://dthyfv1fgpfkc" path="res://Charakterki/Player/Chodzenie/Chodzenie_S.png" id="66_mmmag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ji7yj"]
@@ -2143,6 +2146,18 @@ size = Vector2(241, 113)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p08bh"]
 size = Vector2(225, 87)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5n0ok"]
+shader = ExtResource("59_xw8qp")
+shader_parameter/visible = true
+shader_parameter/speed = 1.0
+shader_parameter/line_width = 0.1
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/pause_duration = 0.15
+shader_parameter/offset = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7icdn"]
+size = Vector2(223, 340)
+
 [node name="Root" type="Node"]
 process_mode = 1
 script = ExtResource("1_6b4vu")
@@ -2191,6 +2206,25 @@ vertical_alignment = 1
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Interakcji" type="Node" parent="CanvasLayer"]
+
+[node name="Label" type="Label" parent="CanvasLayer/Interakcji"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "aaaa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 script = ExtResource("3_w3pet")
@@ -2199,6 +2233,7 @@ script = ExtResource("3_w3pet")
 
 [node name="Trawka1" type="Polygon2D" parent="World Backgorund" groups=["AAADwor"]]
 texture_repeat = 2
+position = Vector2(17, -170)
 texture = ExtResource("4_57ajs")
 polygon = PackedVector2Array(1842, -1934, 2503, -1930, 2506, -1757, 2889, -1756, 2898, -1930, 3567, -1935, 3547, -2879, 10129, -2880, 10434, 1791, -3414, 1778, -3399, -4270, 1831, -4244)
 
@@ -2316,7 +2351,7 @@ debug_color = Color(1, 0.00183215, 0.0773995, 0.42)
 [node name="FolderAktywator" type="Node2D" parent="World YSort" groups=["AAADwor"]]
 
 [node name="Drzewo1" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
-position = Vector2(-498, -12)
+position = Vector2(3019, 64)
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="World YSort/Drzewo1"]
@@ -2328,12 +2363,11 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_f56u4")
 
 [node name="Dzialko" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
-position = Vector2(1587, -17)
+position = Vector2(5104, 59)
 collision_mask = 0
 script = ExtResource("28_bvl2h")
 
 [node name="Sprite2D" type="Sprite2D" parent="World YSort/Dzialko"]
-position = Vector2(300, 95)
 texture = ExtResource("28_d34pn")
 offset = Vector2(-47.72, -56.225)
 
@@ -2382,10 +2416,26 @@ position = Vector2(556.5, 916)
 shape = SubResource("RectangleShape2D_p08bh")
 
 [node name="candle1" parent="World YSort" instance=ExtResource("56_7fx65")]
-position = Vector2(281, -632)
+position = Vector2(561, -107)
 
 [node name="candle2" parent="World YSort" instance=ExtResource("56_7fx65")]
-position = Vector2(683, -625)
+position = Vector2(5619, -1084)
+
+[node name="Kiedro10czaha" type="Node2D" parent="World YSort"]
+position = Vector2(1127, 458)
+script = ExtResource("58_aji7q")
+
+[node name="Sprite2D" type="Sprite2D" parent="World YSort/Kiedro10czaha"]
+material = SubResource("ShaderMaterial_5n0ok")
+texture = ExtResource("58_54fh3")
+
+[node name="Area2D" type="Area2D" parent="World YSort/Kiedro10czaha"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Kiedro10czaha/Area2D"]
+position = Vector2(-14.5, 211)
+shape = SubResource("RectangleShape2D_7icdn")
 
 [connection signal="body_entered" from="World Backgorund/TestDomek1In/Area2D" to="." method="TestDomek1_exit"]
 [connection signal="body_entered" from="World Backgorund/Test_3d_orto_In/Area2D" to="." method="orto_exit"]
@@ -2393,3 +2443,5 @@ position = Vector2(683, -625)
 [connection signal="body_entered" from="World YSort/Gracz/playerHitBox" to="World YSort/Gracz" method="_on_player_hit_box_body_entered"]
 [connection signal="body_entered" from="World YSort/TestDomek1Out/Area2D" to="." method="TestDomek1_entry"]
 [connection signal="body_entered" from="World YSort/Test_3d_orto_Out/Area2D" to="." method="orto_entry"]
+[connection signal="body_entered" from="World YSort/Kiedro10czaha/Area2D" to="World YSort/Kiedro10czaha" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="World YSort/Kiedro10czaha/Area2D" to="World YSort/Kiedro10czaha" method="_on_area_2d_body_exited"]

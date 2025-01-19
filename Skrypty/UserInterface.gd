@@ -79,7 +79,6 @@ func _process(delta: float) -> void:
 
 func setMaxHeart(maxHealth: int):
 	for i in range(maxHealth):
-		print(maxHealth)
 		var heart = heartPrefab.instantiate()
 		pasekSerc.add_child(heart)
 
