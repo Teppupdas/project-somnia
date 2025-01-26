@@ -5,7 +5,7 @@ var playerInArea = false
 var zapalona = false
 @onready var animationPlayer = $AnimationPlayer
 @onready var saveNode = $"../../save"
-@onready var label = $"../../CanvasLayer/Interakcji/Label"
+var UI: NodePath = "../../CanvasLayer"
 
 func _ready() -> void:
 	animationPlayer.play("zgaszona")
@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 func turnOnCandle() -> void:
 	animationPlayer.play("zapalona")
 	zapalona = true
-	label.visible = false
+	get_node(UI).hideActionPrompt()
 
 
 
@@ -46,9 +46,8 @@ func turnOffCandle() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	playerInArea = true
 	if not zapalona and saveNode.storyState != 0:
-		label.text = "Zapal"
-		label.visible = true
+		get_node(UI).showActionPrompt("ZAPAL")
 	
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	playerInArea = false
-	label.visible = false
+	get_node(UI).hideActionPrompt()

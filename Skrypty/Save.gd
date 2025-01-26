@@ -52,7 +52,7 @@ func saveGame():
 
 func loadGame():
 	var dataFile = ConfigFile.new()
-	var error = dataFile.load("user://save_game.txt")  # Odczyt
+	var error = dataFile.load("user://saave_game.txt")  # Odczyt
 
 	if error == OK:
 		print("wczytano")

@@ -3,11 +3,19 @@ extends CanvasLayer
 @onready var pasekSerc = $Serduszka
 @onready var heartPrefab = preload("res://Interfejsik/serce.tscn")
 
-@onready var pauzyMenu = $TextureRect
-@onready var Label1 = $TextureRect/VBoxContainer/Label1
-@onready var Label2 = $TextureRect/VBoxContainer/Label2
+@onready var pauzyMenu = $PauseMenuPanel
+@onready var Label1 = $PauseMenuPanel/VBoxContainer/Label1
+@onready var Label2 = $PauseMenuPanel/VBoxContainer/Label2
 var pauzaAktywna
-var opcjaWybrana
+var opcjaPauzyWybrana
+
+
+@onready var actionPromptPanel  = $ActionPrompt
+@onready var actionLabel = $ActionPrompt/Label
+var actionPromptActive = false
+
+@onready var dialoguePanel = $dialoguePanel
+@onready var dialogueText = $dialoguePanel/RichTextLabel
 
 
 
@@ -15,28 +23,34 @@ var opcjaWybrana
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN) #ukrycie myszki
+	
+	#TranslationServer.set_locale(OS.get_locale()) #auto jezyk z systemu. nie testowane.
+	TranslationServer.set_locale("pl")
+	
 
 	pauzaAktywna = false
 	pauzyMenu.hide()
 	pasekSerc.show()
 	get_tree().paused = false
-	opcjaWybrana = 1
+	opcjaPauzyWybrana = 1
 
 
 
 
-func _process(delta: float) -> void:
+func _process(delta: float) -> void:	
 	if pauzaAktywna:
 		if Input.is_action_just_pressed("pauza"):
 			pauzaAktywna = false
 			pauzyMenu.hide()
 			pasekSerc.show()
+			if actionPromptActive:
+				actionPromptPanel.show()
 			get_tree().paused = false
-			opcjaWybrana = 1
+			opcjaPauzyWybrana = 1
 
 
 		if Input.is_action_just_pressed("potwierdz"):
-			match opcjaWybrana:
+			match opcjaPauzyWybrana:
 				1:
 					pauzaAktywna = false
 					pauzyMenu.hide()
@@ -47,20 +61,20 @@ func _process(delta: float) -> void:
 
 
 		if Input.is_action_just_pressed("gora"):
-			match opcjaWybrana:
+			match opcjaPauzyWybrana:
 				1:
-					opcjaWybrana = 2
+					opcjaPauzyWybrana = 2
 				2:
-					opcjaWybrana = 1
+					opcjaPauzyWybrana = 1
 		if Input.is_action_just_pressed("dol"):
-			match opcjaWybrana:
+			match opcjaPauzyWybrana:
 				1:
-					opcjaWybrana = 2
+					opcjaPauzyWybrana = 2
 				2:
-					opcjaWybrana = 1
+					opcjaPauzyWybrana = 1
 
 
-		match opcjaWybrana:
+		match opcjaPauzyWybrana:
 			1:
 				Label1.set("theme_override_colors/font_color", Color8(220, 20, 60))
 				Label2.set("theme_override_colors/font_color", Color8(255, 255, 255))
@@ -72,6 +86,7 @@ func _process(delta: float) -> void:
 		pauzaAktywna = true
 		get_tree().paused = true
 		pasekSerc.hide()
+		actionPromptPanel.hide()
 		pauzyMenu.show()
 
 
@@ -90,3 +105,24 @@ func updateHearts(currentHealth):
 
 	for i in range(currentHealth, hearts.size()):
 		hearts[i].update(false)
+
+
+
+
+
+func showActionPrompt(text: String):
+	actionPromptActive = true
+	actionLabel.text = text
+	actionPromptPanel.show()
+
+func hideActionPrompt():
+	actionPromptActive = false
+	actionPromptPanel.hide()
+
+func startConversation(tekst: String):
+	dialoguePanel.show()
+	dialogueText.text = tekst
+	
+func endConversation():
+	dialoguePanel.hide()
+	dialogueText.text = ""

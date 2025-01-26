@@ -81,6 +81,10 @@ silny={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Lokalizacje/Menu.en.translation", "res://Lokalizacje/Menu.pl.translation")
+
 [layer_names]
 
 2d_physics/layer_1="przeszkody"
