@@ -10,12 +10,19 @@ var pauzaAktywna
 var opcjaPauzyWybrana
 
 
-@onready var actionPromptPanel  = $ActionPrompt
-@onready var actionLabel = $ActionPrompt/Label
+@onready var actionPromptPanel  = $actionPromptPanel
+@onready var actionPromptContainer = $actionPromptPanel/actionPromptContainer
+#@onready var actionLabel = 
 var actionPromptActive = false
+var selectedAction = 0
+var actionLabels: Array = []
+signal actionConfirmed(actionName)
 
 @onready var dialoguePanel = $dialoguePanel
 @onready var dialogueText = $dialoguePanel/RichTextLabel
+
+const Kolorwybrania = Color8(220, 20, 60)
+const Kolorniewybrania = Color8(255, 255, 255)
 
 
 
@@ -76,11 +83,11 @@ func _process(delta: float) -> void:
 
 		match opcjaPauzyWybrana:
 			1:
-				Label1.set("theme_override_colors/font_color", Color8(220, 20, 60))
-				Label2.set("theme_override_colors/font_color", Color8(255, 255, 255))
+				Label1.set("theme_override_colors/font_color", Kolorwybrania)
+				Label2.set("theme_override_colors/font_color", Kolorniewybrania)
 			2:
-				Label1.set("theme_override_colors/font_color", Color8(255,255,255))
-				Label2.set("theme_override_colors/font_color", Color8(220, 20, 60))
+				Label1.set("theme_override_colors/font_color", Kolorniewybrania)
+				Label2.set("theme_override_colors/font_color", Kolorwybrania)
 
 	elif Input.is_action_just_pressed("pauza"):
 		pauzaAktywna = true
@@ -88,6 +95,16 @@ func _process(delta: float) -> void:
 		pasekSerc.hide()
 		actionPromptPanel.hide()
 		pauzyMenu.show()
+
+	if actionPromptActive:
+		if Input.is_action_just_pressed("UIdol"):
+			navigateAction(-1)
+		elif Input.is_action_just_pressed("UIgora"):
+			navigateAction(1)
+		elif Input.is_action_just_pressed("potwierdz"):
+			emit_signal("actionConfirmed", actionLabels[selectedAction].text)
+
+
 
 
 
@@ -110,14 +127,50 @@ func updateHearts(currentHealth):
 
 
 
-func showActionPrompt(text: String):
+
+
+
+func showActionPrompt(actions: Array):
+	for action in actions:
+		var label = Label.new()
+		label.text = action
+		label.set("theme_override_font_sizes/font_size", 48)
+		actionPromptContainer.add_child(label)
+		actionLabels.append(label)
+	selectedAction = 0
+	highlightAction(selectedAction)
 	actionPromptActive = true
-	actionLabel.text = text
 	actionPromptPanel.show()
 
 func hideActionPrompt():
 	actionPromptActive = false
 	actionPromptPanel.hide()
+	for child in actionPromptContainer.get_children():
+		child.queue_free()
+	actionLabels.clear()
+
+
+func navigateAction(direction: int): # to przerobic aby bylo tez do zmiany pauzy i innych takich jesli beda ale to kiedy indziej
+	if actionLabels.size() == 0: return
+	selectedAction = (selectedAction + direction) % actionLabels.size()
+	if selectedAction < 0:
+		selectedAction = actionLabels.size() - 1
+	highlightAction(selectedAction)
+
+func highlightAction(index: int):
+	for i in range(actionLabels.size()):
+		var label = actionLabels[i]
+		if i == index:
+			label.set("theme_override_colors/font_color", Kolorwybrania)
+		else:
+			label.set("theme_override_colors/font_color", Kolorniewybrania)
+
+
+
+
+
+
+
 
 func startConversation(tekst: String):
 	dialoguePanel.show()

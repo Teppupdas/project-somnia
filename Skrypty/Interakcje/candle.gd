@@ -46,7 +46,7 @@ func turnOffCandle() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	playerInArea = true
 	if not zapalona and saveNode.storyState != 0:
-		get_node(UI).showActionPrompt("ZAPAL")
+		get_node(UI).showActionPrompt(["ZAPAL"])
 	
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	playerInArea = false

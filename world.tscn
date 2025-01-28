@@ -2170,6 +2170,22 @@ script = ExtResource("2_k8gx3")
 process_mode = 3
 script = ExtResource("1_pbntp")
 
+[node name="debugLabel" type="Label" parent="CanvasLayer"]
+auto_translate_mode = 2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.901961, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "aaaaa"
+
 [node name="PauseMenuPanel" type="Panel" parent="CanvasLayer"]
 visible = false
 anchors_preset = 13
@@ -2207,40 +2223,8 @@ vertical_alignment = 1
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ActionPrompt" type="Panel" parent="CanvasLayer"]
-visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -160.0
-offset_right = 200.0
-offset_bottom = -60.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = ExtResource("5_x45ik")
-
-[node name="Label" type="Label" parent="CanvasLayer/ActionPrompt"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -55.5
-offset_top = -33.5
-offset_right = 55.5
-offset_bottom = 33.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-text = "aaaa"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="dialoguePanel" type="Panel" parent="CanvasLayer"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.75
 anchor_top = 0.2
@@ -2264,9 +2248,23 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 32
 text = "test"
 
-[node name="actionPromptContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="actionPromptPanel" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("5_x45ik")
+
+[node name="actionPromptContainer" type="VBoxContainer" parent="CanvasLayer/actionPromptPanel"]
+layout_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0

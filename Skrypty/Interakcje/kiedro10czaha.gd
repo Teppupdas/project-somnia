@@ -5,17 +5,18 @@ var UI: NodePath = "../../CanvasLayer"
 
 var thisInteractionState = 0 # to bedzie trzeba zapisywac
 var playerInArea = false
-var toActionPrompt: String = "CZAHA1"
+var toActionPrompt: Array = ["CZAHA1", "CZAHA2"]
 
 func _ready() -> void:
-	pass
+	get_node(UI).connect("actionConfirmed", onActionConfirmed) #nazwa sygnalu, nazwa funckji
+
 
 
 func _process(delta: float) -> void:
 	if playerInArea and Input.is_action_just_pressed("potwierdz"):
 		match thisInteractionState:
 			0:
-				toActionPrompt = "CZAHA77" #niedodane dodac ze rozmawiaj albo nie dawac wiecej gadac z czaszka XDD
+				#toActionPrompt = "CZAHA77" #niedodane dodac ze rozmawiaj albo nie dawac wiecej gadac z czaszka XDD
 				get_node(UI).startConversation("CZAHA2")
 			1:
 				pass
@@ -29,6 +30,15 @@ func _process(delta: float) -> void:
 		#po spytaniu o droge XD
 		if saveNode.storyState == 0:
 			saveNode.storyState = 1
+
+
+func onActionConfirmed(actionName: String) -> void:
+	print("Wybrano kurwa opcję: ", actionName)
+	$"../../CanvasLayer/debugLabel".text = actionName
+
+
+
+
 
 
 
@@ -47,11 +57,9 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 
 
-	#przekazywac kilka mozliwcyh wyborow do action prompt tak zeby to ladnie wygladalao
-	#usuwac konkrenty po wybraniu go jesli ma byc usuniety
-	#aktualizowac to gdzies wyzej anie tylkko po wejsciu w area. trzeba by do tego oddzielna funkjce napisac chyba
-	#dodac dymek mowienia albo jakis interfejsik caly
-	#zastanowic sie czy aktywny system dialogow to dobry pomysl
-	
-	
-	
+
+#rozwazyc przerobienie z sygnalow na bezposrednie do danego skryptu ze wzgledu na wydajnosc bo za duzo na raz odbiera sygnal
+#swieczke przerobic pierwej lub nie pierwej
+ # w przeniesienie story do story za pomoca sygnalu zmienna can save candle czy chuj wie co a nie story state chyba XD chuj dupa cycki
+	#w tym skrypcie zarzadzanie ta tablica i wykonywanie tego co zostalo wybrane
+	#zapisywanie tego i wczytywanie bez potrzebyu przypisania tu sava
