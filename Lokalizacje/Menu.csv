@@ -3,11 +3,12 @@ WZNOW;Wznów;Resume
 WYJSCIE;Wyjdź;Exit
 ZAPAL;Zapal;kuirw
 CZAHA1;Zniszcz;a
-CZAHA2;Nie bij!;a
-CZAHA2.1;Ty gadasz?;a
-CZAHA2.2;Jeszcze jak! Skąd się tu wziąłeś?;a
-CZAHA2.3;Sam nie wiem. Jeszcze tego nie wymyślono.;a
-CZAHA3;Jak stąd wyjść?;a
+CZAHA1.1;Nie bij!;a
+CZAHA2;Ty gadasz?;a
+CZAHA2.1;Jeszcze jak! Skąd się tu wziąłeś?;a
+CZAHA2-1;Spadłem z nieba;a
+CZAHA2-2;Sam nie wiem. Jeszcze tego nie wymyślono.;a
+CZAHA3;Jak się stąd wydostać?;a
 CZAHA3.1;Zapalenie tamtej świeczki powinno zdjąć blokadę;a
 CZAHA3.2;Ale za blokadą jest potwór;a
 CZAHA3.3;Jeśli zginiesz wrócisz do tej świeczki;a
@@ -16,8 +17,8 @@ CZAHA4;A ty co tu robisz?;a
 CZAHA4.1;Leżę w trawie, patrzę w bramę;a
 CZAHA5;Dawaj lorem ipsum;a
 CZAHA5.1;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.;a
-CZAHA12;;a
-CZAHA13;;a
+CZAHA6;;a
+CZAHA6.1;;a
 CZAHA14;;a
 CZAHA15;;a
 CZAHA16;;a

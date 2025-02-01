@@ -12,11 +12,10 @@ var opcjaPauzyWybrana
 
 @onready var actionPromptPanel  = $actionPromptPanel
 @onready var actionPromptContainer = $actionPromptPanel/actionPromptContainer
-#@onready var actionLabel = 
 var actionPromptActive = false
 var selectedAction = 0
 var actionLabels: Array = []
-signal actionConfirmed(actionName)
+var lastActionObject = null
 
 @onready var dialoguePanel = $dialoguePanel
 @onready var dialogueText = $dialoguePanel/RichTextLabel
@@ -98,11 +97,11 @@ func _process(delta: float) -> void:
 
 	if actionPromptActive:
 		if Input.is_action_just_pressed("UIdol"):
-			navigateAction(-1)
-		elif Input.is_action_just_pressed("UIgora"):
 			navigateAction(1)
+		elif Input.is_action_just_pressed("UIgora"):
+			navigateAction(-1)
 		elif Input.is_action_just_pressed("potwierdz"):
-			emit_signal("actionConfirmed", actionLabels[selectedAction].text)
+			lastActionObject.handleAction(actionLabels[selectedAction].text)
 
 
 
@@ -130,7 +129,8 @@ func updateHearts(currentHealth):
 
 
 
-func showActionPrompt(actions: Array):
+func showActionPrompt(actions: Array, actionObject: Node2D):
+	lastActionObject = actionObject
 	for action in actions:
 		var label = Label.new()
 		label.text = action
@@ -141,6 +141,21 @@ func showActionPrompt(actions: Array):
 	highlightAction(selectedAction)
 	actionPromptActive = true
 	actionPromptPanel.show()
+
+
+func updateActionPrompt(actions: Array):
+	for child in actionPromptContainer.get_children():
+		child.queue_free()
+	actionLabels.clear()
+	for action in actions:
+		var label = Label.new()
+		label.text = action
+		label.set("theme_override_font_sizes/font_size", 48)
+		actionPromptContainer.add_child(label)
+		actionLabels.append(label)
+	selectedAction = 0
+	highlightAction(selectedAction)
+
 
 func hideActionPrompt():
 	actionPromptActive = false
