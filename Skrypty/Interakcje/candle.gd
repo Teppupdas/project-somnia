@@ -1,28 +1,35 @@
 extends Node2D
 
 
-var playerInArea = false
 var zapalona = false
 @onready var animationPlayer = $AnimationPlayer
 @onready var saveNode = $"../../save"
 var UI: NodePath = "../../CanvasLayer"
+var toActionPrompt: Array = []
 
 func _ready() -> void:
+	
+	saveNode.connect("candleActimel", candleActimelization) #nazwa sygnalu, nazwa funckji
 	animationPlayer.play("zgaszona")
-	if saveNode.storyState == 0 or  saveNode.storyState == null:
-		$Sprite2D.material.set_shader_parameter("visible", false)
+	$Sprite2D.material.set_shader_parameter("visible", false)
 
 
 func _process(delta: float) -> void:
-	if saveNode.storyState != 0:
-		$Sprite2D.material.set_shader_parameter("visible", true)
-		# zamienic to na sygnal
-		# nie wyłączać w przypadku instancji bo wylacza wszystkie i sie jebie w przypadku swieczek
-		if playerInArea and Input.is_action_just_pressed("potwierdz") and not zapalona:
+	pass
+
+
+func candleActimelization(): #to robi ze swieczek mnozna uzwyac. wywolane po gadaniu z czaszku lub przy wczytywaniu
+	toActionPrompt.append("ZAPAL")
+	$Sprite2D.material.set_shader_parameter("visible", true)
+	# nie wyłączać shadera dla jakiejs instancji a wlaczac dla inej  bo sie jebie
+
+
+func handleAction(actionName: String) -> void:
+	match actionName:
+		"ZAPAL":
+			#if not zapalona:
 			saveNode.setCandle(self) #wysyla do save node ze swieczka chce zmienic
 			saveNode.saveGame()
-
-
 
 
 
@@ -34,7 +41,6 @@ func turnOnCandle() -> void:
 	get_node(UI).hideActionPrompt()
 
 
-
 # Funkcja gasząca świeczkę
 func turnOffCandle() -> void:
 	animationPlayer.play("zgaszona")
@@ -44,10 +50,8 @@ func turnOffCandle() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	playerInArea = true
-	if not zapalona and saveNode.storyState != 0:
-		get_node(UI).showActionPrompt(["ZAPAL"], self)
+	if toActionPrompt:
+		get_node(UI).showActionPrompt(toActionPrompt, self)
 	
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	playerInArea = false
 	get_node(UI).hideActionPrompt()

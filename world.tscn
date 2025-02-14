@@ -1,4 +1,4 @@
-[gd_scene load_steps=161 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=164 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" path="res://Skrypty/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" path="res://Skrypty/Player.gd" id="1_f6crp"]
@@ -55,6 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://b4xrs05ummnxj" path="res://Charakterki/Player/AtakRekaSilny1/AtakRekaSilny1_S.png" id="47_2ai4i"]
 [ext_resource type="Texture2D" uid="uid://djqdw1iitpxtv" path="res://Charakterki/Player/AtakRekaSilny1/AtakRekaSilny1_SE.png" id="48_qp0is"]
 [ext_resource type="Texture2D" uid="uid://cbqegbtk1hcgf" path="res://Charakterki/Player/AtakRekaSilny1/AtakRekaSilny1_W.png" id="49_ce5w4"]
+[ext_resource type="Texture2D" uid="uid://dvumcbm3xlcvx" path="res://Charakterki/Player/Umieranie/Umieranie_E.png" id="53_of4fe"]
 [ext_resource type="PackedScene" uid="uid://sdkyy54ll57c" path="res://PrefabEnemy/karakan.tscn" id="55_lecbo"]
 [ext_resource type="PackedScene" uid="uid://cj4r8n0rwo44d" path="res://PrefabInteract/candle.tscn" id="56_7fx65"]
 [ext_resource type="Texture2D" uid="uid://dvxlwq1ed3mcy" path="res://CalySwiat/kiedro10czaha.png" id="58_54fh3"]
@@ -1854,6 +1855,59 @@ tracks/1/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_h4o4s"]
+resource_name = "Umieranie"
+length = 0.250001
+step = 0.00833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2Dgracz:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("53_of4fe")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2Dgracz:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.00833333, 0.0166667, 0.025, 0.0333333, 0.0416666, 0.05, 0.0583333, 0.0666666, 0.075, 0.0833333, 0.0916666, 0.1, 0.108333, 0.116667, 0.125, 0.133333, 0.141667, 0.15, 0.158333, 0.166667, 0.175, 0.183333, 0.191667, 0.2, 0.208333, 0.216667, 0.225, 0.233333, 0.241667, 0.25, 0.258333, 0.266667, 0.275, 0.283333, 0.291667, 0.3, 0.308333, 0.316667, 0.325, 0.333333, 0.341667, 0.35, 0.358333, 0.366667, 0.375, 0.383333, 0.391667, 0.4, 0.408333, 0.416667, 0.425, 0.433333, 0.441666, 0.45, 0.458333, 0.466666, 0.475, 0.483333, 0.491666, 0.5, 0.508333, 0.516666, 0.525, 0.533333, 0.541666, 0.55, 0.558333, 0.566666, 0.575, 0.583333, 0.591666, 0.6, 0.608333, 0.616666, 0.625, 0.633333, 0.641666, 0.65, 0.658333, 0.666666, 0.675, 0.683333, 0.691666, 0.7, 0.708333, 0.716666, 0.725, 0.733333, 0.741666, 0.75, 0.758333, 0.766666, 0.775, 0.783333, 0.791666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2Dgracz:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2Dgracz:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hvrvl"]
 _data = {
 "Atak_Reka_Silny_1_E": SubResource("Animation_kqdbm"),
@@ -1896,7 +1950,8 @@ _data = {
 "Stanie_S": SubResource("Animation_fe87h"),
 "Stanie_SE": SubResource("Animation_1d83s"),
 "Stanie_SW": SubResource("Animation_bpmnm"),
-"Stanie_W": SubResource("Animation_70q3u")
+"Stanie_W": SubResource("Animation_70q3u"),
+"Umieranie": SubResource("Animation_h4o4s")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tcg3c"]
@@ -2113,6 +2168,9 @@ blend_point_7/node = SubResource("AnimationNodeAnimation_gfsjn")
 blend_point_7/pos = Vector2(0.71, -0.71)
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r2qjn"]
+animation = &"Umieranie"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sytx8"]
 states/AtakRekaSilny1/node = SubResource("AnimationNodeBlendSpace2D_o1vv0")
 states/AtakRekaSilny1/position = Vector2(792, 96)
@@ -2126,7 +2184,9 @@ states/End/position = Vector2(209, 172)
 states/Stanie/node = SubResource("AnimationNodeBlendSpace2D_jri72")
 states/Stanie/position = Vector2(529, 29)
 states/Start/position = Vector2(209, 100)
-graph_offset = Vector2(24, -24)
+states/Umieranie/node = SubResource("AnimationNodeAnimation_r2qjn")
+states/Umieranie/position = Vector2(794, 167)
+graph_offset = Vector2(173, -20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_56jup"]
 radius = 55.0
@@ -2139,7 +2199,7 @@ radius = 21.21
 height = 91.01
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elsen"]
-size = Vector2(200, 80)
+size = Vector2(199, 82)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rodtt"]
 size = Vector2(241, 113)
@@ -2413,7 +2473,7 @@ texture = ExtResource("28_d34pn")
 offset = Vector2(-47.72, -56.225)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Dzialko"]
-position = Vector2(300, 95)
+position = Vector2(8, 170)
 shape = SubResource("RectangleShape2D_elsen")
 
 [node name="TestDomek1Out" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]

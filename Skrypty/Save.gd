@@ -6,12 +6,7 @@ extends Node
 
 var currentCandle: Node2D = null # Przechowuje obecnie zapaloną świeczkę
 
-var storyState
-	# 0 = start gry
-	# 1 = pogadane z czaszka, mozliwosc zapalenia swieczki
-	# 2 = swieczka zapalona, mozliwosc otwarcia drzwi
-
-
+signal candleActimel 
 
 
 
@@ -40,7 +35,8 @@ func saveGame():
 	dataFile.set_value("player", "candle", currentCandle.name)
 	dataFile.set_value("player", "maxHealth", player.maxHealth)
 
-	dataFile.set_value("story", "storyState", storyState)
+
+	dataFile.set_value("actions", "kiedro10czaha", get_node("../World YSort/Kiedro10czaha").baseActions)
 
 
 	var error = dataFile.save("user://save_game.txt")  # Zapis
@@ -54,51 +50,34 @@ func loadGame():
 	var dataFile = ConfigFile.new()
 	var error = dataFile.load("user://saave_game.txt")  # Odczyt
 
-	if error == OK:
-		print("wczytano")
-		# Odczytujemy nazwę świeczki
-		
-		player.maxHealth = dataFile.get_value("player", "maxHealth", player.maxHealth) # ustawianie maksymalnego zycia
-		player.currentHealth = dataFile.get_value("player", "maxHealth", player.maxHealth) # ustawianianie obencego zycia
-		UI.setMaxHeart(player.maxHealth)
-		UI.updateHearts(player.maxHealth)
-		
+
+
+
+	player.maxHealth = dataFile.get_value("player", "maxHealth", 1) # ustawianie maksymalnego zycia
+	player.currentHealth = dataFile.get_value("player", "maxHealth", 1) # ustawianianie obencego zycia
+	UI.setMaxHeart(player.maxHealth)
+	UI.updateHearts(player.maxHealth)
+	
+	if dataFile.get_value("player", "candle", ""):
+		candleActimelizing()
 		setCandle(get_node("../World YSort/" + dataFile.get_value("player", "candle", ""))) #zapalenie swieczki i jej wybor
 		player.position = currentCandle.position #pozycja gracza na swieczke
 		
-		storyState = dataFile.get_value("story", "storyState", storyState)
-		
-	else:
-		print("wczytywanie wypierdolone")
-		# wartości na start gdy sejwa nie ma
-		player.maxHealth = 3 # ustawianie maksymalnego zycia
-		player.currentHealth = 3 # ustawianianie obencego zycia
-		UI.setMaxHeart(player.maxHealth)
-		UI.updateHearts(player.maxHealth)
-		
-		player.position = Vector2.ZERO
-		
-		storyState = 0
-	
+	get_node("../World YSort/Kiedro10czaha").baseActions = dataFile.get_value("actions", "kiedro10czaha", ["CZAHA1"])
+	get_node("../World YSort/Kiedro10czaha").toActionPrompt = dataFile.get_value("actions", "kiedro10czaha", ["CZAHA1"])
 
 
 
 
 
-
-
-
-
-
+func candleActimelizing(): # to robi ze swieczek mnozna uzwyac. wywolane po gadaniu z czaszku lub przy wczytywaniu
+	emit_signal("candleActimel")
 
 
 # świeczkaaaa
 func setCandle(candle: Node2D) -> void:
 	player.currentHealth = player.maxHealth #leczenie gracza gdy swieczki dotknie
 	UI.updateHearts(player.currentHealth)
-	
-	if storyState == 1:
-		storyState = 2
 	
 	if currentCandle: # sprawdza czy jest jakas przypisana zapalona
 		currentCandle.turnOffCandle() #gasi tą przypisana poprzednia

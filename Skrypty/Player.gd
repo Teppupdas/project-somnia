@@ -48,9 +48,8 @@ func _ready():
 
 func _process(delta):
 
-	#label1.set_text("FPS: " + str(Engine.get_frames_per_second()))
+	label1.set_text("FPS: " + str(Engine.get_frames_per_second()))
 	#label1.set_text("maxŻycie: " + str(maxHealth))
-	label1.set_text(str($"../../save".storyState))
 
 	if canDash:
 		label2.text = "+"
@@ -71,6 +70,8 @@ func _process(delta):
 			1: animationMode.travel("Dashowanie")
 			2: animationMode.travel("AtakRekaSzybki1")
 			3: animationMode.travel("AtakRekaSilny1")
+			23: animationMode.travel("Umieranie")
+			
 	else:
 		animationMode.travel("Chodzenie")
 		var blendPosition = Vector2(actionDirection.x, -actionDirection.y) #to musi miec y na minusie bo jest w innym kierunku w blend posiition niz w swiecie gry
@@ -87,8 +88,10 @@ func _physics_process(delta):
 	moveVector.x = (Input.get_action_strength("prawo") - Input.get_action_strength("lewo"))
 	moveVector.y = (Input.get_action_strength("dol") - Input.get_action_strength("gora"))
 	moveVectorNormalized = moveVector.normalized()
-	if action != 1: # action == 0: to tymczasowo aby podczas ataku miec ruch
+	if action == 0:
 		set_velocity(moveVectorNormalized * STANDARD_SPEED) # tu warunek dodac?
+	elif not action == 1: # wszystko tlyko nie dash
+		set_velocity(Vector2.ZERO)
 	#moveSpeedMultiplier = clamp(moveVector.length(), 0, 1)
 
 	if moveVector != Vector2.ZERO and action == 0:
@@ -135,7 +138,7 @@ func _physics_process(delta):
 
 
 
-	
+
 	move_and_slide() #poruszanie się to powoduje
 
 
@@ -144,11 +147,13 @@ func _on_player_hurt_box_area_entered(area: Area2D) -> void:
 	if action != 1:
 		area.get_parent().queue_free()
 		currentHealth -=1
+		UI.updateHearts(currentHealth)
 		if currentHealth == 0:
+			action = 23
+			await get_tree().create_timer(animationPlayer.get_animation("Umieranie").length).timeout
 			get_tree().reload_current_scene()
 			# obecnie gdy nie ma przypisanej swieczki to nic sie nie dzieje. 
 			#rozwiazanie: nie dac graczwoi zginac zanim zapali pierwsza swieczke
-		UI.updateHearts(currentHealth)
 
 
 func _on_player_hit_box_body_entered(body: Node2D) -> void:

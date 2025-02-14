@@ -187,10 +187,13 @@ func highlightAction(index: int):
 
 
 
-func startConversation(tekst: String):
+func startConversation(key: String):
 	dialoguePanel.show()
-	dialogueText.text = tekst
 	
-func endConversation():
+	var localizedText = tr(key)
+	for i in range(len(localizedText)): # ta petla tobi wypisywanie sie tekstu po literce
+		dialogueText.text = localizedText.substr(0, i + 1)
+		await get_tree().create_timer(0.02).timeout
+
+	await get_tree().create_timer(5).timeout # czeka kilka sekund po animacji tekstu a potem okno znika
 	dialoguePanel.hide()
-	dialogueText.text = ""
