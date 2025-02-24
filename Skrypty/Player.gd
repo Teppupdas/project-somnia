@@ -121,12 +121,12 @@ func _physics_process(delta):
 				print("szybki")
 				action = 2
 				damage = 1
-				await get_tree().create_timer(3).timeout
+				await get_tree().create_timer(1).timeout
 			elif Input.is_action_just_pressed("silny"):
 				print("silny")
 				action = 3
 				damage = 2
-				await get_tree().create_timer(3).timeout
+				await get_tree().create_timer(1).timeout
 				#await get_tree().create_timer(animationPlayer.get_animation("Atak_Reka_Silny_1_E").length).timeout
 
 			playerHitBox.monitoring = false

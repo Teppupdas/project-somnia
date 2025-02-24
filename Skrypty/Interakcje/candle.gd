@@ -7,6 +7,9 @@ var zapalona = false
 var UI: NodePath = "../../CanvasLayer"
 var toActionPrompt: Array = []
 
+var playerInArea = false
+var isTalking = false #to jest sprawdzane by wstrzymac pokazywanie akcji
+
 func _ready() -> void:
 	
 	saveNode.connect("candleActimel", candleActimelization) #nazwa sygnalu, nazwa funckji
@@ -50,8 +53,10 @@ func turnOffCandle() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	playerInArea = true
 	if toActionPrompt:
 		get_node(UI).showActionPrompt(toActionPrompt, self)
 	
 func _on_area_2d_body_exited(body: Node2D) -> void:
+	playerInArea = false
 	get_node(UI).hideActionPrompt()

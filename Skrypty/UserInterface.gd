@@ -6,8 +6,12 @@ extends CanvasLayer
 @onready var pauzyMenu = $PauseMenuPanel
 @onready var Label1 = $PauseMenuPanel/VBoxContainer/Label1
 @onready var Label2 = $PauseMenuPanel/VBoxContainer/Label2
+@onready var Label3 = $PauseMenuPanel/VBoxContainer/Label3
 var pauzaAktywna
 var opcjaPauzyWybrana
+
+@onready var mapTexture = $mapTexture
+var mapaAktywna
 
 
 @onready var actionPromptPanel  = $actionPromptPanel
@@ -15,15 +19,12 @@ var opcjaPauzyWybrana
 var actionPromptActive = false
 var selectedAction = 0
 var actionLabels: Array = []
-var lastActionObject = null
+var currentActionObject = null
 
-@onready var dialoguePanel = $dialoguePanel
-@onready var dialogueText = $dialoguePanel/RichTextLabel
 
 const Kolorwybrania = Color8(220, 20, 60)
 const Kolorniewybrania = Color8(255, 255, 255)
-
-
+const Kolornieaktywny = Color8(112, 112, 112)
 
 
 
@@ -39,69 +40,72 @@ func _ready() -> void:
 	pasekSerc.show()
 	get_tree().paused = false
 	opcjaPauzyWybrana = 1
+	
+	mapaAktywna = false
+	mapTexture.hide()
 
 
 
 
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("pauza"):
+		if mapaAktywna: # sprawia ze da sie wylaczyc mape escapem. przetestowac to na padzie itp
+			toggleMap()
+		else:
+			togglePause()
+
 	if pauzaAktywna:
-		if Input.is_action_just_pressed("pauza"):
-			pauzaAktywna = false
-			pauzyMenu.hide()
-			pasekSerc.show()
-			if actionPromptActive:
-				actionPromptPanel.show()
-			get_tree().paused = false
-			opcjaPauzyWybrana = 1
-
-
+		if Input.is_action_just_pressed("UIdol"):
+			navigateOption(1, "pause")
+		elif Input.is_action_just_pressed("UIgora"):
+			navigateOption(-1, "pause")
 		if Input.is_action_just_pressed("potwierdz"):
 			match opcjaPauzyWybrana:
 				1:
-					pauzaAktywna = false
-					pauzyMenu.hide()
-					pasekSerc.show()
-					get_tree().paused = false
+					togglePause()
 				2:
+					pass
+				3:
 					get_tree().quit()
+#
+#
+		#if Input.is_action_just_pressed("gora"):
+			#match opcjaPauzyWybrana:
+				#1:
+					#opcjaPauzyWybrana = 2
+				#2:
+					#opcjaPauzyWybrana = 1
+		#if Input.is_action_just_pressed("dol"):
+			#match opcjaPauzyWybrana:
+				#1:
+					#opcjaPauzyWybrana = 2
+				#2:
+					#opcjaPauzyWybrana = 1
+#
+#
+		#match opcjaPauzyWybrana:
+			#1:
+				#Label1.set("theme_override_colors/font_color", Kolorwybrania)
+				#Label2.set("theme_override_colors/font_color", Kolorniewybrania)
+			#2:
+				#Label1.set("theme_override_colors/font_color", Kolorniewybrania)
+				#Label2.set("theme_override_colors/font_color", Kolorwybrania)
+
+	if Input.is_action_just_pressed("mapa") and not pauzaAktywna:
+		toggleMap()
 
 
-		if Input.is_action_just_pressed("gora"):
-			match opcjaPauzyWybrana:
-				1:
-					opcjaPauzyWybrana = 2
-				2:
-					opcjaPauzyWybrana = 1
-		if Input.is_action_just_pressed("dol"):
-			match opcjaPauzyWybrana:
-				1:
-					opcjaPauzyWybrana = 2
-				2:
-					opcjaPauzyWybrana = 1
 
+	if actionPromptActive and not pauzaAktywna:
+		if currentActionObject.isTalking:
+			return  # Zignoruj wszystkie interakcje, jeśli obiekt mówi
 
-		match opcjaPauzyWybrana:
-			1:
-				Label1.set("theme_override_colors/font_color", Kolorwybrania)
-				Label2.set("theme_override_colors/font_color", Kolorniewybrania)
-			2:
-				Label1.set("theme_override_colors/font_color", Kolorniewybrania)
-				Label2.set("theme_override_colors/font_color", Kolorwybrania)
-
-	elif Input.is_action_just_pressed("pauza"):
-		pauzaAktywna = true
-		get_tree().paused = true
-		pasekSerc.hide()
-		actionPromptPanel.hide()
-		pauzyMenu.show()
-
-	if actionPromptActive:
 		if Input.is_action_just_pressed("UIdol"):
-			navigateAction(1)
+			navigateOption(1, "action")
 		elif Input.is_action_just_pressed("UIgora"):
-			navigateAction(-1)
-		elif Input.is_action_just_pressed("potwierdz"):
-			lastActionObject.handleAction(actionLabels[selectedAction].text)
+			navigateOption(-1, "action")
+		elif Input.is_action_just_pressed("potwierdz"):   #to gdy wyjscie z pauzy za pomoco wznow to tez sie klika gowno
+			currentActionObject.handleAction(actionLabels[selectedAction].text)
 
 
 
@@ -125,12 +129,34 @@ func updateHearts(currentHealth):
 
 
 
+func togglePause():
+	pauzaAktywna = !pauzaAktywna
+	get_tree().paused = pauzaAktywna
+	pauzyMenu.visible = pauzaAktywna
+	opcjaPauzyWybrana = 1
+	highlightOption(opcjaPauzyWybrana, "pause")
+
+
+
+func toggleMap():
+	mapaAktywna = !mapaAktywna
+	mapTexture.visible = mapaAktywna
+	get_tree().paused = mapaAktywna
+
+
+
+
+
 
 
 
 
 func showActionPrompt(actions: Array, actionObject: Node2D):
-	lastActionObject = actionObject
+	currentActionObject = actionObject
+	
+	if actionObject.isTalking:  # Jeśli ten obiekt mówi, nie pokazuj opcji
+		return
+	
 	for action in actions:
 		var label = Label.new()
 		label.text = action
@@ -138,12 +164,15 @@ func showActionPrompt(actions: Array, actionObject: Node2D):
 		actionPromptContainer.add_child(label)
 		actionLabels.append(label)
 	selectedAction = 0
-	highlightAction(selectedAction)
+	highlightOption(selectedAction, "action")
 	actionPromptActive = true
 	actionPromptPanel.show()
 
 
 func updateActionPrompt(actions: Array):
+	if currentActionObject.isTalking:  # Jeśli mówi, nie aktualizuj
+		return
+	
 	for child in actionPromptContainer.get_children():
 		child.queue_free()
 	actionLabels.clear()
@@ -154,7 +183,7 @@ func updateActionPrompt(actions: Array):
 		actionPromptContainer.add_child(label)
 		actionLabels.append(label)
 	selectedAction = 0
-	highlightAction(selectedAction)
+	highlightOption(selectedAction, "action")
 
 
 func hideActionPrompt():
@@ -165,35 +194,113 @@ func hideActionPrompt():
 	actionLabels.clear()
 
 
-func navigateAction(direction: int): # to przerobic aby bylo tez do zmiany pauzy i innych takich jesli beda ale to kiedy indziej
-	if actionLabels.size() == 0: return
-	selectedAction = (selectedAction + direction) % actionLabels.size()
-	if selectedAction < 0:
-		selectedAction = actionLabels.size() - 1
-	highlightAction(selectedAction)
-
-func highlightAction(index: int):
-	for i in range(actionLabels.size()):
-		var label = actionLabels[i]
-		if i == index:
-			label.set("theme_override_colors/font_color", Kolorwybrania)
-		else:
-			label.set("theme_override_colors/font_color", Kolorniewybrania)
 
 
 
 
-
-
-
-
-func startConversation(key: String):
-	dialoguePanel.show()
+func navigateOption(direction: int, context: String):
+	if context == "action":
+		if actionLabels.size() == 0: return
+		selectedAction = (selectedAction + direction) % actionLabels.size()
+		if selectedAction < 0:
+			selectedAction = actionLabels.size() - 1
+		highlightOption(selectedAction, context)
 	
-	var localizedText = tr(key)
+	if context == "pause":
+		var maxOpcji = 3  # Ilość opcji w menu pauzy
+		opcjaPauzyWybrana = (opcjaPauzyWybrana + direction) % maxOpcji
+		if opcjaPauzyWybrana < 1:  # Ponieważ opcje są od 1 do 3
+			opcjaPauzyWybrana = maxOpcji
+		highlightOption(opcjaPauzyWybrana, context)
+
+func highlightOption(index: int, context: String):
+	if context == "action":
+		for i in range(actionLabels.size()):
+			var label = actionLabels[i]
+			if i == index:
+				label.set("theme_override_colors/font_color", Kolorwybrania)
+			else:
+				label.set("theme_override_colors/font_color", Kolorniewybrania)
+				
+	if context == "pause":
+		Label1.set("theme_override_colors/font_color", Kolorwybrania if index == 1 else Kolorniewybrania)
+		Label2.set("theme_override_colors/font_color", Kolorwybrania if index == 2 else Kolorniewybrania)
+		Label3.set("theme_override_colors/font_color", Kolorwybrania if index == 3 else Kolorniewybrania)
+
+
+
+
+
+
+
+
+func dialogueBubble(dialogueKey: String):
+	
+	var thisBubbleActionObject = currentActionObject #obiekt posiadajacy bobleka tego konkretnego
+	var localizedText = tr(dialogueKey)
+	var dialoguePanel = Panel.new()
+	var dialogueText = RichTextLabel.new()
+	
+	thisBubbleActionObject.isTalking = true
+	
+	
+	for child in currentActionObject.get_children():
+		if child is Panel:
+			child.queue_free()
+	
+
+
+
+
+	
+	dialoguePanel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM) 
+	dialoguePanel.size = Vector2(500, 300)  # Ustawienie rozmiaru panelu
+	#dialoguePanel.add_theme_stylebox_override("panel", StyleBoxFlat.new()) # Ustawienie stylu
+	
+	
+	dialogueText.custom_minimum_size = Vector2(500, 300)  # Ustawienie minimalnego rozmiaru dla label
+	dialogueText.set("theme_override_font_sizes/normal_font_size", 28)
+	dialogueText.set("theme_override_colors/default_color", Color.WHITE)
+
+
+
+	
+	currentActionObject.add_child(dialoguePanel)
+	dialoguePanel.add_child(dialogueText)
+	dialoguePanel.position = currentActionObject.dialogueBubbleOffset
+	
+	
+	
+	
+	#pokazywanie tylko wybranego dialogu na czas animacji mowienia
+	for i in range(actionLabels.size()):
+		if i == selectedAction:
+			actionLabels[i].set("theme_override_colors/font_color", Kolornieaktywny)
+		else:
+			actionLabels[i].hide()
+
+
+	#dialogueText.text = localizedText
 	for i in range(len(localizedText)): # ta petla tobi wypisywanie sie tekstu po literce
 		dialogueText.text = localizedText.substr(0, i + 1)
-		await get_tree().create_timer(0.02).timeout
+		await get_tree().create_timer(0.015).timeout
 
-	await get_tree().create_timer(5).timeout # czeka kilka sekund po animacji tekstu a potem okno znika
-	dialoguePanel.hide()
+	thisBubbleActionObject.isTalking = false
+
+	if thisBubbleActionObject.playerInArea:
+			updateActionPrompt(thisBubbleActionObject.toActionPrompt)
+
+	#czekanie az gracza nie bedzie w area ponad 5 sekund
+	var remainingTime = 5.0 # ile sekund czeka bez gracza w area
+	var currentRemainingTime = remainingTime
+	
+	while currentRemainingTime > 0.0: 
+		await get_tree().process_frame
+		if thisBubbleActionObject.playerInArea:
+			currentRemainingTime = remainingTime  #resetowanie licznika jesli gracz w area
+		else:
+			currentRemainingTime -= get_process_delta_time()  #zmniejszanie licnzika jesli gracz poza area
+
+	#usuwanie jesli dalej istnieje bo moze byc usuniety wczesniej przez zastapienie
+	if is_instance_valid(dialoguePanel):
+		dialoguePanel.queue_free()
