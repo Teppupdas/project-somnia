@@ -11,7 +11,10 @@ var pauzaAktywna
 var opcjaPauzyWybrana
 
 @onready var mapTexture = $mapTexture
+@onready var mapCursor = $mapTexture/cursorTexture
 var mapaAktywna
+var mapBounds = Rect2(200, 200, 3840 - 100 - 2*200, 2160 - 100 - 2*200) # -rozmiar kursora -2x margines ze zwyklej storny. bo jeden zeruje do krawedzi a drugi dopiero dodaje margines
+var currentQuests = ["KILL", "TALK"]
 
 
 @onready var actionPromptPanel  = $actionPromptPanel
@@ -67,32 +70,25 @@ func _process(delta: float) -> void:
 					pass
 				3:
 					get_tree().quit()
-#
-#
-		#if Input.is_action_just_pressed("gora"):
-			#match opcjaPauzyWybrana:
-				#1:
-					#opcjaPauzyWybrana = 2
-				#2:
-					#opcjaPauzyWybrana = 1
-		#if Input.is_action_just_pressed("dol"):
-			#match opcjaPauzyWybrana:
-				#1:
-					#opcjaPauzyWybrana = 2
-				#2:
-					#opcjaPauzyWybrana = 1
-#
-#
-		#match opcjaPauzyWybrana:
-			#1:
-				#Label1.set("theme_override_colors/font_color", Kolorwybrania)
-				#Label2.set("theme_override_colors/font_color", Kolorniewybrania)
-			#2:
-				#Label1.set("theme_override_colors/font_color", Kolorniewybrania)
-				#Label2.set("theme_override_colors/font_color", Kolorwybrania)
+
 
 	if Input.is_action_just_pressed("mapa") and not pauzaAktywna:
 		toggleMap()
+		
+
+	if mapaAktywna:
+		var move_vector = Vector2.ZERO
+		if Input.is_action_pressed("prawo"):
+			move_vector.x += 1
+		if Input.is_action_pressed("lewo"):
+			move_vector.x -= 1
+		if Input.is_action_pressed("dol"):
+			move_vector.y += 1
+		if Input.is_action_pressed("gora"):
+			move_vector.y -= 1
+
+		mapCursor.position += move_vector.normalized() * 3000 * delta
+		mapCursor.position = mapCursor.position.clamp(mapBounds.position, mapBounds.end)
 
 
 
@@ -136,8 +132,6 @@ func togglePause():
 	opcjaPauzyWybrana = 1
 	highlightOption(opcjaPauzyWybrana, "pause")
 
-
-
 func toggleMap():
 	mapaAktywna = !mapaAktywna
 	mapTexture.visible = mapaAktywna
@@ -168,7 +162,6 @@ func showActionPrompt(actions: Array, actionObject: Node2D):
 	actionPromptActive = true
 	actionPromptPanel.show()
 
-
 func updateActionPrompt(actions: Array):
 	if currentActionObject.isTalking:  # Jeśli mówi, nie aktualizuj
 		return
@@ -184,7 +177,6 @@ func updateActionPrompt(actions: Array):
 		actionLabels.append(label)
 	selectedAction = 0
 	highlightOption(selectedAction, "action")
-
 
 func hideActionPrompt():
 	actionPromptActive = false

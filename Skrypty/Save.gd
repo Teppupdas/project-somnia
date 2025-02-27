@@ -20,7 +20,7 @@ signal candleActimel
 
 
 func _ready():
-	call_deferred("loadGame") #opóżnione wywołąnie bo sie bugowało że było null instance
+	call_deferred("loadGame") #opóżnione wywołanie bo sie bugowało że było null instance
 	pass
 
 

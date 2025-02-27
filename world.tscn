@@ -1,4 +1,4 @@
-[gd_scene load_steps=168 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=169 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" path="res://Skrypty/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" path="res://Skrypty/Player.gd" id="1_f6crp"]
@@ -16,6 +16,7 @@
 [ext_resource type="StyleBox" uid="uid://ty0svnjjxff0" path="res://Styleiinnemotywy/styleUI.tres" id="5_x45ik"]
 [ext_resource type="Texture2D" uid="uid://dpq2b8jd2wu4l" path="res://CalySwiat/2d_in.png" id="6_6qc55"]
 [ext_resource type="Texture2D" uid="uid://bd6iq3flv33t1" path="res://Interfejsik/Mapa.png" id="6_ayy6l"]
+[ext_resource type="Texture2D" uid="uid://csc4h1ogugnwu" path="res://Interfejsik/cursor.png" id="7_wj8ab"]
 [ext_resource type="Texture2D" uid="uid://dbdabpa73y4m5" path="res://Charakterki/Player/Chodzenie/Chodzenie_SE.png" id="7_xeobm"]
 [ext_resource type="Texture2D" uid="uid://c46ywgnyqfhqi" path="res://Charakterki/Player/Chodzenie/Chodzenie_SW.png" id="8_1geaf"]
 [ext_resource type="Texture2D" uid="uid://d0133ffuapiow" path="res://CalySwiat/3d_orto_in.png" id="8_38b17"]
@@ -2232,10 +2233,6 @@ script = ExtResource("1_6b4vu")
 [node name="save" type="Node" parent="."]
 script = ExtResource("2_k8gx3")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="save"]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 script = ExtResource("1_pbntp")
@@ -2324,6 +2321,27 @@ visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("6_ayy6l")
+
+[node name="cursorTexture" type="TextureRect" parent="CanvasLayer/mapTexture"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_wj8ab")
+
+[node name="base" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0

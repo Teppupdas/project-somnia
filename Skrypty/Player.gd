@@ -24,9 +24,9 @@ const STANDARD_SPEED = 800 #standardowa i maksymalna;    dla klawiatury
 var moveSpeedMultiplier #korekta dla joysitcka; wolniejsze chodzenie
 
 
-
+enum Action { IDLE, DASH, QUICK_ATTACK, STRONG_ATTACK, DEATH }
+var action: Action = Action.IDLE
 var actionDirection = Vector2.DOWN
-var action = 0
 
 
 var canDash = true #do cooldowna
@@ -63,14 +63,14 @@ func _process(delta):
 
 
 	#ANIMACJE
-	if moveVector == Vector2.ZERO and action == 0:
+	if moveVector == Vector2.ZERO and action == Action.IDLE:
 		animationMode.travel("Stanie")
-	elif action != 0:
+	elif action != Action.IDLE:
 		match action:
-			1: animationMode.travel("Dashowanie")
-			2: animationMode.travel("AtakRekaSzybki1")
-			3: animationMode.travel("AtakRekaSilny1")
-			23: animationMode.travel("Umieranie")
+			Action.DASH: animationMode.travel("Dashowanie")
+			Action.QUICK_ATTACK: animationMode.travel("AtakRekaSzybki1")
+			Action.STRONG_ATTACK: animationMode.travel("AtakRekaSilny1")
+			Action.DEATH: animationMode.travel("Umieranie")
 			
 	else:
 		animationMode.travel("Chodzenie")
@@ -88,24 +88,24 @@ func _physics_process(delta):
 	moveVector.x = (Input.get_action_strength("prawo") - Input.get_action_strength("lewo"))
 	moveVector.y = (Input.get_action_strength("dol") - Input.get_action_strength("gora"))
 	moveVectorNormalized = moveVector.normalized()
-	if action == 0:
+	if action == Action.IDLE:
 		set_velocity(moveVectorNormalized * STANDARD_SPEED) # tu warunek dodac?
-	elif not action == 1: # wszystko tlyko nie dash
+	elif action != Action.DASH: # wszystko tlyko nie dash
 		set_velocity(Vector2.ZERO)
 	#moveSpeedMultiplier = clamp(moveVector.length(), 0, 1)
 
-	if moveVector != Vector2.ZERO and action == 0:
+	if moveVector != Vector2.ZERO and action == Action.IDLE:
 		actionDirection = moveVectorNormalized
 
 
-	if action == 0:
+	if action == Action.IDLE:
 		#Dash
 		if Input.is_action_just_pressed("dash") and canDash:
-			action = 1
+			action = Action.DASH
 			canDash = false
 			set_velocity(actionDirection * DASH_SPEED)
 			await get_tree().create_timer(DASH_LENGTH).timeout
-			action = 0
+			action = Action.IDLE
 			await get_tree().create_timer(DASH_COOLDOWN).timeout
 			canDash = true
 
@@ -119,19 +119,19 @@ func _physics_process(delta):
 
 			if Input.is_action_just_pressed("szybki"):
 				print("szybki")
-				action = 2
+				action = Action.QUICK_ATTACK
 				damage = 1
 				await get_tree().create_timer(1).timeout
 			elif Input.is_action_just_pressed("silny"):
 				print("silny")
-				action = 3
+				action = Action.STRONG_ATTACK
 				damage = 2
 				await get_tree().create_timer(1).timeout
 				#await get_tree().create_timer(animationPlayer.get_animation("Atak_Reka_Silny_1_E").length).timeout
 
 			playerHitBox.monitoring = false
 			playerHitBox.monitorable = false
-			action = 0
+			action = Action.IDLE
 			print("attack = 0")
 			trafieni.clear()
 			#przerwanie ataku atakiem przeciwnika
@@ -144,12 +144,12 @@ func _physics_process(delta):
 
 
 func _on_player_hurt_box_area_entered(area: Area2D) -> void:
-	if action != 1:
+	if action != Action.DASH:
 		area.get_parent().queue_free()
 		currentHealth -=1
 		UI.updateHearts(currentHealth)
 		if currentHealth == 0:
-			action = 23
+			action = Action.DEATH
 			await get_tree().create_timer(animationPlayer.get_animation("Umieranie").length).timeout
 			get_tree().reload_current_scene()
 			# obecnie gdy nie ma przypisanej swieczki to nic sie nie dzieje. 
