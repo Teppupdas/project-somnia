@@ -1,4 +1,4 @@
-[gd_scene load_steps=169 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=166 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" path="res://Skrypty/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" path="res://Skrypty/Player.gd" id="1_f6crp"]
@@ -13,7 +13,6 @@
 [ext_resource type="StyleBox" uid="uid://cfyjlavkxhv2o" path="res://Styleiinnemotywy/styleUIVertical.tres" id="4_jgfhp"]
 [ext_resource type="Texture2D" uid="uid://bmeo4oigejubl" path="res://Charakterki/Player/Chodzenie/Chodzenie_NE.png" id="4_v8iwe"]
 [ext_resource type="Texture2D" uid="uid://cqty2jx1hd6bc" path="res://Charakterki/Player/Chodzenie/Chodzenie_NW.png" id="5_po0cm"]
-[ext_resource type="StyleBox" uid="uid://ty0svnjjxff0" path="res://Styleiinnemotywy/styleUI.tres" id="5_x45ik"]
 [ext_resource type="Texture2D" uid="uid://dpq2b8jd2wu4l" path="res://CalySwiat/2d_in.png" id="6_6qc55"]
 [ext_resource type="Texture2D" uid="uid://bd6iq3flv33t1" path="res://Interfejsik/Mapa.png" id="6_ayy6l"]
 [ext_resource type="Texture2D" uid="uid://csc4h1ogugnwu" path="res://Interfejsik/cursor.png" id="7_wj8ab"]
@@ -62,7 +61,6 @@
 [ext_resource type="PackedScene" uid="uid://cj4r8n0rwo44d" path="res://PrefabInteract/candle.tscn" id="56_7fx65"]
 [ext_resource type="Texture2D" uid="uid://dvxlwq1ed3mcy" path="res://CalySwiat/kiedro10czaha.png" id="58_54fh3"]
 [ext_resource type="Script" path="res://Skrypty/Interakcje/kiedro10czaha.gd" id="58_aji7q"]
-[ext_resource type="Shader" path="res://Shadery/Highlight.gdshader" id="59_xw8qp"]
 [ext_resource type="Script" path="res://Skrypty/Interakcje/gadatek.gd" id="63_ac084"]
 [ext_resource type="Texture2D" uid="uid://x4l4kulyjeuq" path="res://CalySwiat/Gadatek.png" id="63_n3kdl"]
 [ext_resource type="Texture2D" uid="uid://dthyfv1fgpfkc" path="res://Charakterki/Player/Chodzenie/Chodzenie_S.png" id="66_mmmag"]
@@ -2211,15 +2209,6 @@ size = Vector2(241, 113)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p08bh"]
 size = Vector2(225, 87)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5n0ok"]
-shader = ExtResource("59_xw8qp")
-shader_parameter/visible = true
-shader_parameter/speed = 1.0
-shader_parameter/line_width = 0.1
-shader_parameter/line_color = Vector4(1, 1, 1, 1)
-shader_parameter/pause_duration = 0.15
-shader_parameter/offset = 2.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7icdn"]
 size = Vector2(223, 340)
 
@@ -2298,24 +2287,6 @@ vertical_alignment = 1
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="actionPromptPanel" type="PanelContainer" parent="CanvasLayer"]
-visible = false
-anchors_preset = -1
-anchor_left = 0.65
-anchor_top = 0.6
-anchor_right = 0.65
-anchor_bottom = 0.6
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = ExtResource("5_x45ik")
-
-[node name="actionPromptContainer" type="VBoxContainer" parent="CanvasLayer/actionPromptPanel"]
-layout_mode = 2
-
 [node name="mapTexture" type="TextureRect" parent="CanvasLayer"]
 visible = false
 offset_right = 40.0
@@ -2323,25 +2294,53 @@ offset_bottom = 40.0
 texture = ExtResource("6_ayy6l")
 
 [node name="cursorTexture" type="TextureRect" parent="CanvasLayer/mapTexture"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
+z_index = 1
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
 texture = ExtResource("7_wj8ab")
 
-[node name="base" type="Control" parent="CanvasLayer"]
+[node name="markersContainer" type="Control" parent="CanvasLayer/mapTexture"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/mapTexture"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -260.0
+offset_right = 20.0
+offset_bottom = -191.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="baseInterface" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="actionPromptContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 300.0
+offset_top = -260.0
+offset_right = 300.0
+offset_bottom = -260.0
+grow_vertical = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
@@ -2544,7 +2543,6 @@ position = Vector2(1127, 458)
 script = ExtResource("58_aji7q")
 
 [node name="Sprite2D" type="Sprite2D" parent="World YSort/Kiedro10czaha"]
-material = SubResource("ShaderMaterial_5n0ok")
 texture = ExtResource("58_54fh3")
 
 [node name="Area2D" type="Area2D" parent="World YSort/Kiedro10czaha"]

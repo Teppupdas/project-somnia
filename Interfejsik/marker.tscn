@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://t12gp6dn5h2q"]
+
+[ext_resource type="Texture2D" uid="uid://yj7hsdb757ss" path="res://Interfejsik/marker.png" id="1_8qf82"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hh7y7"]
+radius = 50.0
+
+[node name="Marker" type="TextureRect"]
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+texture = ExtResource("1_8qf82")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15, 15)
+shape = SubResource("CircleShape2D_hh7y7")

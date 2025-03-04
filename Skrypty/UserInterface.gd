@@ -12,13 +12,15 @@ var opcjaPauzyWybrana
 
 @onready var mapTexture = $mapTexture
 @onready var mapCursor = $mapTexture/cursorTexture
+@onready var mapLabel = $mapTexture/Label
+@onready var markersContainer = $mapTexture/markersContainer
+@onready var markerPrefab = preload("res://Interfejsik/marker.tscn")
 var mapaAktywna
 var mapBounds = Rect2(200, 200, 3840 - 100 - 2*200, 2160 - 100 - 2*200) # -rozmiar kursora -2x margines ze zwyklej storny. bo jeden zeruje do krawedzi a drugi dopiero dodaje margines
 var currentQuests = ["KILL", "TALK"]
 
 
-@onready var actionPromptPanel  = $actionPromptPanel
-@onready var actionPromptContainer = $actionPromptPanel/actionPromptContainer
+@onready var actionPromptContainer = $actionPromptContainer
 var actionPromptActive = false
 var selectedAction = 0
 var actionLabels: Array = []
@@ -75,20 +77,30 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("mapa") and not pauzaAktywna:
 		toggleMap()
 		
-
-	if mapaAktywna:
-		var move_vector = Vector2.ZERO
-		if Input.is_action_pressed("prawo"):
-			move_vector.x += 1
-		if Input.is_action_pressed("lewo"):
-			move_vector.x -= 1
-		if Input.is_action_pressed("dol"):
-			move_vector.y += 1
-		if Input.is_action_pressed("gora"):
-			move_vector.y -= 1
-
-		mapCursor.position += move_vector.normalized() * 3000 * delta
+	if mapaAktywna: #sterowanie kursorem na mapie itp
+		var cursorMoveVector = Vector2.ZERO
+		cursorMoveVector.x = (Input.get_action_strength("prawo") - Input.get_action_strength("lewo"))
+		cursorMoveVector.y = (Input.get_action_strength("dol") - Input.get_action_strength("gora"))
+		
+		mapCursor.position += cursorMoveVector.normalized() * 200 * delta * clamp(cursorMoveVector.length(),0,1)
 		mapCursor.position = mapCursor.position.clamp(mapBounds.position, mapBounds.end)
+		
+		
+		#sprawdzanie czy kursor jest na znacnziku i wyswietlanie tekstu
+		for marker in markersContainer.get_children():
+
+			
+			if marker.global_position.distance_to(mapCursor.global_position + mapCursor.texture.get_size()/2 - marker.texture.get_size()/2) < 35:  # jesli na znaczniku
+				mapLabel.text = marker.name # tekst dolny przypiusanie
+				marker.scale = Vector2(1, 1)
+				
+				if cursorMoveVector == Vector2.ZERO: # przyklejanie kursora do znacznika
+					mapCursor.position = marker.position - mapCursor.texture.get_size()/2 + marker.texture.get_size()/2
+				break 
+			else:
+				mapLabel.text = "" 
+				marker.scale = Vector2(0.7, 0.7)
+
 
 
 
@@ -96,9 +108,9 @@ func _process(delta: float) -> void:
 		if currentActionObject.isTalking:
 			return  # Zignoruj wszystkie interakcje, jeśli obiekt mówi
 
-		if Input.is_action_just_pressed("UIdol"):
+		if Input.is_action_just_pressed("actionPromptDown"):
 			navigateOption(1, "action")
-		elif Input.is_action_just_pressed("UIgora"):
+		elif Input.is_action_just_pressed("actionPromptUp"):
 			navigateOption(-1, "action")
 		elif Input.is_action_just_pressed("potwierdz"):   #to gdy wyjscie z pauzy za pomoco wznow to tez sie klika gowno
 			currentActionObject.handleAction(actionLabels[selectedAction].text)
@@ -136,7 +148,25 @@ func toggleMap():
 	mapaAktywna = !mapaAktywna
 	mapTexture.visible = mapaAktywna
 	get_tree().paused = mapaAktywna
-
+	
+	if mapaAktywna: #tworzenie znacznikow
+		mapCursor.position =  Vector2(1920, 1080) - mapCursor.texture.get_size()/2
+		
+		for quest in currentQuests:
+			var marker = markerPrefab.instantiate()
+			
+			match quest:
+				"KILL":
+					marker.position = Vector2(1000, 640) - marker.texture.get_size()/2
+				"TALK":
+					marker.position = Vector2(1920, 880) - marker.texture.get_size()/2
+					
+			marker.name = quest
+			markersContainer.add_child(marker)
+			
+	else:
+		for child in markersContainer.get_children():
+			child.queue_free()
 
 
 
@@ -160,7 +190,7 @@ func showActionPrompt(actions: Array, actionObject: Node2D):
 	selectedAction = 0
 	highlightOption(selectedAction, "action")
 	actionPromptActive = true
-	actionPromptPanel.show()
+	actionPromptContainer.show()
 
 func updateActionPrompt(actions: Array):
 	if currentActionObject.isTalking:  # Jeśli mówi, nie aktualizuj
@@ -180,7 +210,7 @@ func updateActionPrompt(actions: Array):
 
 func hideActionPrompt():
 	actionPromptActive = false
-	actionPromptPanel.hide()
+	actionPromptContainer.hide()
 	for child in actionPromptContainer.get_children():
 		child.queue_free()
 	actionLabels.clear()
@@ -210,9 +240,11 @@ func highlightOption(index: int, context: String):
 		for i in range(actionLabels.size()):
 			var label = actionLabels[i]
 			if i == index:
-				label.set("theme_override_colors/font_color", Kolorwybrania)
+				#label.set("theme_override_colors/font_color", Kolorwybrania)
+				label.set("theme_override_font_sizes/font_size", 64)
 			else:
-				label.set("theme_override_colors/font_color", Kolorniewybrania)
+				#label.set("theme_override_colors/font_color", Kolorniewybrania)
+				label.set("theme_override_font_sizes/font_size", 48)
 				
 	if context == "pause":
 		Label1.set("theme_override_colors/font_color", Kolorwybrania if index == 1 else Kolorniewybrania)

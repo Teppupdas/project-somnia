@@ -33,17 +33,13 @@ void fragment() {
     // Rotación diagonal de la línea
     vec2 rotated_uv = vec2(UV.x + UV.y, UV.y - UV.x) * 0.5;
     float dist = abs(rotated_uv.x - line_position);
-
     // Control de ancho y suavidad de la línea
     float line_intensity = smoothstep(line_width, 0.0, dist);
-
     // Máscara de alfa del `Sprite` para limitar el área de la línea solo a los píxeles opacos
     vec4 base_texture = texture(TEXTURE, UV); // Color base del `Sprite`
     float alpha_mask = step(0.01, base_texture.a); // Máscara de alfa (evita completamente los píxeles transparentes)
-
     // Aplicar el color de la línea solo a los píxeles opacos
     vec3 final_color = mix(base_texture.rgb, line_color.rgb, line_intensity * alpha_mask);
-
     // Combinar la transparencia del sprite original y la intensidad de la línea
     COLOR = vec4(final_color, base_texture.a * alpha_mask);
 	//COLOR = vec4(1.0, 0.0, 0.0, 1.0);
