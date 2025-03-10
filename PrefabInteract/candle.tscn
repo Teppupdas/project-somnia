@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cj4r8n0rwo44d"]
 
-[ext_resource type="Script" path="res://Skrypty/Interakcje/candle.gd" id="1_4jlnw"]
+[ext_resource type="Script" uid="uid://ccabwi4pn5r01" path="res://Skrypty/Interakcje/candle.gd" id="1_4jlnw"]
 [ext_resource type="Texture2D" uid="uid://est8n6suyvle" path="res://CalySwiat/candle.png" id="1_u3yco"]
 
 [sub_resource type="Animation" id="Animation_7oyhh"]
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j5upc"]
 _data = {
-"zapalona": SubResource("Animation_7oyhh"),
-"zgaszona": SubResource("Animation_55rr0")
+&"zapalona": SubResource("Animation_7oyhh"),
+&"zgaszona": SubResource("Animation_55rr0")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nabj1"]
@@ -55,7 +55,7 @@ frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_j5upc")
+&"": SubResource("AnimationLibrary_j5upc")
 }
 
 [node name="Area2D" type="Area2D" parent="."]

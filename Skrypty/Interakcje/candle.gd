@@ -5,14 +5,13 @@ var zapalona = false
 @onready var animationPlayer = $AnimationPlayer
 @onready var saveNode = $"../../save"
 var UI: NodePath = "../../CanvasLayer"
-var toActionPrompt: Array = []
+var toActionPrompt: Array = ["ZAPAL"]
 
 var playerInArea = false
 var isTalking = false #to jest sprawdzane by wstrzymac pokazywanie akcji
 
 func _ready() -> void:
 	
-	saveNode.connect("candleActimel", candleActimelization) #nazwa sygnalu, nazwa funckji
 	animationPlayer.play("zgaszona")
 	#$Sprite2D.material.set_shader_parameter("visible", false)
 
@@ -21,9 +20,6 @@ func _process(delta: float) -> void:
 	pass
 
 
-func candleActimelization(): #to robi ze swieczek mnozna uzwyac. wywolane po gadaniu z czaszku lub przy wczytywaniu
-	toActionPrompt.append("ZAPAL")
-	#$Sprite2D.material.set_shader_parameter("visible", true)
 	# nie wyłączać shadera dla jakiejs instancji a wlaczac dla inej  bo sie jebie
 
 

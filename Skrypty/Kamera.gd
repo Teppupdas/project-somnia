@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	global_position = global_position.lerp(player.global_position, delta * speed)
+	#global_position = player.global_position
 	pass
 
 

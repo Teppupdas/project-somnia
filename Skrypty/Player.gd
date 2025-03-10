@@ -31,7 +31,7 @@ var actionDirection = Vector2.DOWN
 
 var canDash = true #do cooldowna
 const DASH_SPEED = 3000 #nie może się mnożyć z joystickiem
-const DASH_LENGTH = 0.5
+const DASH_LENGTH = 0.2
 const DASH_COOLDOWN = 0.5
 
 @onready var playerHitBox = $playerHitBox
@@ -112,27 +112,24 @@ func _physics_process(delta):
 
 		#Atak 
 		if (Input.is_action_just_pressed("szybki") or Input.is_action_just_pressed("silny")):
-			print("wejscie w atak")
 			playerHitBox.global_position = global_position + Vector2(0, 0) + actionDirection.rotated(PI / 2) * 0 + actionDirection * 120
 			playerHitBox.monitoring = true
 			playerHitBox.monitorable = true
 
 			if Input.is_action_just_pressed("szybki"):
-				print("szybki")
 				action = Action.QUICK_ATTACK
 				damage = 1
-				await get_tree().create_timer(1).timeout
+				#await get_tree().create_timer(1).timeout
+				await get_tree().create_timer(animationPlayer.get_animation("Atak_Reka_Szybki_1_E").length).timeout
 			elif Input.is_action_just_pressed("silny"):
-				print("silny")
 				action = Action.STRONG_ATTACK
 				damage = 2
-				await get_tree().create_timer(1).timeout
-				#await get_tree().create_timer(animationPlayer.get_animation("Atak_Reka_Silny_1_E").length).timeout
+				#await get_tree().create_timer(1).timeout
+				await get_tree().create_timer(animationPlayer.get_animation("Atak_Reka_Silny_1_E").length).timeout
 
 			playerHitBox.monitoring = false
 			playerHitBox.monitorable = false
 			action = Action.IDLE
-			print("attack = 0")
 			trafieni.clear()
 			#przerwanie ataku atakiem przeciwnika
 

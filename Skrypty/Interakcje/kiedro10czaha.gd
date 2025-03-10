@@ -41,7 +41,6 @@ func handleAction(actionName: String) -> void:
 			baseActions.erase(actionName)
 			toActionPrompt = baseActions
 			initiateDialogue(actionName)
-			get_node(saveNode).candleActimelizing() # to robi ze swieczek mozna uzyc
 		"CZAHA4", "CZAHA5":
 			baseActions.erase(actionName)
 			toActionPrompt = baseActions

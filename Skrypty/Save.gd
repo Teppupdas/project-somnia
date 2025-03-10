@@ -6,7 +6,6 @@ extends Node
 
 var currentCandle: Node2D = null # Przechowuje obecnie zapaloną świeczkę
 
-signal candleActimel 
 
 
 
@@ -53,13 +52,12 @@ func loadGame():
 
 
 
-	player.maxHealth = dataFile.get_value("player", "maxHealth", 1) # ustawianie maksymalnego zycia
-	player.currentHealth = dataFile.get_value("player", "maxHealth", 1) # ustawianianie obencego zycia
+	player.maxHealth = dataFile.get_value("player", "maxHealth", 5) # ustawianie maksymalnego zycia
+	player.currentHealth = dataFile.get_value("player", "maxHealth", 5) # ustawianianie obencego zycia
 	UI.setMaxHeart(player.maxHealth)
 	UI.updateHearts(player.maxHealth)
 	
 	if dataFile.get_value("player", "candle", ""):
-		candleActimelizing()
 		setCandle(get_node("../World YSort/" + dataFile.get_value("player", "candle", ""))) #zapalenie swieczki i jej wybor
 		player.position = currentCandle.position #pozycja gracza na swieczke
 		
@@ -70,8 +68,6 @@ func loadGame():
 
 
 
-func candleActimelizing(): # to robi ze swieczek mnozna uzwyac. wywolane po gadaniu z czaszku lub przy wczytywaniu
-	emit_signal("candleActimel")
 
 
 # świeczkaaaa

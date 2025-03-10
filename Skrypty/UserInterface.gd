@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var pasekSerc = $Serduszka
+@onready var pasekSerc = $baseInterface/Serduszka
 @onready var heartPrefab = preload("res://Interfejsik/serce.tscn")
 
 @onready var pauzyMenu = $PauseMenuPanel
@@ -20,7 +20,7 @@ var mapBounds = Rect2(200, 200, 3840 - 100 - 2*200, 2160 - 100 - 2*200) # -rozmi
 var currentQuests = ["KILL", "TALK"]
 
 
-@onready var actionPromptContainer = $actionPromptContainer
+@onready var actionPromptContainer = $baseInterface/actionPromptContainer
 var actionPromptActive = false
 var selectedAction = 0
 var actionLabels: Array = []
@@ -48,11 +48,24 @@ func _ready() -> void:
 	
 	mapaAktywna = false
 	mapTexture.hide()
+	
+	
+	
+	
+	if OS.has_feature("editor"):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	
+
 
 
 
 
 func _process(delta: float) -> void:
+	updateHearts($"../World YSort/Gracz".currentHealth) #kurwa dodane tu co klatke, bo sie jebalo gdy podnoszenie serduszka itp
+
+	
 	if Input.is_action_just_pressed("pauza"):
 		if mapaAktywna: # sprawia ze da sie wylaczyc mape escapem. przetestowac to na padzie itp
 			toggleMap()
@@ -121,9 +134,13 @@ func _process(delta: float) -> void:
 
 
 func setMaxHeart(maxHealth: int):
+	for heart in pasekSerc.get_children():
+		heart.queue_free()
+		
 	for i in range(maxHealth):
 		var heart = heartPrefab.instantiate()
 		pasekSerc.add_child(heart)
+		
 
 func updateHearts(currentHealth):
 	var hearts = pasekSerc.get_children()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbo4b7x1rqd37"]
 
-[ext_resource type="Script" path="res://Skrypty/Serce.gd" id="1_rvcu6"]
+[ext_resource type="Script" uid="uid://ccdikmbarqq0t" path="res://Skrypty/Serce.gd" id="1_rvcu6"]
 [ext_resource type="Texture2D" uid="uid://c1dttbqusf5x6" path="res://Interfejsik/PojemnikiSerdeczne.png" id="2_5nku6"]
 
 [node name="Panel" type="Panel"]
