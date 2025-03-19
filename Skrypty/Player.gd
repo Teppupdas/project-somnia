@@ -112,7 +112,8 @@ func _physics_process(delta):
 
 		#Atak 
 		if (Input.is_action_just_pressed("szybki") or Input.is_action_just_pressed("silny")):
-			playerHitBox.global_position = global_position + Vector2(0, 0) + actionDirection.rotated(PI / 2) * 0 + actionDirection * 120
+			#playerHitBox.global_position = global_position + Vector2(0, 0) + actionDirection.rotated(PI / 2) * 0 + actionDirection * 120
+			playerHitBox.rotation = actionDirection.angle()
 			playerHitBox.monitoring = true
 			playerHitBox.monitorable = true
 
@@ -142,8 +143,8 @@ func _physics_process(delta):
 
 func _on_player_hurt_box_area_entered(area: Area2D) -> void:
 	if action != Action.DASH:
-		area.get_parent().queue_free()
-		currentHealth -=1
+		area.get_parent().queue_free() # usuwa to co zadaje obrazenia
+		currentHealth -=1 #każdy możliwy atak ma zadawać nam 1 hp czaisz
 		UI.updateHearts(currentHealth)
 		if currentHealth == 0:
 			action = Action.DEATH
