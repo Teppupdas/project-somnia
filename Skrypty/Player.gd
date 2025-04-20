@@ -143,7 +143,9 @@ func _physics_process(delta):
 
 func _on_player_hurt_box_area_entered(area: Area2D) -> void:
 	if action != Action.DASH:
-		area.get_parent().queue_free() # usuwa to co zadaje obrazenia
+		#area.get_parent().queue_free() # usuwa to co zadaje obrazenia
+		if area.get_parent().has_method("usuwalne"):
+			area.get_parent().usuwalne()
 		currentHealth -=1 #każdy możliwy atak ma zadawać nam 1 hp czaisz
 		UI.updateHearts(currentHealth)
 		if currentHealth == 0:

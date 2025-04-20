@@ -19,6 +19,7 @@ var currentCandle: Node2D = null # Przechowuje obecnie zapaloną świeczkę
 
 
 func _ready():
+	randomize()
 	call_deferred("loadGame") #opóżnione wywołanie bo sie bugowało że było null instance
 	pass
 

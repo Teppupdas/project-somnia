@@ -1,4 +1,4 @@
-[gd_scene load_steps=289 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=291 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" uid="uid://bg7jeyw8fk5p8" path="res://Skrypty/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" uid="uid://bef53gjnn5gke" path="res://Skrypty/Player.gd" id="1_f6crp"]
@@ -105,6 +105,8 @@
 [ext_resource type="Texture2D" uid="uid://yd4lgac84y8y" path="res://Charakterki/Player/AtakRekaSzybki1/AtakRekaSzybki1_SSW.png" id="92_mou3f"]
 [ext_resource type="Texture2D" uid="uid://ey7t5va0ogf2" path="res://Charakterki/Player/AtakRekaSzybki1/AtakRekaSzybki1_WNW.png" id="93_8343f"]
 [ext_resource type="Texture2D" uid="uid://soxuj7l2wjwl" path="res://Charakterki/Player/AtakRekaSzybki1/AtakRekaSzybki1_WSW.png" id="94_2lhbq"]
+[ext_resource type="PackedScene" uid="uid://b1qupt1cjlpav" path="res://PrefabEnemy/kulaDajeFula.tscn" id="106_rxu81"]
+[ext_resource type="PackedScene" uid="uid://cekgqmk8tm8jg" path="res://PrefabEnemy/duchol.tscn" id="107_tje1l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ji7yj"]
 size = Vector2(244, 65)
@@ -4198,7 +4200,7 @@ states/Stanie/position = Vector2(529, 29)
 states/Start/position = Vector2(209, 100)
 states/Umieranie/node = SubResource("AnimationNodeAnimation_r2qjn")
 states/Umieranie/position = Vector2(794, 167)
-graph_offset = Vector2(158, -140)
+graph_offset = Vector2(7, -69)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_56jup"]
 radius = 55.0
@@ -4421,6 +4423,9 @@ disabled = true
 [node name="World YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Duchol" parent="World YSort" instance=ExtResource("107_tje1l")]
+position = Vector2(3221, 1110)
+
 [node name="Karakan" parent="World YSort" instance=ExtResource("55_lecbo")]
 position = Vector2(7289, 279)
 
@@ -4430,6 +4435,7 @@ collision_mask = 5
 script = ExtResource("1_f6crp")
 
 [node name="Sprite2Dgracz" type="Sprite2D" parent="World YSort/Gracz"]
+texture = ExtResource("53_of4fe")
 offset = Vector2(0, -75)
 hframes = 16
 
@@ -4596,6 +4602,21 @@ shape = SubResource("CircleShape2D_1hx21")
 
 [node name="Serducho1" parent="World YSort" instance=ExtResource("65_ct3wn")]
 position = Vector2(1962, 181)
+
+[node name="KulaDajeFula5" parent="World YSort" instance=ExtResource("106_rxu81")]
+position = Vector2(1087, -615)
+
+[node name="KulaDajeFula4" parent="World YSort" instance=ExtResource("106_rxu81")]
+position = Vector2(1831, -1304)
+
+[node name="KulaDajeFula3" parent="World YSort" instance=ExtResource("106_rxu81")]
+position = Vector2(2888, -899)
+
+[node name="KulaDajeFula2" parent="World YSort" instance=ExtResource("106_rxu81")]
+position = Vector2(1890, -715)
+
+[node name="KulaDajeFula" parent="World YSort" instance=ExtResource("106_rxu81")]
+position = Vector2(2362, -518)
 
 [connection signal="body_entered" from="World Backgorund/TestDomek1In/Area2D" to="." method="TestDomek1_exit"]
 [connection signal="body_entered" from="World Backgorund/Test_3d_orto_In/Area2D" to="." method="orto_exit"]

@@ -121,6 +121,22 @@ actionPromptDown={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+kameraPrawo={
+"deadzone": 0.2,
+"events": []
+}
+kameraLewo={
+"deadzone": 0.2,
+"events": []
+}
+kameraDol={
+"deadzone": 0.2,
+"events": []
+}
+kameraGora={
+"deadzone": 0.2,
+"events": []
+}
 
 [internationalization]
 
@@ -140,4 +156,5 @@ common/physics_ticks_per_second=120
 [rendering]
 
 renderer/rendering_method="mobile"
+anti_aliasing/quality/msaa_2d=3
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

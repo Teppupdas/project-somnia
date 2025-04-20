@@ -14,14 +14,14 @@ uniform float speed = 1.0; // Velocidad de movimiento de la línea
 uniform float line_width = 0.1; // Ancho de la línea de brillo
 uniform vec4 line_color = vec4(1.0, 1.0, 1.0, 1.0); // Color de la línea de brillo
 uniform float pause_duration : hint_range(0.0, 2.0) = 0.15; // Duración de la pausa al final del recorrido
-uniform float offset = 2.0; 
+uniform float offset = 2.0;
 
 void fragment() {
     if (visible){
     // Configuración del tiempo con pausa al final del recorrido
     float cycle_duration = offset + pause_duration; // Duración total del ciclo
     float adjusted_time = mod(TIME * speed, cycle_duration);
-    
+
     // Movimiento de la línea con pausa (invertido, de derecha a izquierda)
     float line_position;
     if (adjusted_time <= offset) {
@@ -29,7 +29,7 @@ void fragment() {
     } else {
         line_position = -0.3; // Pausa
     }
-    
+
     // Rotación diagonal de la línea
     vec2 rotated_uv = vec2(UV.x + UV.y, UV.y - UV.x) * 0.5;
     float dist = abs(rotated_uv.x - line_position);
