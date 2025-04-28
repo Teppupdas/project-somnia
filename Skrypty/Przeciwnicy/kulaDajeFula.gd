@@ -19,5 +19,5 @@ func _physics_process(delta: float) -> void:
 
 
 
-func usuwalne():
+func afterPlayerHit():
 	queue_free()

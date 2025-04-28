@@ -31,7 +31,7 @@ var actionDirection = Vector2.DOWN
 
 var canDash = true #do cooldowna
 const DASH_SPEED = 3000 #nie może się mnożyć z joystickiem
-const DASH_LENGTH = 0.2
+const DASH_LENGTH = 0.1
 const DASH_COOLDOWN = 0.5
 
 @onready var playerHitBox = $playerHitBox
@@ -140,12 +140,14 @@ func _physics_process(delta):
 	move_and_slide() #poruszanie się to powoduje
 
 
-
+#przyjmowanie obrażeń
 func _on_player_hurt_box_area_entered(area: Area2D) -> void:
 	if action != Action.DASH:
+		
 		#area.get_parent().queue_free() # usuwa to co zadaje obrazenia
-		if area.get_parent().has_method("usuwalne"):
-			area.get_parent().usuwalne()
+		if area.get_parent().has_method("afterPlayerHit"):
+			area.get_parent().afterPlayerHit()
+		
 		currentHealth -=1 #każdy możliwy atak ma zadawać nam 1 hp czaisz
 		UI.updateHearts(currentHealth)
 		if currentHealth == 0:
@@ -155,7 +157,7 @@ func _on_player_hurt_box_area_entered(area: Area2D) -> void:
 			# obecnie gdy nie ma przypisanej swieczki to nic sie nie dzieje. 
 			#rozwiazanie: nie dac graczwoi zginac zanim zapali pierwsza swieczke
 
-
+#zadawanie obrażeń
 func _on_player_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("dealDamage") and not body in trafieni:
 		body.dealDamage(damage)  # Wywołanie funkcji zadawania obrażeń

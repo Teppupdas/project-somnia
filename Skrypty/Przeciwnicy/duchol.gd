@@ -5,6 +5,8 @@ extends CharacterBody2D
 
 @onready var player = $"../Gracz"
 
+@onready var rushHitBox = $rushHitBox
+
 
 var health = 5
 
@@ -19,8 +21,8 @@ var triggeredByPlayer
 const STANDARD_SPEED = 400
 
 var canRush = true #do cooldowna
-const RUSH_SPEED = 2500
-const RUSH_LENGTH = 0.3
+const RUSH_SPEED = 1800
+const RUSH_LENGTH = 0.35
 const RUSH_COOLDOWN = 2 ### wyjebac cooldowny<>>>>>????? 
 
 
@@ -35,7 +37,7 @@ func _process(delta: float) -> void:
 	
 
 	
-	#print($AnimationTree.get("parameters/playback").get_current_node()) # wypisuje obecna animacje
+	print($AnimationTree.get("parameters/playback").get_current_node()) # wypisuje obecna animacje
 	
 	#ANIMACJE
 	match action:
@@ -44,13 +46,10 @@ func _process(delta: float) -> void:
 		Action.RUSH: animationMode.travel("Rush")
 		
 	var blendPosition = Vector2(actionDirection.x, -actionDirection.y) #to musi miec y na minusie bo jest w innym kierunku w blend posiition niz w swiecie gry
-	animationTree.set("parameters/Move/blend_position", actionDirection.x)
-	animationTree.set("parameters/Windup/blend_position", actionDirection.x)
-	animationTree.set("parameters/Rush/blend_position", actionDirection.x)
 
-	#animationTree.set("parameters/Attack/blend_position", blendPosition)
-	#animationTree.set("parameters/Windup/blend_position", blendPosition)
-	#animationTree.set("parameters/Stay/blend_position", blendPosition)
+	animationTree.set("parameters/Move/blend_position", blendPosition)
+	animationTree.set("parameters/Windup/blend_position", blendPosition)
+	animationTree.set("parameters/Rush/blend_position", blendPosition)
 
 
 
@@ -66,7 +65,8 @@ func _physics_process(delta):
 	
 	
 	#patrz w kierunku gracza
-	if action == Action.MOVE or Action.WINDUP:
+	if action == Action.MOVE or action == Action.WINDUP:
+		print("zmiana patrzenia")
 		actionDirection = (player.global_position - global_position).normalized()
 	#idz w kierunku action direction
 	if action == Action.MOVE:
@@ -91,10 +91,15 @@ func _physics_process(delta):
 	
 		#atak
 		action = Action.RUSH
+		rushHitBox.rotation = actionDirection.angle()
+		#rushHitBox.monitoring = true
+		rushHitBox.monitorable = true
 		set_velocity(actionDirection * RUSH_SPEED)
 		await get_tree().create_timer(RUSH_LENGTH).timeout
 	
 		#powrót
+		#rushHitBox.monitoring = false
+		rushHitBox.monitorable = false
 		action = Action.MOVE
 		set_velocity(actionDirection * STANDARD_SPEED)
 		
@@ -107,13 +112,13 @@ func _physics_process(delta):
 
 
 
-
-
 #func rush():
 
 
 
-
+func afterPlayerHit():
+	#rushHitBox.monitoring = false
+	rushHitBox.monitorable = false
 
 
 
