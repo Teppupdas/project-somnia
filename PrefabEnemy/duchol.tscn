@@ -1547,7 +1547,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_yubfb")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = Vector2(-0.0922559, -0.497758)
-parameters/Rush/blend_position = Vector2(-0.187879, -0.686099)
+parameters/Rush/blend_position = Vector2(0.2, -0.021978)
 parameters/Windup/blend_position = Vector2(-0.323906, 0.497758)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -1560,6 +1560,6 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rushHitBox"]
-position = Vector2(104.69, 0)
+position = Vector2(68.515, 0)
 shape = SubResource("CircleShape2D_my52w")
 debug_color = Color(1, 0, 0, 0.423529)

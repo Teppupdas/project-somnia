@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var rushHitBox = $rushHitBox
 
 
-var health = 5
+var health = 20
 
 enum Action { MOVE, WINDUP, RUSH }
 var action: Action = Action.MOVE
