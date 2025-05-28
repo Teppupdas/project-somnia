@@ -67,7 +67,7 @@ func _process(delta):
 		animationMode.travel("Stanie")
 	elif action != Action.IDLE:
 		match action:
-			Action.DASH: animationMode.travel("Dashowanie")
+			Action.DASH: animationMode.travel("Dash")
 			Action.QUICK_ATTACK: animationMode.travel("AtakRekaSzybki1")
 			Action.STRONG_ATTACK: animationMode.travel("AtakRekaSilny1")
 			Action.DEATH: animationMode.travel("Umieranie")
@@ -77,7 +77,7 @@ func _process(delta):
 		var blendPosition = Vector2(actionDirection.x, -actionDirection.y) #to musi miec y na minusie bo jest w innym kierunku w blend posiition niz w swiecie gry
 		animationTree.set("parameters/Stanie/blend_position", blendPosition)
 		animationTree.set("parameters/Chodzenie/blend_position", blendPosition)
-		animationTree.set("parameters/Dashowanie/blend_position", blendPosition)
+		animationTree.set("parameters/Dash/blend_position", blendPosition)
 		animationTree.set("parameters/AtakRekaSzybki1/blend_position", blendPosition)
 		animationTree.set("parameters/AtakRekaSilny1/blend_position", blendPosition)
 
@@ -121,12 +121,12 @@ func _physics_process(delta):
 				action = Action.QUICK_ATTACK
 				damage = 1
 				#await get_tree().create_timer(1).timeout
-				await get_tree().create_timer(animationPlayer.get_animation("Atak_Reka_Szybki_1_E").length).timeout
+				await get_tree().create_timer(animationPlayer.get_animation("AtakRekaSzybki1_E").length).timeout
 			elif Input.is_action_just_pressed("silny"):
 				action = Action.STRONG_ATTACK
 				damage = 2
 				#await get_tree().create_timer(1).timeout
-				await get_tree().create_timer(animationPlayer.get_animation("Atak_Reka_Silny_1_E").length).timeout
+				await get_tree().create_timer(animationPlayer.get_animation("AtakRekaSilny1_E").length).timeout
 
 			playerHitBox.monitoring = false
 			playerHitBox.monitorable = false
