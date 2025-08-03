@@ -281,10 +281,11 @@ func dialogueBubble(dialogueKey: String):
 	var localizedText = tr(dialogueKey)
 	var dialoguePanel = Panel.new()
 	var dialogueText = RichTextLabel.new()
+	var dialogueImage = TextureRect.new()
 	
 	thisBubbleActionObject.isTalking = true
 	
-	
+	#sprawdzanie czy juz istneije i ewnetualne usuwannie
 	for child in currentActionObject.get_children():
 		if child is Panel:
 			child.queue_free()
@@ -295,18 +296,26 @@ func dialogueBubble(dialogueKey: String):
 
 	
 	dialoguePanel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM) 
-	dialoguePanel.size = Vector2(500, 300)  # Ustawienie rozmiaru panelu
+	dialoguePanel.size = Vector2(400, 300)  # Ustawienie rozmiaru panelu
 	#dialoguePanel.add_theme_stylebox_override("panel", StyleBoxFlat.new()) # Ustawienie stylu
 	
+	dialogueImage.texture = load("res://Interfejsik/dialogueImage.png")
+	dialogueImage.anchor_left = 0.5
+	dialogueImage.anchor_right = 0.5
+	dialogueImage.anchor_top = 1.0
+	dialogueImage.anchor_bottom = 1.0
+	dialogueImage.offset_left = -dialogueImage.texture.get_width() / 2
+	dialogueImage.offset_top = -dialogueImage.texture.get_height() / 2
 	
-	dialogueText.custom_minimum_size = Vector2(500, 300)  # Ustawienie minimalnego rozmiaru dla label
+	dialogueText.custom_minimum_size = Vector2(400, 300)  # Ustawienie minimalnego rozmiaru dla label
 	dialogueText.set("theme_override_font_sizes/normal_font_size", 28)
 	dialogueText.set("theme_override_colors/default_color", Color.WHITE)
 
 
 
-	
+	#przypisywanie dzieciaków
 	currentActionObject.add_child(dialoguePanel)
+	dialoguePanel.add_child(dialogueImage)
 	dialoguePanel.add_child(dialogueText)
 	dialoguePanel.position = currentActionObject.dialogueBubbleOffset
 	
@@ -337,9 +346,12 @@ func dialogueBubble(dialogueKey: String):
 	
 	while currentRemainingTime > 0.0: 
 		await get_tree().process_frame
-		if thisBubbleActionObject.playerInArea:
+		if thisBubbleActionObject.playerInArea: # gdy gracz w area
+			dialogueImage.modulate = Color(1, 1, 1) 
 			currentRemainingTime = remainingTime  #resetowanie licznika jesli gracz w area
 		else:
+			dialogueImage.modulate = Color(0, 0, 0)
+
 			currentRemainingTime -= get_process_delta_time()  #zmniejszanie licnzika jesli gracz poza area
 
 	#usuwanie jesli dalej istnieje bo moze byc usuniety wczesniej przez zastapienie

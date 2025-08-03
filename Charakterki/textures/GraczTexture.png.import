@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyrsd53li0c1t"
-path="res://.godot/imported/KulaDajeFula.png-e74957fd6192f7bc993a2f21e899bb1e.ctex"
+uid="uid://c0vnwwdjhij68"
+path="res://.godot/imported/GraczTexture.png-5b9875ddafe5302289b536969da93501.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Charakterki/KulaDajeFula.png"
-dest_files=["res://.godot/imported/KulaDajeFula.png-e74957fd6192f7bc993a2f21e899bb1e.ctex"]
+source_file="res://Charakterki/textures/GraczTexture.png"
+dest_files=["res://.godot/imported/GraczTexture.png-5b9875ddafe5302289b536969da93501.ctex"]
 
 [params]
 

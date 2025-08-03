@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq5ksdq4kbklj"]
+
+[ext_resource type="Script" uid="uid://inldl51nxp2f" path="res://CalySwiat/Dziao/Pocisk.gd" id="1_hdq8o"]
+[ext_resource type="Texture2D" uid="uid://ckpn665e1t3y7" path="res://CalySwiat/Dziao/kulka.png" id="1_ycgm7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kh1js"]
+radius = 60.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dcnwk"]
+radius = 70.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_hdq8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ycgm7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kh1js")
+
+[node name="hitBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+shape = SubResource("CircleShape2D_dcnwk")

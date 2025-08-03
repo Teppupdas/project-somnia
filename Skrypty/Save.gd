@@ -4,7 +4,7 @@ extends Node
 @onready var UI = $"../CanvasLayer"
 
 
-var currentCandle: Node2D = null # Przechowuje obecnie zapaloną świeczkę
+var currentPentagram: Node2D = null # Przechowuje ostatni pentagram
 
 
 
@@ -32,7 +32,7 @@ func _ready():
 func saveGame():
 	var dataFile = ConfigFile.new()
 
-	dataFile.set_value("player", "candle", currentCandle.name)
+	dataFile.set_value("player", "pentagram", currentPentagram.name)
 	dataFile.set_value("player", "maxHealth", player.maxHealth)
 
 
@@ -58,9 +58,9 @@ func loadGame():
 	UI.setMaxHeart(player.maxHealth)
 	UI.updateHearts(player.maxHealth)
 	
-	if dataFile.get_value("player", "candle", ""):
-		setCandle(get_node("../World YSort/" + dataFile.get_value("player", "candle", ""))) #zapalenie swieczki i jej wybor
-		player.position = currentCandle.position #pozycja gracza na swieczke
+	if dataFile.get_value("player", "pentagram", ""):
+		setPentagram(get_node("../World YSort/" + dataFile.get_value("player", "pentagram", ""))) #zapalenie swieczki i jej wybor
+		player.position = currentPentagram.position #pozycja gracza na pentagram
 		
 	get_node("../World YSort/Kiedro10czaha").baseActions = dataFile.get_value("actions", "kiedro10czaha", ["CZAHA1"])
 	get_node("../World YSort/Kiedro10czaha").toActionPrompt = dataFile.get_value("actions", "kiedro10czaha", ["CZAHA1"])
@@ -68,17 +68,9 @@ func loadGame():
 
 
 
-
-
-
-# świeczkaaaa
-func setCandle(candle: Node2D) -> void:
+# pentagramm
+func setPentagram(pentagram: Node2D) -> void:
 	player.currentHealth = player.maxHealth #leczenie gracza gdy swieczki dotknie
 	UI.updateHearts(player.currentHealth)
 	
-	if currentCandle: # sprawdza czy jest jakas przypisana zapalona
-		currentCandle.turnOffCandle() #gasi tą przypisana poprzednia
-		
-	currentCandle = candle # przypisuje nowa
-	currentCandle.turnOnCandle()  # zapala nowa
-	
+	currentPentagram = pentagram # przypisuje nowa

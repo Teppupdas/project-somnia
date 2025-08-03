@@ -6,7 +6,7 @@ var UI: NodePath = "../../CanvasLayer"
 var baseActions: Array # to zapisywac
 var toActionPrompt #zapamioetuje co obecnie ma sie pojawic w actionpromptt
 
-var dialogueBubbleOffset = Vector2(100, -150)
+var dialogueBubbleOffset = Vector2(-190, -520)
 
 var playerInArea = false
 var isTalking = false #to jest sprawdzane by wstrzymac pokazywanie akcji
