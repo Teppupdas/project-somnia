@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var subViewport = $SubViewport
 @onready var model3D = $SubViewport/Limak
 @onready var animPlayer = model3D.get_node("AnimationPlayer")
+
 @onready var rushHitBox = $rushHitBox
 @onready var tailwhipHitBox = $tailwhipHitBox
 
@@ -26,7 +27,7 @@ const TURN_SPEED = 3.0
 var canRush = true #do cooldowna
 const RUSH_SPEED = 2000
 const RUSH_COOLDOWN = 2 ### wyjebac cooldowny<>>>>>????? 
-const RECOVERY_TIME = 2
+const RECOVERY_TIME = 0.3
 
 
 
@@ -34,9 +35,9 @@ const RECOVERY_TIME = 2
 
 
 func _process(delta: float) -> void:
-	sprite2D.texture = subViewport.get_texture()
 	model3D.rotation = Vector3(0, -atan2(actionDirection.y, actionDirection.x), 0)
 	animPlayer.play(Action.find_key(action))
+	sprite2D.texture = subViewport.get_texture()
 
 
 
@@ -46,13 +47,13 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta):
 	var random = randi_range(0,1000)
-	var distanceToPlayer = global_position.distance_to(player.global_position)
-	var angleToPlayer = abs(actionDirection.angle_to((player.global_position - global_position).normalized()))
+	var distance_to_player = global_position.distance_to(player.global_position)
+	var angle_to_player = abs(actionDirection.angle_to((player.global_position - global_position).normalized()))
 	
 	
 	#movement
 	if action == Action.MOVE:
-		if distanceToPlayer > 213.7:
+		if distance_to_player > 213.7:
 			navAgent.target_position = player.global_position
 			
 			
@@ -64,104 +65,12 @@ func _physics_process(delta):
 			
 			set_velocity(actionDirection * STANDARD_SPEED)
 			
+			if canRush and distance_to_player < 1300 and rushConditions(navAgent.get_current_navigation_path(), distance_to_player, angle_to_player):
+				rush(distance_to_player)
+			
+			
 		else:
-			pass
-			#print("dystans do gracza:" + str(distanceToPlayer))
-
-
-
-
-
-	#RUSH
-	if canRush and distanceToPlayer < 1300 and rushConditions(navAgent.get_current_navigation_path(), distanceToPlayer, angleToPlayer):
-		print("rush")
-		
-		#przygotowanie 
-		action = Action.RUSH_WINDUP
-		set_velocity(Vector2.ZERO)
-		canRush = false
-		var rushTime = distanceToPlayer / RUSH_SPEED
-		await get_tree().create_timer(animPlayer.get_animation("RUSH_WINDUP").length).timeout
-	
-		#atak
-		action = Action.RUSH
-		rushHitBox.rotation = actionDirection.angle()
-		rushHitBox.monitorable = true
-		set_velocity(actionDirection * RUSH_SPEED)
-		await get_tree().create_timer(rushTime).timeout
-	
-		#powrót
-		action = Action.RUSH_RETURN
-		rushHitBox.monitorable = false
-		set_velocity(Vector2.ZERO)
-		await get_tree().create_timer(animPlayer.get_animation("RUSH_RETURN").length).timeout
-		
-		
-		#recovery
-		action = Action.RECOVERY
-		await get_tree().create_timer(RECOVERY_TIME).timeout
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		#atak jeśli gracz blisko
-		var currentDistanceToPlayer = global_position.distance_to(player.global_position)
-		var directionToPlayer = (player.global_position - global_position).normalized()
-		if currentDistanceToPlayer < 213.7:
-			print("ogokn")
-			#obrót
-			#czas windup zalezny od kata do gracza
-			var targetDir = (-directionToPlayer).normalized()
-			var angle_diff = actionDirection.angle_to(targetDir) # od -PI do PI
-			var windup_ratio = abs(angle_diff) / TAU
-			# wybór animacji zależnie od kierunku obrotu
-			var windupAnim = "TAIL_WHIP_WINDUP_L" if angle_diff < 0 else "TAIL_WHIP_WINDUP_R"
-			var biczAnim = "TAIL_WHIP_L" if angle_diff < 0 else "TAIL_WHIP_R"
-
-
-			var windup_time = animPlayer.get_animation(windupAnim).length * windup_ratio
-			action = Action[windupAnim]
-			await get_tree().create_timer(windup_time).timeout
-
-
-
-			
-			
-			
-			#cios bicz
-			tailwhipHitBox.rotation = targetDir.angle()
-			tailwhipHitBox.monitorable = true
-			actionDirection = targetDir
-			
-			action = Action[biczAnim]
-			await get_tree().create_timer(animPlayer.get_animation(biczAnim).length).timeout
-			tailwhipHitBox.monitorable = false
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		set_velocity(actionDirection * STANDARD_SPEED)
-		action = Action.MOVE
-		
-		#coolodwn
-		await get_tree().create_timer(RUSH_COOLDOWN).timeout
-		canRush = true
-		
-		
-
-
-
-
+			tail_whip()
 
 
 
@@ -172,7 +81,81 @@ func _physics_process(delta):
 
 
 
-#func rush():
+func rush(distance_to_player):
+	#przygotowanie 
+	action = Action.RUSH_WINDUP
+	set_velocity(Vector2.ZERO)
+	canRush = false
+	var rushTime = distance_to_player / RUSH_SPEED
+	await get_tree().create_timer(animPlayer.get_animation("RUSH_WINDUP").length).timeout
+
+	#atak
+	action = Action.RUSH
+	rushHitBox.rotation = actionDirection.angle()
+	set_colliders_enabled(rushHitBox, true)
+	set_velocity(actionDirection * RUSH_SPEED)
+	await get_tree().create_timer(rushTime).timeout
+
+	#powrót
+	action = Action.RUSH_RETURN
+	set_colliders_enabled(rushHitBox, false)
+	set_velocity(Vector2.ZERO)
+	await get_tree().create_timer(animPlayer.get_animation("RUSH_RETURN").length).timeout
+	
+	
+	#recovery
+	action = Action.RECOVERY
+	await get_tree().create_timer(RECOVERY_TIME).timeout
+		
+		
+		
+		
+	#tail_whip jeśli gracz blisko
+	var current_distance_to_player = global_position.distance_to(player.global_position)
+	if current_distance_to_player < 213.7:
+		tail_whip()
+		
+		
+		
+		
+	set_velocity(actionDirection * STANDARD_SPEED)
+	action = Action.MOVE
+	#coolodwn
+	await get_tree().create_timer(RUSH_COOLDOWN).timeout
+	canRush = true
+		
+		
+
+
+
+func tail_whip():	
+	#przygotowanie 
+	set_velocity(Vector2.ZERO)
+	#czas windup zalezny od kata do gracza
+	var target_dir = -(player.global_position - global_position).normalized()
+	var angle_diff = actionDirection.angle_to(target_dir) # od -PI do PI
+	var windup_ratio = abs(angle_diff) / TAU
+	# wybór animacji zależnie od kierunku obrotu
+	var windupAnim = "TAIL_WHIP_WINDUP_L" if angle_diff < 0 else "TAIL_WHIP_WINDUP_R"
+	var biczAnim = "TAIL_WHIP_L" if angle_diff < 0 else "TAIL_WHIP_R"
+	#czas windup zalezny od kata do gracza
+	var windup_time = animPlayer.get_animation(windupAnim).length * windup_ratio
+	action = Action[windupAnim]
+	await get_tree().create_timer(windup_time).timeout
+
+
+	
+	#cios bicz
+	tailwhipHitBox.rotation = target_dir.angle()
+	set_colliders_enabled(tailwhipHitBox, true)
+	actionDirection = target_dir
+	
+	action = Action[biczAnim]
+	await get_tree().create_timer(animPlayer.get_animation(biczAnim).length).timeout
+	
+	set_colliders_enabled(tailwhipHitBox, false)
+	set_velocity(actionDirection * STANDARD_SPEED)
+	action = Action.MOVE
 
 
 
@@ -180,6 +163,10 @@ func _physics_process(delta):
 
 
 
+#wlacza lub wylacza collidery atakow przeciwnikow
+func set_colliders_enabled(area: Area2D, enabled: bool) -> void:
+	for collider in area.get_children():
+		collider.disabled = not enabled
 
 
 
@@ -200,8 +187,8 @@ func rushConditions(path, distanceToPlayer, angleToPlayer):
 
 
 func afterPlayerHit():
-	rushHitBox.monitorable = false
-	tailwhipHitBox.monitorable = false
+	set_colliders_enabled(rushHitBox, false)
+	set_colliders_enabled(tailwhipHitBox, false)
 
 
 

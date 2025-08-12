@@ -26,28 +26,6 @@ debug_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g1uwt")
 
-[node name="rushHitBox" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 0
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="rushHitBox"]
-position = Vector2(68.515, 0)
-shape = SubResource("CircleShape2D_my52w")
-debug_color = Color(1, 0, 0, 0.423529)
-
-[node name="tailwhipHitBox" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 0
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tailwhipHitBox"]
-position = Vector2(-106.85, 0)
-shape = SubResource("RectangleShape2D_gdmwd")
-debug_color = Color(1, 0, 0, 0.423529)
-
 [node name="SubViewport" type="SubViewport" parent="."]
 own_world_3d = true
 transparent_bg = true
@@ -60,3 +38,23 @@ projection = 1
 size = 2.2
 
 [node name="Limak" parent="SubViewport" instance=ExtResource("2_eikym")]
+
+[node name="rushHitBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rushHitBox"]
+position = Vector2(68.515, 0)
+shape = SubResource("CircleShape2D_my52w")
+disabled = true
+debug_color = Color(1, 0, 0, 0.423529)
+
+[node name="tailwhipHitBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tailwhipHitBox"]
+position = Vector2(-106.85, 0)
+shape = SubResource("RectangleShape2D_gdmwd")
+disabled = true
+debug_color = Color(1, 0, 0, 0.423529)

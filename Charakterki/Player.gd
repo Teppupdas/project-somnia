@@ -50,8 +50,6 @@ func _ready() -> void:
 
 func _process(delta):
 	
-	sprite2D.texture = subViewport.get_texture()
-
 	label1.set_text("FPS: " + str(Engine.get_frames_per_second()))
 	#label1.set_text("maxŻycie: " + str(maxHealth))
 
@@ -83,6 +81,11 @@ func _process(delta):
 		
 		#obracanie
 		model3D.rotation = Vector3(0, -atan2(actionDirection.y, actionDirection.x), 0)
+
+
+
+	sprite2D.texture = subViewport.get_texture()
+
 
 
 
@@ -143,11 +146,23 @@ func _physics_process(delta):
 	move_and_slide() #poruszanie się to powoduje
 
 
-#przyjmowanie obrażeń
+
+
+
+
+
+
+
+
+
+
+
+
+
+#przyjmowanie obrazen przez gracza
 func _on_player_hurt_box_area_entered(area: Area2D) -> void:
 	if action != Action.DASH:
 		
-		#area.get_parent().queue_free() # usuwa to co zadaje obrazenia
 		if area.get_parent().has_method("afterPlayerHit"):
 			area.get_parent().afterPlayerHit()
 		
@@ -159,6 +174,9 @@ func _on_player_hurt_box_area_entered(area: Area2D) -> void:
 			get_tree().reload_current_scene()
 			# obecnie gdy nie ma przypisanej swieczki to nic sie nie dzieje. 
 			#rozwiazanie: nie dac graczwoi zginac zanim zapali pierwsza swieczke
+
+
+
 
 #zadawanie obrażeń
 func _on_player_hit_box_body_entered(body: Node2D) -> void:
