@@ -140,7 +140,7 @@ kameraGora={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Lokalizacje/Lokalizatione.en.translation", "res://Lokalizacje/Lokalizatione.pl.translation")
+locale/translations=PackedStringArray("res://locales/Lokalizatione.en.translation", "res://locales/Lokalizatione.pl.translation")
 
 [layer_names]
 
