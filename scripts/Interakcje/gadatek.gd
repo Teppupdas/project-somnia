@@ -1,53 +1,53 @@
 extends Node2D
 
-var saveNode: NodePath = "../../save"
-var UI: NodePath = "../../CanvasLayer"
+var save_node: NodePath = "../../save"
+var ui: NodePath = "../../CanvasLayer"
 
-var baseActions: Array = ["GAD1", "GAD2"] # to zapisywac
-var toActionPrompt #zapamioetuje co obecnie ma sie pojawic w actionpromptt
+var base_actions: Array = ["GAD1", "GAD2"] # to zapisywac
+var to_action_prompt #zapamioetuje co obecnie ma sie pojawic w actionpromptt
 
-var dialogueBubbleOffset = Vector2(0, 200)
+var dialogue_bubble_offset = Vector2(0, 200)
 
-var playerInArea = false
-var isTalking = false #to jest sprawdzane by wstrzymac pokazywanie akcji
+var player_in_area = false
+var is_talking = false #to jest sprawdzane by wstrzymac pokazywanie akcji
 
 
 
 func _ready() -> void:
-	toActionPrompt = baseActions
+	to_action_prompt = base_actions
 func _process(delta: float) -> void:
 	pass
 
 
-func handleAction(actionName: String) -> void:
-	match actionName:
+func handle_action(action_name: String) -> void:
+	match action_name:
 		"GAD1":
-			initiateDialogue(actionName)
+			initiate_dialogue(action_name)
 		"GAD2":
-			initiateDialogue(actionName)
+			initiate_dialogue(action_name)
 
 
 
 
-func initiateDialogue(baseKey: String):
+func initiate_dialogue(base_key: String):
 	#if tr(key) == key:  # Sprawdza, czy klucz istnieje
-	get_node(UI).dialogueBubble(baseKey + ".")
+	get_node(ui).dialogue_bubble(base_key + ".")
 	
 	#jesli tablica pusta to wylaczyc action prompt a jesli cos jest to zaktualizowac
-	if toActionPrompt:
-		get_node(UI).updateActionPrompt(toActionPrompt)
+	if to_action_prompt:
+		get_node(ui).update_action_prompt(to_action_prompt)
 	else:
-		get_node(UI).hideActionPrompt()
+		get_node(ui).hide_action_prompt()
 
 
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	playerInArea = true
-	if toActionPrompt:
-		get_node(UI).showActionPrompt(toActionPrompt, self)
+	player_in_area = true
+	if to_action_prompt:
+		get_node(ui).show_action_prompt(to_action_prompt, self)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	playerInArea = false
-	get_node(UI).hideActionPrompt()
+	player_in_area = false
+	get_node(ui).hide_action_prompt()

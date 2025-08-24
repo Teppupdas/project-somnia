@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dq5ksdq4kbklj"]
 
-[ext_resource type="Script" uid="uid://inldl51nxp2f" path="res://environment/Dziao/Pocisk.gd" id="1_hdq8o"]
-[ext_resource type="Texture2D" uid="uid://ckpn665e1t3y7" path="res://environment/Dziao/kulka.png" id="1_ycgm7"]
+[ext_resource type="Script" uid="uid://inldl51nxp2f" path="res://environment/dziao/pocisk.gd" id="1_hdq8o"]
+[ext_resource type="Texture2D" uid="uid://ckpn665e1t3y7" path="res://environment/dziao/kulka.png" id="1_ycgm7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kh1js"]
 radius = 60.0

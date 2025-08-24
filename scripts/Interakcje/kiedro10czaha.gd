@@ -1,77 +1,77 @@
 extends Node2D
 
-var saveNode: NodePath = "../../save"
-var UI: NodePath = "../../CanvasLayer"
+var save_node: NodePath = "../../save"
+var ui: NodePath = "../../CanvasLayer"
 
-var baseActions: Array # to zapisywac
-var toActionPrompt #zapamioetuje co obecnie ma sie pojawic w actionpromptt
+var base_actions: Array # to zapisywac
+var to_action_prompt #zapamioetuje co obecnie ma sie pojawic w actionpromptt
 
-var dialogueBubbleOffset = Vector2(-190, -520)
+var dialogue_bubble_offset = Vector2(-190, -520)
 
-var playerInArea = false
-var isTalking = false #to jest sprawdzane by wstrzymac pokazywanie akcji
+var player_in_area = false
+var is_talking = false #to jest sprawdzane by wstrzymac pokazywanie akcji
 
 
 
 func _ready() -> void:
-	toActionPrompt = baseActions
+	to_action_prompt = base_actions
 func _process(delta: float) -> void:
 	pass
 
 
-func handleAction(actionName: String) -> void:
-	match actionName:
+func handle_action(action_name: String) -> void:
+	match action_name:
 		"CZAHA1":
-			baseActions.erase(actionName)
-			baseActions.append("CZAHA2")
-			baseActions.append("CZAHA3")
-			baseActions.append("CZAHA5")
-			toActionPrompt = baseActions
+			base_actions.erase(action_name)
+			base_actions.append("CZAHA2")
+			base_actions.append("CZAHA3")
+			base_actions.append("CZAHA5")
+			to_action_prompt = base_actions
 			
-			initiateDialogue(actionName)
+			initiate_dialogue(action_name)
 		"CZAHA2": #ty gadasz?
-			toActionPrompt = ["CZAHA2-1", "CZAHA2-2"]
-			initiateDialogue(actionName)
+			to_action_prompt = ["CZAHA2-1", "CZAHA2-2"]
+			initiate_dialogue(action_name)
 		"CZAHA2-1", "CZAHA2-2":
-			baseActions.erase("CZAHA2")
-			baseActions.push_front("CZAHA4")
-			toActionPrompt = baseActions
-			get_node(UI).updateActionPrompt(toActionPrompt)
+			base_actions.erase("CZAHA2")
+			base_actions.push_front("CZAHA4")
+			to_action_prompt = base_actions
+			get_node(ui).update_action_prompt(to_action_prompt)
 		"CZAHA3": #jak stąd wyjść
-			baseActions.erase(actionName)
-			toActionPrompt = baseActions
-			initiateDialogue(actionName)
+			base_actions.erase(action_name)
+			to_action_prompt = base_actions
+			initiate_dialogue(action_name)
 		"CZAHA4", "CZAHA5":
-			baseActions.erase(actionName)
-			toActionPrompt = baseActions
-			initiateDialogue(actionName)
+			base_actions.erase(action_name)
+			to_action_prompt = base_actions
+			initiate_dialogue(action_name)
 		"CZAHA6": #to jescze nie jest dodawan nigdzie
-			initiateDialogue(actionName)
+			initiate_dialogue(action_name)
 
 
 
 
 
-func initiateDialogue(baseKey: String):
+func initiate_dialogue(base_key: String):
 	#if tr(key) == key:  # Sprawdza, czy klucz istnieje
-	get_node(UI).dialogueBubble(baseKey + ".")
+	get_node(ui).dialogue_bubble(base_key + ".")
 	
 	#jesli tablica pusta to wylaczyc action prompt a jesli cos jest to zaktualizowac
-	if toActionPrompt:
-		get_node(UI).updateActionPrompt(toActionPrompt)
+	if to_action_prompt:
+		get_node(ui).update_action_prompt(to_action_prompt)
 	else:
-		get_node(UI).hideActionPrompt()
+		get_node(ui).hide_action_prompt()
 
 
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	playerInArea = true
-	if toActionPrompt:
-		get_node(UI).showActionPrompt(toActionPrompt, self)
+	player_in_area = true
+	if to_action_prompt:
+		get_node(ui).show_action_prompt(to_action_prompt, self)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	playerInArea = false
-	get_node(UI).hideActionPrompt()
+	player_in_area = false
+	get_node(ui).hide_action_prompt()
 	

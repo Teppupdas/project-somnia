@@ -1,10 +1,10 @@
 extends Node
 
 @onready var player = $"../World YSort/Gracz"
-@onready var UI = $"../CanvasLayer"
+@onready var ui = $"../CanvasLayer"
 
 
-var currentPentagram: Node2D = null # Przechowuje ostatni pentagram
+var current_pentagram: Node2D = null # Przechowuje ostatni pentagram
 
 
 
@@ -20,7 +20,7 @@ var currentPentagram: Node2D = null # Przechowuje ostatni pentagram
 
 func _ready():
 	randomize()
-	call_deferred("loadGame") #opóżnione wywołanie bo sie bugowało że było null instance
+	call_deferred("load_game") #opóżnione wywołanie bo sie bugowało że było null instance
 	pass
 
 
@@ -29,48 +29,48 @@ func _ready():
 
 
 
-func saveGame():
-	var dataFile = ConfigFile.new()
+func save_game():
+	var data_file = ConfigFile.new()
 
-	dataFile.set_value("player", "pentagram", currentPentagram.name)
-	dataFile.set_value("player", "maxHealth", player.maxHealth)
-
-
-	dataFile.set_value("actions", "kiedro10czaha", get_node("../World YSort/Kiedro10czaha").baseActions)
+	data_file.set_value("player", "pentagram", current_pentagram.name)
+	data_file.set_value("player", "max_health", player.max_health)
 
 
-	var error = dataFile.save("user://save_game.txt")  # Zapis
+	data_file.set_value("actions", "kiedro10czaha", get_node("../World YSort/Kiedro10czaha").base_actions)
+
+
+	var error = data_file.save("user://save_game.txt")  # Zapis
 	if error == OK:
 		print("zapisano")
 	else:
 		print("zapis wypierdolony")
 
 
-func loadGame():
-	var dataFile = ConfigFile.new()
-	var error = dataFile.load("user://saave_game.txt")  # Odczyt
+func load_game():
+	var data_file = ConfigFile.new()
+	var error = data_file.load("user://saave_game.txt")  # Odczyt
 
 
 
 
-	player.maxHealth = dataFile.get_value("player", "maxHealth", 5) # ustawianie maksymalnego zycia
-	player.currentHealth = dataFile.get_value("player", "maxHealth", 5) # ustawianianie obencego zycia
-	UI.setMaxHeart(player.maxHealth)
-	UI.updateHearts(player.maxHealth)
+	player.max_health = data_file.get_value("player", "max_health", 5) # ustawianie maksymalnego zycia
+	player.current_health = data_file.get_value("player", "max_health", 5) # ustawianianie obencego zycia
+	ui.set_max_heart(player.max_health)
+	ui.update_hearts(player.max_health)
 	
-	if dataFile.get_value("player", "pentagram", ""):
-		setPentagram(get_node("../World YSort/" + dataFile.get_value("player", "pentagram", ""))) #zapalenie swieczki i jej wybor
-		player.position = currentPentagram.position #pozycja gracza na pentagram
+	if data_file.get_value("player", "pentagram", ""):
+		set_pentagram(get_node("../World YSort/" + data_file.get_value("player", "pentagram", ""))) #zapalenie swieczki i jej wybor
+		player.position = current_pentagram.position #pozycja gracza na pentagram
 		
-	get_node("../World YSort/Kiedro10czaha").baseActions = dataFile.get_value("actions", "kiedro10czaha", ["CZAHA1"])
-	get_node("../World YSort/Kiedro10czaha").toActionPrompt = dataFile.get_value("actions", "kiedro10czaha", ["CZAHA1"])
+	get_node("../World YSort/Kiedro10czaha").base_actions = data_file.get_value("actions", "kiedro10czaha", ["CZAHA1"])
+	get_node("../World YSort/Kiedro10czaha").to_action_prompt = data_file.get_value("actions", "kiedro10czaha", ["CZAHA1"])
 
 
 
 
 # pentagramm
-func setPentagram(pentagram: Node2D) -> void:
-	player.currentHealth = player.maxHealth #leczenie gracza gdy swieczki dotknie
-	UI.updateHearts(player.currentHealth)
+func set_pentagram(pentagram: Node2D) -> void:
+	player.current_health = player.max_health #leczenie gracza gdy swieczki dotknie
+	ui.update_hearts(player.current_health)
 	
-	currentPentagram = pentagram # przypisuje nowa
+	current_pentagram = pentagram # przypisuje nowa

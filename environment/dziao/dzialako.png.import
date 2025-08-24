@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckpn665e1t3y7"
-path="res://.godot/imported/kulka.png-5cafd63c97ae3044d8bd9a7a144f2541.ctex"
+uid="uid://cyursrb1y2esd"
+path="res://.godot/imported/dzialako.png-38a1174a9048cccb75c5b25a4a5d4ee9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://environment/Dziao/kulka.png"
-dest_files=["res://.godot/imported/kulka.png-5cafd63c97ae3044d8bd9a7a144f2541.ctex"]
+source_file="res://environment/dziao/dzialako.png"
+dest_files=["res://.godot/imported/dzialako.png-38a1174a9048cccb75c5b25a4a5d4ee9.ctex"]
 
 [params]
 

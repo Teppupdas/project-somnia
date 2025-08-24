@@ -1,35 +1,35 @@
 extends CanvasLayer
 
-@onready var pasekSerc = $baseInterface/Serduszka
-@onready var heartPrefab = preload("res://interfaces/serce.tscn")
+@onready var pasek_serc = $baseInterface/Serduszka
+@onready var heart_prefab = preload("res://interfaces/serce.tscn")
 
-@onready var pauzyMenu = $PauseMenuPanel
-@onready var Label1 = $PauseMenuPanel/VBoxContainer/Label1
-@onready var Label2 = $PauseMenuPanel/VBoxContainer/Label2
-@onready var Label3 = $PauseMenuPanel/VBoxContainer/Label3
-var pauzaAktywna
-var opcjaPauzyWybrana
+@onready var pauzy_menu = $PauseMenuPanel
+@onready var label1 = $PauseMenuPanel/VBoxContainer/Label1
+@onready var label2 = $PauseMenuPanel/VBoxContainer/Label2
+@onready var label3 = $PauseMenuPanel/VBoxContainer/Label3
+var pauza_aktywna
+var opcja_pauzy_wybrana
 
-@onready var mapTexture = $mapTexture
-@onready var mapCursor = $mapTexture/cursorTexture
-@onready var mapLabel = $mapTexture/Label
-@onready var markersContainer = $mapTexture/markersContainer
-@onready var markerPrefab = preload("res://interfaces/marker.tscn")
-var mapaAktywna
-var mapBounds = Rect2(200, 200, 3840 - 100 - 2*200, 2160 - 100 - 2*200) # -rozmiar kursora -2x margines ze zwyklej storny. bo jeden zeruje do krawedzi a drugi dopiero dodaje margines
-var currentQuests = ["KILL", "TALK"]
-
-
-@onready var actionPromptContainer = $baseInterface/actionPromptContainer
-var actionPromptActive = false
-var selectedAction = 0
-var actionLabels: Array = []
-var currentActionObject = null
+@onready var map_texture = $mapTexture
+@onready var map_cursor = $mapTexture/cursorTexture
+@onready var map_label = $mapTexture/Label
+@onready var markers_container = $mapTexture/markersContainer
+@onready var marker_prefab = preload("res://interfaces/marker.tscn")
+var mapa_aktywna
+var map_bounds = Rect2(200, 200, 3840 - 100 - 2*200, 2160 - 100 - 2*200) # -rozmiar kursora -2x margines ze zwyklej storny. bo jeden zeruje do krawedzi a drugi dopiero dodaje margines
+var current_quests = ["KILL", "TALK"]
 
 
-const Kolorwybrania = Color8(220, 20, 60)
-const Kolorniewybrania = Color8(255, 255, 255)
-const Kolornieaktywny = Color8(112, 112, 112)
+@onready var action_prompt_container = $baseInterface/actionPromptContainer
+var action_prompt_active = false
+var selected_action = 0
+var action_labels: Array = []
+var current_action_object = null
+
+
+const kolor_wybrania = Color8(220, 20, 60)
+const kolor_niewybrania = Color8(255, 255, 255)
+const kolor_nieaktywny = Color8(112, 112, 112)
 
 
 
@@ -40,14 +40,14 @@ func _ready() -> void:
 	TranslationServer.set_locale("pl")
 	
 
-	pauzaAktywna = false
-	pauzyMenu.hide()
-	pasekSerc.show()
+	pauza_aktywna = false
+	pauzy_menu.hide()
+	pasek_serc.show()
 	get_tree().paused = false
-	opcjaPauzyWybrana = 1
+	opcja_pauzy_wybrana = 1
 	
-	mapaAktywna = false
-	mapTexture.hide()
+	mapa_aktywna = false
+	map_texture.hide()
 	
 	
 	
@@ -63,114 +63,114 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	updateHearts($"../World YSort/Gracz".currentHealth) #kurwa dodane tu co klatke, bo sie jebalo gdy podnoszenie serduszka itp
+	update_hearts($"../World YSort/Gracz".current_health) #kurwa dodane tu co klatke, bo sie jebalo gdy podnoszenie serduszka itp
 
 	
 	if Input.is_action_just_pressed("pauza"):
-		if mapaAktywna: # sprawia ze da sie wylaczyc mape escapem. przetestowac to na padzie itp
-			toggleMap()
+		if mapa_aktywna: # sprawia ze da sie wylaczyc mape escapem. przetestowac to na padzie itp
+			toggle_map()
 		else:
-			togglePause()
+			toggle_pause()
 
-	if pauzaAktywna:
+	if pauza_aktywna:
 		if Input.is_action_just_pressed("UIdol"):
-			navigateOption(1, "pause")
+			navigate_option(1, "pause")
 		elif Input.is_action_just_pressed("UIgora"):
-			navigateOption(-1, "pause")
+			navigate_option(-1, "pause")
 		if Input.is_action_just_pressed("potwierdz"):
-			match opcjaPauzyWybrana:
+			match opcja_pauzy_wybrana:
 				1:
-					togglePause()
+					toggle_pause()
 				2:
 					pass
 				3:
 					get_tree().quit()
 
 
-	if Input.is_action_just_pressed("mapa") and not pauzaAktywna:
-		toggleMap()
+	if Input.is_action_just_pressed("mapa") and not pauza_aktywna:
+		toggle_map()
 		
-	if mapaAktywna: #sterowanie kursorem na mapie itp
-		var cursorMoveVector = Vector2.ZERO
-		cursorMoveVector.x = (Input.get_action_strength("prawo") - Input.get_action_strength("lewo"))
-		cursorMoveVector.y = (Input.get_action_strength("dol") - Input.get_action_strength("gora"))
+	if mapa_aktywna: #sterowanie kursorem na mapie itp
+		var cursor_move_vector = Vector2.ZERO
+		cursor_move_vector.x = (Input.get_action_strength("prawo") - Input.get_action_strength("lewo"))
+		cursor_move_vector.y = (Input.get_action_strength("dol") - Input.get_action_strength("gora"))
 		
-		mapCursor.position += cursorMoveVector.normalized() * 200 * delta * clamp(cursorMoveVector.length(),0,1)
-		mapCursor.position = mapCursor.position.clamp(mapBounds.position, mapBounds.end)
+		map_cursor.position += cursor_move_vector.normalized() * 200 * delta * clamp(cursor_move_vector.length(),0,1)
+		map_cursor.position = map_cursor.position.clamp(map_bounds.position, map_bounds.end)
 		
 		
 		#sprawdzanie czy kursor jest na znacnziku i wyswietlanie tekstu
-		for marker in markersContainer.get_children():
+		for marker in markers_container.get_children():
 
 			
-			if marker.global_position.distance_to(mapCursor.global_position + mapCursor.texture.get_size()/2 - marker.texture.get_size()/2) < 35:  # jesli na znaczniku
-				mapLabel.text = marker.name # tekst dolny przypiusanie
+			if marker.global_position.distance_to(map_cursor.global_position + map_cursor.texture.get_size()/2 - marker.texture.get_size()/2) < 35:  # jesli na znaczniku
+				map_label.text = marker.name # tekst dolny przypiusanie
 				marker.scale = Vector2(1, 1)
 				
-				if cursorMoveVector == Vector2.ZERO: # przyklejanie kursora do znacznika
-					mapCursor.position = marker.position - mapCursor.texture.get_size()/2 + marker.texture.get_size()/2
+				if cursor_move_vector == Vector2.ZERO: # przyklejanie kursora do znacznika
+					map_cursor.position = marker.position - map_cursor.texture.get_size()/2 + marker.texture.get_size()/2
 				break 
 			else:
-				mapLabel.text = "" 
+				map_label.text = "" 
 				marker.scale = Vector2(0.7, 0.7)
 
 
 
 
-	if actionPromptActive and not pauzaAktywna:
-		if currentActionObject.isTalking:
+	if action_prompt_active and not pauza_aktywna:
+		if current_action_object.is_talking:
 			return  # Zignoruj wszystkie interakcje, jeśli obiekt mówi
 
 		if Input.is_action_just_pressed("actionPromptDown"):
-			navigateOption(1, "action")
+			navigate_option(1, "action")
 		elif Input.is_action_just_pressed("actionPromptUp"):
-			navigateOption(-1, "action")
+			navigate_option(-1, "action")
 		elif Input.is_action_just_pressed("potwierdz"):   #to gdy wyjscie z pauzy za pomoco wznow to tez sie klika gowno
-			currentActionObject.handleAction(actionLabels[selectedAction].text)
+			current_action_object.handle_action(action_labels[selected_action].text)
 
 
 
 
 
 
-func setMaxHeart(maxHealth: int):
-	for heart in pasekSerc.get_children():
+func set_max_heart(max_health: int):
+	for heart in pasek_serc.get_children():
 		heart.queue_free()
 		
-	for i in range(maxHealth):
-		var heart = heartPrefab.instantiate()
-		pasekSerc.add_child(heart)
+	for i in range(max_health):
+		var heart = heart_prefab.instantiate()
+		pasek_serc.add_child(heart)
 		
 
-func updateHearts(currentHealth):
-	var hearts = pasekSerc.get_children()
+func update_hearts(current_health):
+	var hearts = pasek_serc.get_children()
 
-	for i in range(currentHealth):
+	for i in range(current_health):
 		hearts[i].update(true)
 
-	for i in range(currentHealth, hearts.size()):
+	for i in range(current_health, hearts.size()):
 		hearts[i].update(false)
 
 
 
 
-func togglePause():
-	pauzaAktywna = !pauzaAktywna
-	get_tree().paused = pauzaAktywna
-	pauzyMenu.visible = pauzaAktywna
-	opcjaPauzyWybrana = 1
-	highlightOption(opcjaPauzyWybrana, "pause")
+func toggle_pause():
+	pauza_aktywna = !pauza_aktywna
+	get_tree().paused = pauza_aktywna
+	pauzy_menu.visible = pauza_aktywna
+	opcja_pauzy_wybrana = 1
+	highlight_option(opcja_pauzy_wybrana, "pause")
 
-func toggleMap():
-	mapaAktywna = !mapaAktywna
-	mapTexture.visible = mapaAktywna
-	get_tree().paused = mapaAktywna
+func toggle_map():
+	mapa_aktywna = !mapa_aktywna
+	map_texture.visible = mapa_aktywna
+	get_tree().paused = mapa_aktywna
 	
-	if mapaAktywna: #tworzenie znacznikow
-		mapCursor.position =  Vector2(1920, 1080) - mapCursor.texture.get_size()/2
+	if mapa_aktywna: #tworzenie znacznikow
+		map_cursor.position =  Vector2(1920, 1080) - map_cursor.texture.get_size()/2
 		
-		for quest in currentQuests:
-			var marker = markerPrefab.instantiate()
+		for quest in current_quests:
+			var marker = marker_prefab.instantiate()
 			
 			match quest:
 				"KILL":
@@ -179,10 +179,10 @@ func toggleMap():
 					marker.position = Vector2(1920, 880) - marker.texture.get_size()/2
 					
 			marker.name = quest
-			markersContainer.add_child(marker)
+			markers_container.add_child(marker)
 			
 	else:
-		for child in markersContainer.get_children():
+		for child in markers_container.get_children():
 			child.queue_free()
 
 
@@ -192,81 +192,81 @@ func toggleMap():
 
 
 
-func showActionPrompt(actions: Array, actionObject: Node2D):
-	currentActionObject = actionObject
+func show_action_prompt(actions: Array, action_object: Node2D):
+	current_action_object = action_object
 	
-	if actionObject.isTalking:  # Jeśli ten obiekt mówi, nie pokazuj opcji
+	if action_object.is_talking:  # Jeśli ten obiekt mówi, nie pokazuj opcji
 		return
 	
 	for action in actions:
 		var label = Label.new()
 		label.text = action
 		label.set("theme_override_font_sizes/font_size", 48)
-		actionPromptContainer.add_child(label)
-		actionLabels.append(label)
-	selectedAction = 0
-	highlightOption(selectedAction, "action")
-	actionPromptActive = true
-	actionPromptContainer.show()
+		action_prompt_container.add_child(label)
+		action_labels.append(label)
+	selected_action = 0
+	highlight_option(selected_action, "action")
+	action_prompt_active = true
+	action_prompt_container.show()
 
-func updateActionPrompt(actions: Array):
-	if currentActionObject.isTalking:  # Jeśli mówi, nie aktualizuj
+func update_action_prompt(actions: Array):
+	if current_action_object.is_talking:  # Jeśli mówi, nie aktualizuj
 		return
 	
-	for child in actionPromptContainer.get_children():
+	for child in action_prompt_container.get_children():
 		child.queue_free()
-	actionLabels.clear()
+	action_labels.clear()
 	for action in actions:
 		var label = Label.new()
 		label.text = action
 		label.set("theme_override_font_sizes/font_size", 48)
-		actionPromptContainer.add_child(label)
-		actionLabels.append(label)
-	selectedAction = 0
-	highlightOption(selectedAction, "action")
+		action_prompt_container.add_child(label)
+		action_labels.append(label)
+	selected_action = 0
+	highlight_option(selected_action, "action")
 
-func hideActionPrompt():
-	actionPromptActive = false
-	actionPromptContainer.hide()
-	for child in actionPromptContainer.get_children():
+func hide_action_prompt():
+	action_prompt_active = false
+	action_prompt_container.hide()
+	for child in action_prompt_container.get_children():
 		child.queue_free()
-	actionLabels.clear()
+	action_labels.clear()
 
 
 
 
 
 
-func navigateOption(direction: int, context: String):
+func navigate_option(direction: int, context: String):
 	if context == "action":
-		if actionLabels.size() == 0: return
-		selectedAction = (selectedAction + direction) % actionLabels.size()
-		if selectedAction < 0:
-			selectedAction = actionLabels.size() - 1
-		highlightOption(selectedAction, context)
+		if action_labels.size() == 0: return
+		selected_action = (selected_action + direction) % action_labels.size()
+		if selected_action < 0:
+			selected_action = action_labels.size() - 1
+		highlight_option(selected_action, context)
 	
 	if context == "pause":
-		var maxOpcji = 3  # Ilość opcji w menu pauzy
-		opcjaPauzyWybrana = (opcjaPauzyWybrana + direction) % maxOpcji
-		if opcjaPauzyWybrana < 1:  # Ponieważ opcje są od 1 do 3
-			opcjaPauzyWybrana = maxOpcji
-		highlightOption(opcjaPauzyWybrana, context)
+		var max_opcji = 3  # Ilość opcji w menu pauzy
+		opcja_pauzy_wybrana = (opcja_pauzy_wybrana + direction) % max_opcji
+		if opcja_pauzy_wybrana < 1:  # Ponieważ opcje są od 1 do 3
+			opcja_pauzy_wybrana = max_opcji
+		highlight_option(opcja_pauzy_wybrana, context)
 
-func highlightOption(index: int, context: String):
+func highlight_option(index: int, context: String):
 	if context == "action":
-		for i in range(actionLabels.size()):
-			var label = actionLabels[i]
+		for i in range(action_labels.size()):
+			var label = action_labels[i]
 			if i == index:
-				#label.set("theme_override_colors/font_color", Kolorwybrania)
+				#label.set("theme_override_colors/font_color", kolor_wybrania)
 				label.set("theme_override_font_sizes/font_size", 64)
 			else:
-				#label.set("theme_override_colors/font_color", Kolorniewybrania)
+				#label.set("theme_override_colors/font_color", kolor_niewybrania)
 				label.set("theme_override_font_sizes/font_size", 48)
 				
 	if context == "pause":
-		Label1.set("theme_override_colors/font_color", Kolorwybrania if index == 1 else Kolorniewybrania)
-		Label2.set("theme_override_colors/font_color", Kolorwybrania if index == 2 else Kolorniewybrania)
-		Label3.set("theme_override_colors/font_color", Kolorwybrania if index == 3 else Kolorniewybrania)
+		label1.set("theme_override_colors/font_color", kolor_wybrania if index == 1 else kolor_niewybrania)
+		label2.set("theme_override_colors/font_color", kolor_wybrania if index == 2 else kolor_niewybrania)
+		label3.set("theme_override_colors/font_color", kolor_wybrania if index == 3 else kolor_niewybrania)
 
 
 
@@ -275,18 +275,18 @@ func highlightOption(index: int, context: String):
 
 
 
-func dialogueBubble(dialogueKey: String):
+func dialogue_bubble(dialogue_key: String):
 	
-	var thisBubbleActionObject = currentActionObject #obiekt posiadajacy bobleka tego konkretnego
-	var localizedText = tr(dialogueKey)
-	var dialoguePanel = Panel.new()
-	var dialogueText = RichTextLabel.new()
-	var dialogueImage = TextureRect.new()
+	var this_bubble_action_object = current_action_object #obiekt posiadajacy bobleka tego konkretnego
+	var localized_text = tr(dialogue_key)
+	var dialogue_panel = Panel.new()
+	var dialogue_text = RichTextLabel.new()
+	var dialogue_image = TextureRect.new()
 	
-	thisBubbleActionObject.isTalking = true
+	this_bubble_action_object.is_talking = true
 	
 	#sprawdzanie czy juz istneije i ewnetualne usuwannie
-	for child in currentActionObject.get_children():
+	for child in current_action_object.get_children():
 		if child is Panel:
 			child.queue_free()
 	
@@ -295,67 +295,67 @@ func dialogueBubble(dialogueKey: String):
 
 
 	
-	dialoguePanel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM) 
-	dialoguePanel.size = Vector2(400, 300)  # Ustawienie rozmiaru panelu
-	#dialoguePanel.add_theme_stylebox_override("panel", StyleBoxFlat.new()) # Ustawienie stylu
+	dialogue_panel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM) 
+	dialogue_panel.size = Vector2(400, 300)  # Ustawienie rozmiaru panelu
+	#dialogue_panel.add_theme_stylebox_override("panel", StyleBoxFlat.new()) # Ustawienie stylu
 	
-	dialogueImage.texture = load("res://interfaces/dialogueImage.png")
-	dialogueImage.anchor_left = 0.5
-	dialogueImage.anchor_right = 0.5
-	dialogueImage.anchor_top = 1.0
-	dialogueImage.anchor_bottom = 1.0
-	dialogueImage.offset_left = -dialogueImage.texture.get_width() / 2
-	dialogueImage.offset_top = -dialogueImage.texture.get_height() / 2
+	dialogue_image.texture = load("res://interfaces/dialogueimage.png")
+	dialogue_image.anchor_left = 0.5
+	dialogue_image.anchor_right = 0.5
+	dialogue_image.anchor_top = 1.0
+	dialogue_image.anchor_bottom = 1.0
+	dialogue_image.offset_left = -dialogue_image.texture.get_width() / 2
+	dialogue_image.offset_top = -dialogue_image.texture.get_height() / 2
 	
-	dialogueText.custom_minimum_size = Vector2(400, 300)  # Ustawienie minimalnego rozmiaru dla label
-	dialogueText.set("theme_override_font_sizes/normal_font_size", 28)
-	dialogueText.set("theme_override_colors/default_color", Color.WHITE)
+	dialogue_text.custom_minimum_size = Vector2(400, 300)  # Ustawienie minimalnego rozmiaru dla label
+	dialogue_text.set("theme_override_font_sizes/normal_font_size", 28)
+	dialogue_text.set("theme_override_colors/default_color", Color.WHITE)
 
 
 
 	#przypisywanie dzieciaków
-	currentActionObject.add_child(dialoguePanel)
-	dialoguePanel.add_child(dialogueImage)
-	dialoguePanel.add_child(dialogueText)
-	dialoguePanel.position = currentActionObject.dialogueBubbleOffset
+	current_action_object.add_child(dialogue_panel)
+	dialogue_panel.add_child(dialogue_image)
+	dialogue_panel.add_child(dialogue_text)
+	dialogue_panel.position = current_action_object.dialogue_bubble_offset
 	
 	
 	
 	
 	#pokazywanie tylko wybranego dialogu na czas animacji mowienia
-	for i in range(actionLabels.size()):
-		if i == selectedAction:
-			actionLabels[i].set("theme_override_colors/font_color", Kolornieaktywny)
+	for i in range(action_labels.size()):
+		if i == selected_action:
+			action_labels[i].set("theme_override_colors/font_color", kolor_nieaktywny)
 		else:
-			actionLabels[i].hide()
+			action_labels[i].hide()
 
 
-	#dialogueText.text = localizedText
-	for i in range(len(localizedText)): # ta petla tobi wypisywanie sie tekstu po literce
-		dialogueText.text = localizedText.substr(0, i + 1)
+	#dialogue_text.text = localized_text
+	for i in range(len(localized_text)): # ta petla tobi wypisywanie sie tekstu po literce
+		dialogue_text.text = localized_text.substr(0, i + 1)
 		await get_tree().create_timer(0.015).timeout
 
-	thisBubbleActionObject.isTalking = false
+	this_bubble_action_object.is_talking = false
 
-	if thisBubbleActionObject.playerInArea:
-			updateActionPrompt(thisBubbleActionObject.toActionPrompt)
+	if this_bubble_action_object.player_in_area:
+			update_action_prompt(this_bubble_action_object.to_action_prompt)
 
 	#czekanie az gracza nie bedzie w area ponad 5 sekund
-	var remainingTime = 5.0 # ile sekund czeka bez gracza w area
-	var currentRemainingTime = remainingTime
+	var remaining_time = 5.0 # ile sekund czeka bez gracza w area
+	var current_remaining_time = remaining_time
 	
-	while currentRemainingTime > 0.0: 
+	while current_remaining_time > 0.0: 
 		await get_tree().process_frame
-		if thisBubbleActionObject.playerInArea: # gdy gracz w area
-			if is_instance_valid(dialogueImage):
-				dialogueImage.modulate = Color(1, 1, 1) 
-			currentRemainingTime = remainingTime  #resetowanie licznika jesli gracz w area
+		if this_bubble_action_object.player_in_area: # gdy gracz w area
+			if is_instance_valid(dialogue_image):
+				dialogue_image.modulate = Color(1, 1, 1) 
+			current_remaining_time = remaining_time  #resetowanie licznika jesli gracz w area
 		else:
-			if is_instance_valid(dialogueImage):
-				dialogueImage.modulate = Color(0, 0, 0)
+			if is_instance_valid(dialogue_image):
+				dialogue_image.modulate = Color(0, 0, 0)
 
-			currentRemainingTime -= get_process_delta_time()  #zmniejszanie licnzika jesli gracz poza area
+			current_remaining_time -= get_process_delta_time()  #zmniejszanie licnzika jesli gracz poza area
 
 	#usuwanie jesli dalej istnieje bo moze byc usuniety wczesniej przez zastapienie
-	if is_instance_valid(dialoguePanel):
-		dialoguePanel.queue_free()
+	if is_instance_valid(dialogue_panel):
+		dialogue_panel.queue_free()

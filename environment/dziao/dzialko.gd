@@ -1,10 +1,10 @@
 extends StaticBody2D
-@onready var pocisk = preload("res://environment/Dziao/PociskPrefab.tscn")
+@onready var pocisk = preload("res://environment/dziao/pocisk_prefab.tscn")
 
 
 func _ready() -> void:
-	var Pocisk = pocisk.instantiate()
-	add_child(Pocisk)
+	var pocisk = pocisk.instantiate()
+	add_child(pocisk)
 	var timer = Timer.new()
 	timer.wait_time = 2
 	timer.one_shot = false
@@ -13,8 +13,8 @@ func _ready() -> void:
 	timer.start()
 
 func _on_Timer_timeout() -> void:
-	var Pocisk = pocisk.instantiate()
-	add_child(Pocisk)
+	var pocisk = pocisk.instantiate()
+	add_child(pocisk)
 
 
 func _process(delta: float) -> void:

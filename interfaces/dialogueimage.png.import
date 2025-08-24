@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyursrb1y2esd"
-path="res://.godot/imported/dzialako.png-31008a2450127cd1720eaa381b198416.ctex"
+uid="uid://fhb7v5alxhbf"
+path="res://.godot/imported/dialogueimage.png-0fd42e4ada13ecaea287559bfd17fc1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://environment/Dziao/dzialako.png"
-dest_files=["res://.godot/imported/dzialako.png-31008a2450127cd1720eaa381b198416.ctex"]
+source_file="res://interfaces/dialogueimage.png"
+dest_files=["res://.godot/imported/dialogueimage.png-0fd42e4ada13ecaea287559bfd17fc1c.ctex"]
 
 [params]
 

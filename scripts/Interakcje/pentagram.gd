@@ -1,12 +1,12 @@
 extends Node2D
 
 
-@onready var saveNode = $"../../save"
+@onready var save_node = $"../../save"
 var UI: NodePath = "../../CanvasLayer"
-var toActionPrompt: Array = ["ZAPAL"]
+var to_action_prompt: Array = ["ZAPAL"]
 
-var playerInArea = false
-var isTalking = false #to jest sprawdzane by wstrzymac pokazywanie akcji
+var player_in_area = false
+var is_talking = false #to jest sprawdzane by wstrzymac pokazywanie akcji
 
 func _ready() -> void:
 	
@@ -20,12 +20,12 @@ func _process(delta: float) -> void:
 	# nie wyłączać shadera dla jakiejs instancji a wlaczac dla inej  bo sie jebie
 
 
-func handleAction(actionName: String) -> void:
-	match actionName:
+func handle_action(action_name: String) -> void:
+	match action_name:
 		"ZAPAL":
-			get_node(UI).hideActionPrompt()
-			saveNode.setPentagram(self) #wysyla do save node ze pentagram chce zmienic
-			saveNode.saveGame()
+			get_node(UI).hide_action_prompt()
+			save_node.set_pentagram(self) #wysyla do save node ze pentagram chce zmienic
+			save_node.save_game()
 			
 			#animacja
 			var tween = create_tween()
@@ -41,10 +41,10 @@ func handleAction(actionName: String) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	playerInArea = true
-	if toActionPrompt:
-		get_node(UI).showActionPrompt(toActionPrompt, self)
+	player_in_area = true
+	if to_action_prompt:
+		get_node(UI).show_action_prompt(to_action_prompt, self)
 	
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	playerInArea = false
-	get_node(UI).hideActionPrompt()
+	player_in_area = false
+	get_node(UI).hide_action_prompt()

@@ -1,20 +1,20 @@
 extends CharacterBody2D
 @onready var player = $"../Gracz"
 
-@onready var sprite2D = $Sprite2D
-@onready var navAgent = $NavigationAgent2D
-@onready var subViewport = $SubViewport
-@onready var model3D = $SubViewport/Trasher
-@onready var animPlayer = model3D.get_node("AnimationPlayer")
+@onready var sprite_2d = $Sprite2D
+@onready var nav_agent = $NavigationAgent2D
+@onready var sub_viewport = $SubViewport
+@onready var model_3d = $SubViewport/Trasher
+@onready var anim_player = model_3d.get_node("AnimationPlayer")
 
 @onready var hitbox = $Hitbox
 
 
 var health = 1
 
-enum Action { RUN }
-var action: Action = Action.RUN
-var actionDirection = Vector2.ZERO
+enum Actions { RUN }
+var current_action: Actions = Actions.RUN
+var action_direction = Vector2.ZERO
 
 const STANDARD_SPEED = 900
 const TURN_SPEED = 7.0
@@ -27,9 +27,9 @@ const TURN_SPEED = 7.0
 
 
 func _process(delta: float) -> void:
-	model3D.rotation = Vector3(0, -atan2(actionDirection.y, actionDirection.x), 0)
-	animPlayer.play(Action.find_key(action))
-	sprite2D.texture = subViewport.get_texture()
+	model_3d.rotation = Vector3(0, -atan2(action_direction.y, action_direction.x), 0)
+	anim_player.play(Actions.find_key(current_action))
+	sprite_2d.texture = sub_viewport.get_texture()
 
 
 
@@ -42,19 +42,19 @@ func _physics_process(delta):
 	var distance_to_player = global_position.distance_to(player.global_position)
 	
 	
-	navAgent.target_position = player.global_position
+	nav_agent.target_position = player.global_position
 	
 	
 	#płynny obrót w kierunku path
-	var target_angle = (navAgent.get_next_path_position() - global_position).angle()
-	var current_angle = actionDirection.angle()
+	var target_angle = (nav_agent.get_next_path_position() - global_position).angle()
+	var current_angle = action_direction.angle()
 	var new_angle = lerp_angle(current_angle, target_angle, TURN_SPEED * delta)
-	actionDirection = Vector2.RIGHT.rotated(new_angle)
+	action_direction = Vector2.RIGHT.rotated(new_angle)
 	
 	
-	hitbox.rotation = actionDirection.angle()
+	hitbox.rotation = action_direction.angle()
 	
-	set_velocity(actionDirection * STANDARD_SPEED)
+	set_velocity(action_direction * STANDARD_SPEED)
 	move_and_slide() #poruszanie się to powoduje
 
 
@@ -74,13 +74,13 @@ func set_colliders_enabled(area: Area2D, enabled: bool) -> void:
 
 
 
-func afterPlayerHit():
+func after_player_hit():
 	set_colliders_enabled(hitbox, false)
-	dealDamage(1)
+	deal_damage(1)
 
 
 
-func dealDamage(damage):
+func deal_damage(damage):
 	health -= damage
 	
 	if health <= 0:

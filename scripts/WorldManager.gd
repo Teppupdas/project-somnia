@@ -1,22 +1,23 @@
 extends Node
 
-
-func TestDomek1_entry(body: Node2D):
+# pomyslec jeszcze nad konwencja nazewnictwa grup, nodów i tych fynkcji pod spodem
+#to co przed _entered ma oddacwac nazwe noda ale obecnie do nodow jest dopisane jeszcze in i out
+func TestDomek1_entered(body: Node2D):
 	#print("Gracz enter")
 	switch("AAADwor", false)
 	switch("TestDomek1", true)
 
-func TestDomek1_exit(body: Node2D):
+func TestDomek1_exited(body: Node2D):
 	#print("Gracz exit")
 	switch("TestDomek1", false)
 	switch("AAADwor", true)
 	
-func orto_entry(body: Node2D) -> void:
+func orto_entered(body: Node2D) -> void:
 	switch("AAADwor", false)
 	switch("Test3D_orto", true)
 
 
-func orto_exit(body: Node2D) -> void:
+func orto_exited(body: Node2D) -> void:
 	switch("Test3D_orto", false)
 	switch("AAADwor", true)
 	

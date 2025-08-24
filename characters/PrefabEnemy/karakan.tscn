@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://sdkyy54ll57c"]
+[gd_scene load_steps=4 format=3 uid="uid://sdkyy54ll57c"]
 
-[ext_resource type="Script" uid="uid://cq07ll2xr8rbq" path="res://characters/karakan.gd" id="1_besdc"]
 [ext_resource type="Texture2D" uid="uid://5h6g81sk27il" path="res://4k_size.png" id="2_marhx"]
 [ext_resource type="Texture2D" uid="uid://g8ew4x3x4cm1" path="res://environment/Karakan.png" id="2_rqy2q"]
 
@@ -10,7 +9,6 @@ radius = 120.0
 [node name="Karakan" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 7
-script = ExtResource("1_besdc")
 
 [node name="4kSize" type="Sprite2D" parent="."]
 visible = false
