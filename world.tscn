@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=45 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" uid="uid://bg7jeyw8fk5p8" path="res://scripts/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" uid="uid://bef53gjnn5gke" path="res://characters/Player.gd" id="1_f6crp"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://sm3ie14sl7na" path="res://environment/arena.png" id="9_o3ebs"]
 [ext_resource type="PackedScene" uid="uid://ptgeqdi5k5m0" path="res://characters/AGracz.blend" id="15_4h6ng"]
 [ext_resource type="PackedScene" uid="uid://dx5lg3x0hh3si" path="res://characters/PrefabEnemy/Trasher.tscn" id="15_k83mh"]
+[ext_resource type="PackedScene" uid="uid://dokxn10v5j6al" path="res://characters/PrefabEnemy/speeder.tscn" id="16_qktwf"]
 [ext_resource type="Script" uid="uid://ck07mmauktwr0" path="res://environment/dziao/dzialko.gd" id="28_bvl2h"]
 [ext_resource type="Texture2D" uid="uid://cyursrb1y2esd" path="res://environment/dziao/dzialako.png" id="28_d34pn"]
 [ext_resource type="Texture2D" uid="uid://dud0s10wjefj0" path="res://environment/2d_out.png" id="34_g7egq"]
@@ -218,7 +219,7 @@ texture_repeat = 2
 position = Vector2(7, -175)
 scale = Vector2(1, 0.996311)
 texture = ExtResource("4_57ajs")
-polygon = PackedVector2Array(1842, -1934, 2503, -1930, 2506, -1757, 2889, -1756, 2898, -1930, 3567, -1935, 3547, -2879, 14492, -2818, 12594, 7910, -1601, 11284.6, -3399, -4270, 1831, -4244)
+polygon = PackedVector2Array(1842, -1934, 2503, -1930, 2506, -1757, 2889, -1756, 2898, -1930, 3567, -1935, 3547, -2879, 16500, -4580.9, 16551, 11547.6, -3733, 11394, -3399, -4270, 1831, -4244)
 
 [node name="Arena1" type="Sprite2D" parent="World Backgorund"]
 position = Vector2(4447, 2617)
@@ -295,6 +296,9 @@ position = Vector2(4447, 2617)
 
 [node name="Trahser" parent="World YSort" instance=ExtResource("15_k83mh")]
 position = Vector2(549, 4999)
+
+[node name="Speeder" parent="World YSort" instance=ExtResource("16_qktwf")]
+position = Vector2(4771, 7305)
 
 [node name="Karakan" parent="World YSort" instance=ExtResource("55_lecbo")]
 position = Vector2(7289, 279)
