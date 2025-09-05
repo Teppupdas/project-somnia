@@ -25,3 +25,4 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
 shape = SubResource("CircleShape2D_dcnwk")
+debug_color = Color(1, 0, 0, 0.419608)

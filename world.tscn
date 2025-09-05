@@ -90,6 +90,16 @@ navigation_polygon = SubResource("NavigationPolygon_4h6ng")
 process_mode = 3
 script = ExtResource("1_pbntp")
 
+[node name="FPS_label" type="Label" parent="CanvasLayer"]
+offset_left = 30.0
+offset_top = 120.0
+offset_right = 202.0
+offset_bottom = 173.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 38
+text = "FPS: 2137"
+
 [node name="debugLabel" type="Label" parent="CanvasLayer"]
 auto_translate_mode = 2
 anchors_preset = 7
@@ -104,7 +114,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.901961, 1, 1)
 theme_override_font_sizes/font_size = 50
-text = "aaaaa"
+text = "debug label"
 
 [node name="PauseMenuPanel" type="Panel" parent="CanvasLayer"]
 visible = false
@@ -297,8 +307,14 @@ position = Vector2(4447, 2617)
 [node name="Trahser" parent="World YSort" instance=ExtResource("15_k83mh")]
 position = Vector2(549, 4999)
 
-[node name="Speeder" parent="World YSort" instance=ExtResource("16_qktwf")]
-position = Vector2(4771, 7305)
+[node name="Speeder1" parent="World YSort" instance=ExtResource("16_qktwf")]
+position = Vector2(5223, 7301)
+
+[node name="Speeder2" parent="World YSort" instance=ExtResource("16_qktwf")]
+position = Vector2(3965, 6629)
+
+[node name="Speeder3" parent="World YSort" instance=ExtResource("16_qktwf")]
+position = Vector2(3932, 7977)
 
 [node name="Karakan" parent="World YSort" instance=ExtResource("55_lecbo")]
 position = Vector2(7289, 279)
@@ -328,27 +344,19 @@ size = 1.1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz"]
 shape = SubResource("CircleShape2D_qt4xt")
 
-[node name="Label1" type="Label" parent="World YSort/Gracz"]
-offset_left = -1868.0
-offset_top = -971.0
-offset_right = -1573.0
-offset_bottom = -912.0
-theme_override_font_sizes/font_size = 43
-text = "111111111111"
-
-[node name="Label2" type="Label" parent="World YSort/Gracz"]
-offset_left = -1834.0
-offset_top = 872.0
-offset_right = -1320.0
-offset_bottom = 1009.0
-theme_override_font_sizes/font_size = 100
-text = "222222222"
-
 [node name="playerHurtBox" type="Area2D" parent="World YSort/Gracz"]
 collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz/playerHurtBox"]
+shape = SubResource("CircleShape2D_56jup")
+
+[node name="playerHurtBoxUp" type="Area2D" parent="World YSort/Gracz"]
+position = Vector2(0, -200)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz/playerHurtBoxUp"]
 shape = SubResource("CircleShape2D_56jup")
 
 [node name="playerHitBox" type="Area2D" parent="World YSort/Gracz"]
@@ -500,6 +508,7 @@ position = Vector2(2362, -518)
 [connection signal="body_entered" from="World Backgorund/TestDomek1In/Area2D" to="." method="TestDomek1_exited"]
 [connection signal="body_entered" from="World Backgorund/Test_3d_orto_In/Area2D" to="." method="orto_exited"]
 [connection signal="area_entered" from="World YSort/Gracz/playerHurtBox" to="World YSort/Gracz" method="_on_player_hurt_box_area_entered"]
+[connection signal="area_entered" from="World YSort/Gracz/playerHurtBoxUp" to="World YSort/Gracz" method="_on_player_hurt_box_area_entered"]
 [connection signal="body_entered" from="World YSort/Gracz/playerHitBox" to="World YSort/Gracz" method="_on_player_hit_box_body_entered"]
 [connection signal="body_entered" from="World YSort/TestDomek1Out/Area2D" to="." method="TestDomek1_entered"]
 [connection signal="body_entered" from="World YSort/Test_3d_orto_Out/Area2D" to="." method="orto_entered"]

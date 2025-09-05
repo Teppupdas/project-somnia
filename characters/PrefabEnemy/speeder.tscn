@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dokxn10v5j6al"]
+[gd_scene load_steps=5 format=3 uid="uid://dokxn10v5j6al"]
 
 [ext_resource type="Script" uid="uid://dsd2k5oxpuleb" path="res://characters/speeder.gd" id="1_vynh2"]
 [ext_resource type="PackedScene" uid="uid://smwyeiyjk2xj" path="res://characters/speeder.blend" id="2_sxk8t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sxk8t"]
+radius = 27.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ot7ts"]
+radius = 20.0
 
 [node name="Speeder" type="CharacterBody2D"]
 collision_layer = 4
@@ -11,8 +17,10 @@ script = ExtResource("1_vynh2")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sxk8t")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 own_world_3d = true
@@ -33,3 +41,6 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(36.75, 0)
+shape = SubResource("CircleShape2D_ot7ts")
+debug_color = Color(0.996377, 0, 0.187893, 0.42)

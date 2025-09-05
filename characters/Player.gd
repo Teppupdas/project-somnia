@@ -8,8 +8,6 @@ extends CharacterBody2D
 @onready var model_3d = $SubViewport/Gracz
 @onready var anim_player = model_3d.get_node("AnimationPlayer")
 
-@onready var label1 = $Label1
-@onready var label2 = $Label2
 
 
 var max_health: int
@@ -49,14 +47,8 @@ func _ready() -> void:
 
 
 func _process(delta):
-	
-	label1.set_text("FPS: " + str(Engine.get_frames_per_second()))
-	#label1.set_text("maxŻycie: " + str(max_health))
+	pass
 
-	if can_dash:
-		label2.text = "+"
-	else:
-		label2.text = " "
 
 
 

@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@onready var fps_label = $FPS_label
+
 @onready var pasek_serc = $baseInterface/Serduszka
 @onready var heart_prefab = preload("res://interfaces/serce.tscn")
 
@@ -63,6 +65,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	fps_label.set_text("FPS: " + str(Engine.get_frames_per_second()))
 	update_hearts($"../World YSort/Gracz".current_health) #kurwa dodane tu co klatke, bo sie jebalo gdy podnoszenie serduszka itp
 
 	

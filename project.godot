@@ -148,6 +148,7 @@ locale/translations=PackedStringArray("res://locales/Lokalizatione.en.translatio
 2d_physics/layer_2="gracz"
 2d_physics/layer_3="przeciwnik"
 2d_physics/layer_4="enemyHitBox"
+2d_physics/layer_5="enemy_projectile"
 
 [physics]
 
