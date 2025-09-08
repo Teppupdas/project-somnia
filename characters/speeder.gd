@@ -23,7 +23,7 @@ var interval = 1.0
 
 var health = 7
 
-enum Actions { STAY, MOVE, BITE, WEBSHOT }
+enum Actions { STAY, MOVE, BITE_WINDUP, BITE_LOT, BITE_RECOVERY, WEBSHOT }
 var current_action: Actions = Actions.STAY
 var action_direction = Vector2.ZERO
 
@@ -31,7 +31,7 @@ const STANDARD_SPEED = 900
 const TURN_SPEED = 7.0
 
 var bite_timer: SceneTreeTimer = null
-const BITE_SPEED = 1600
+const BITE_SPEED = 2000
 
 
 
@@ -105,21 +105,30 @@ func move():
 
 
 func bite(delta, distance_to_player):
-	current_action = Actions.MOVE
+	current_action = Actions.BITE_WINDUP
 	action_direction = (player.global_position - global_position).normalized()
 	hitbox.rotation = action_direction.angle()
-	set_colliders_enabled(hitbox, true)
-	
 	var bite_travel_time = distance_to_player / BITE_SPEED
+	
+	
+	
+	
+	await get_tree().create_timer(anim_player.get_animation("BITE_WINDUP").length).timeout
+	
+	current_action = Actions.BITE_LOT
+	
+	set_colliders_enabled(hitbox, true)
 	bite_timer = get_tree().create_timer(bite_travel_time)
 	set_velocity(action_direction * BITE_SPEED)
 	await bite_timer.timeout
+	
+	current_action = Actions.BITE_RECOVERY
 	
 	bite_timer = null
 	set_velocity(Vector2.ZERO)
 	set_colliders_enabled(hitbox, false)
 	
-	await get_tree().create_timer(1).timeout # tu gracz bije
+	await get_tree().create_timer(anim_player.get_animation("BITE_RECOVERY").length).timeout
 	
 	current_action = Actions.STAY
 
@@ -132,7 +141,7 @@ func bite(delta, distance_to_player):
 func webshot():
 	current_action = Actions.WEBSHOT
 	action_direction = (global_position - player.global_position).normalized() #tyłem
-	var web_direction = ((player.global_position + Vector2(0,-200)) - global_position).normalized()
+	var web_direction = ((player.global_position + Vector2(0,-130)) - global_position).normalized()
 	
 
 	await get_tree().create_timer(anim_player.get_animation("WEBSHOT").length).timeout

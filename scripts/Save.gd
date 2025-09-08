@@ -53,8 +53,8 @@ func load_game():
 
 
 
-	player.max_health = data_file.get_value("player", "max_health", 5) # ustawianie maksymalnego zycia
-	player.current_health = data_file.get_value("player", "max_health", 5) # ustawianianie obencego zycia
+	player.max_health = data_file.get_value("player", "max_health", 50) # ustawianie maksymalnego zycia
+	player.current_health = data_file.get_value("player", "max_health", 50) # ustawianianie obencego zycia
 	ui.set_max_heart(player.max_health)
 	ui.update_hearts(player.max_health)
 	

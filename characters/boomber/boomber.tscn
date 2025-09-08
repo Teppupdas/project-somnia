@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3hlf2kycy4ns"]
+
+[ext_resource type="Script" uid="uid://fluqstdn3as2" path="res://characters/boomber/boomber.gd" id="1_ca4dx"]
+[ext_resource type="PackedScene" uid="uid://dwchfxyl64v4e" path="res://characters/boomber/boomber.blend" id="2_ca4dx"]
+
+[node name="boomber" type="CharacterBody2D"]
+script = ExtResource("1_ca4dx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(500, 500)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 6, 6)
+projection = 1
+size = 4.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.879649, 0.475624, 0, -0.475624, 0.879649, 0, 0, 0)
+
+[node name="boomber" parent="SubViewport" instance=ExtResource("2_ca4dx")]
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
