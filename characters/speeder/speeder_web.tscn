@@ -1,27 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4myrwo103b5g"]
+[gd_scene load_steps=5 format=3 uid="uid://cmhxopcg7cqei"]
 
-[ext_resource type="Script" uid="uid://bqne8r3ansx5n" path="res://characters/boomber/boomber_bullet.gd" id="1_l0v4l"]
-[ext_resource type="Texture2D" uid="uid://d3kxbe1x6tjbe" path="res://characters/boomber/boomber_bullet.png" id="2_l0v4l"]
+[ext_resource type="Script" uid="uid://dhprjl3i5hcil" path="res://characters/speeder/speeder_web.gd" id="1_x4u00"]
+[ext_resource type="Texture2D" uid="uid://d4mbbo5usa03q" path="res://characters/speeder/speeder_web.png" id="2_5mupu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5mupu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nsw5p"]
 radius = 13.0
 
-[node name="boomber_bullet" type="CharacterBody2D"]
+[node name="speeder_web" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_l0v4l")
+script = ExtResource("1_x4u00")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -135)
-texture = ExtResource("2_l0v4l")
+texture = ExtResource("2_5mupu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5mupu")
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 8
+collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]

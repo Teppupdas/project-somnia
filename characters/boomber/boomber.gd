@@ -9,10 +9,11 @@ extends CharacterBody2D
 @onready var sub_viewport = $SubViewport
 @onready var model_3d = $SubViewport/boomber
 @onready var anim_player = model_3d.get_node("AnimationPlayer")
-@onready var gun = model_3d.get_node("Cube_001")
+@onready var gun = model_3d.get_node("Armature/Skeleton3D/Gun")
 
 @onready var hitbox = $Hitbox
 @onready var bullet_scene = preload("res://characters/boomber/boomber_bullet.tscn")
+@onready var bomb_scene = preload("res://characters/boomber/boomber_bomb.tscn")
 
 var timer_accumulator = randf()
 
@@ -22,7 +23,7 @@ var interval = 1.0
 
 var health = 13
 
-enum Actions { STAY, SHOOT }
+enum Actions { STAY, MOVE, SHOOT, DEPLOY_BOMB }
 var current_action: Actions = Actions.STAY
 var action_direction = Vector2.ZERO
 var gun_direction = Vector2.ZERO
@@ -33,7 +34,8 @@ const TURN_SPEED = 7.0
 
 
 
-
+func _ready() -> void:
+	bomb()
 
 
 
@@ -61,8 +63,8 @@ func _physics_process(delta):
 	if timer_accumulator >= interval:
 		timer_accumulator -= interval
 		 
-		if distance_to_player < 600:
-			shoot()
+		if distance_to_player < 1300:
+			pass
 		elif distance_to_player < 1500 and randf() < 0.2:
 			pass
 		else:
@@ -74,18 +76,54 @@ func _physics_process(delta):
 
 
 
+
+
+
+func move():
+	current_action = Actions.MOVE
+
+
+
+
+
+
+
+
 func shoot():
 	current_action = Actions.SHOOT
-	gun_direction = (global_position - player.global_position).normalized()
-	var bullet_direction = ((player.global_position + Vector2(0,-130)) - global_position).normalized()
-	
-	await get_tree().create_timer(anim_player.get_animation("SHOOT").length).timeout
+	gun_direction = (player.global_position - global_position).normalized()
+	var bullet_direction = ((player.global_position + Vector2(0,-1)) - global_position).normalized()
 	
 	var bullet_instance = bullet_scene.instantiate()
 	bullet_instance.direction = bullet_direction
 	add_child(bullet_instance)
 	
+	await get_tree().create_timer(anim_player.get_animation("SHOOT").length).timeout
 	current_action = Actions.STAY
+
+
+
+
+
+func bomb():
+	current_action = Actions.DEPLOY_BOMB
+
+	await get_tree().create_timer(anim_player.get_animation("DEPLOY_BOMB").length).timeout
+
+
+	var bomb = bomb_scene.instantiate()
+	get_parent().add_child(bomb)
+
+	current_action = Actions.STAY
+
+
+
+
+
+
+
+
+
 
 
 

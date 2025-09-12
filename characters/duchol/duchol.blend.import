@@ -3,12 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d1h44tq4bcyjg"
-valid=false
+uid="uid://b6c8w8gtre7d4"
+path="res://.godot/imported/duchol.blend-de3b4f59b20988431a5c5028417d8a45.scn"
 
 [deps]
 
-source_file="res://characters/boomber/boomber.blend"
+source_file="res://characters/duchol/duchol.blend"
+dest_files=["res://.godot/imported/duchol.blend-de3b4f59b20988431a5c5028417d8a45.scn"]
 
 [params]
 

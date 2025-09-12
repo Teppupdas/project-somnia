@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0afhaylxl4bs"]
+
+[ext_resource type="PackedScene" uid="uid://b6c8w8gtre7d4" path="res://characters/duchol/duchol.blend" id="1_1vawh"]
+[ext_resource type="Script" uid="uid://8tbeanaj7qp4" path="res://characters/duchol/duchol.gd" id="1_5lev1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2syr3"]
+radius = 34.27
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5lev1"]
+radius = 113.0
+
+[node name="duchol" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_5lev1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -100)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2syr3")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+transparent_bg = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 6, 6)
+projection = 1
+size = 6.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+
+[node name="duchol" parent="SubViewport" instance=ExtResource("1_1vawh")]
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(140, 0)
+shape = SubResource("CircleShape2D_5lev1")
+disabled = true
+debug_color = Color(0.988651, 0, 0.29957, 0.42)

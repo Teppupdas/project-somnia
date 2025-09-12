@@ -3,12 +3,12 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d1h44tq4bcyjg"
+uid="uid://smwyeiyjk2xj"
 valid=false
 
 [deps]
 
-source_file="res://characters/boomber/boomber.blend"
+source_file="res://characters/speeder/speeder.blend"
 
 [params]
 
