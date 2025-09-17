@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var anim_player = model_3d.get_node("AnimationPlayer")
 
 @onready var hitbox = $Hitbox
+@onready var rotatoe_hitbox = $RotatoeHitbox
 
 
 
@@ -19,8 +20,11 @@ var health = 13
 enum Actions { STAY, OVERHEAD_WINDUP, OVERHEAD_ATTACK, OVERHEAD_RECOVERY }
 var current_action: Actions = Actions.STAY
 var action_direction = Vector2.ZERO
+var distance_to_player
 
-const STANDARD_SPEED = 400
+
+var current_speed = Vector2.ZERO
+const STANDARD_SPEED = 400.0
 const TURN_SPEED = 7.0
 
 
@@ -31,6 +35,7 @@ const TURN_SPEED = 7.0
 
 
 func _process(delta: float) -> void:
+	distance_to_player = global_position.distance_to(player.global_position)
 	model_3d.rotation = Vector3(0, -atan2(action_direction.y, action_direction.x), 0)
 	sprite_2d.texture = sub_viewport.get_texture()
 
@@ -41,21 +46,21 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta):
-	var distance_to_player = global_position.distance_to(player.global_position)
+	distance_to_player = global_position.distance_to(player.global_position)
 	
 	
 	
 	
 	
 	if current_action == Actions.STAY:
-		if distance_to_player < 900:
-			overhead_windup()
+		if randf() < clamp(1.0 - (distance_to_player / 900.0), 0.0, 1.0) * 0.1:
+			twin_hit_windup()
 
 
 
 	if current_action == Actions.OVERHEAD_WINDUP:
 		if distance_to_player < 300:
-			overhead_attack()
+			twin_hit_attack()
 		else:
 			move(delta)
 
@@ -79,7 +84,29 @@ func move(delta):
 	var new_angle = lerp_angle(current_angle, target_angle, TURN_SPEED * delta)
 	action_direction = Vector2.RIGHT.rotated(new_angle)
 	
-	set_velocity(action_direction * STANDARD_SPEED)
+	# skalowanie prędkości w zależności od dystansu
+	var min_speed = 400.0  # dolna granica prędkości
+	var max_speed = 1200.0
+	var max_distance = 1000.0  # dystans, przy którym osiągana jest pełna prędkość
+
+	# interpolacja prędkości: im bliżej gracza, tym wolniej, ale nie poniżej min_speed
+	var speed_factor = clamp(distance_to_player / max_distance, 0.0, 1.0)
+	current_speed = lerp(min_speed, max_speed, speed_factor)
+
+	set_velocity(action_direction * current_speed)
+
+
+
+
+func dodge():
+	var dodge_distance = 500.0
+	action_direction = (global_position - player.global_position).normalized()
+
+	set_velocity(action_direction * 1000.0)
+
+	await get_tree().create_timer(0.3).timeout
+	set_velocity(Vector2.ZERO)
+	current_action = Actions.STAY
 
 
 
@@ -87,17 +114,19 @@ func move(delta):
 
 
 
-func overhead_windup():
+
+
+
+
+
+
+func twin_hit_windup():
 	current_action = Actions.OVERHEAD_WINDUP
 	anim_player.play("OVERHEAD_WINDUP")
 
 
 
-
-
-
-
-func overhead_attack(): # +recovery
+func twin_hit_attack(): # +recovery
 	set_velocity(Vector2.ZERO)
 	
 	current_action = Actions.OVERHEAD_ATTACK
@@ -117,10 +146,39 @@ func overhead_attack(): # +recovery
 #recovery
 	anim_player.play("OVERHEAD_RECOVERY")
 	await get_tree().create_timer(anim_player.get_animation("OVERHEAD_RECOVERY").length).timeout
+
+
+	if distance_to_player < 250:
+		rotatoe()
+	else:
+		current_action = Actions.STAY
+
+
+
+
+
+
+
+
+func rotatoe():
+	
+	
+	set_colliders_enabled(rotatoe_hitbox, true)
+	anim_player.play("ROTATOE")
+	await get_tree().create_timer(anim_player.get_animation("ROTATOE").length).timeout
+	set_colliders_enabled(rotatoe_hitbox, false)
+
 	current_action = Actions.STAY
-	
-	
-	#jesli dystans do gracza maly to odskok
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -149,6 +207,8 @@ func set_colliders_enabled(area: Area2D, enabled: bool) -> void:
 
 func after_player_hit():
 	set_colliders_enabled(hitbox, false)
+	set_colliders_enabled(rotatoe_hitbox, false)
+
 
 
 

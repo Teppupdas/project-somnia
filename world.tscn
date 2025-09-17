@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=49 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" uid="uid://bg7jeyw8fk5p8" path="res://scripts/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" uid="uid://bef53gjnn5gke" path="res://characters/a_gracz/Player.gd" id="1_f6crp"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dokxn10v5j6al" path="res://characters/speeder/speeder.tscn" id="16_qktwf"]
 [ext_resource type="PackedScene" uid="uid://b3hlf2kycy4ns" path="res://characters/boomber/boomber.tscn" id="17_bh8nc"]
 [ext_resource type="PackedScene" uid="uid://b0afhaylxl4bs" path="res://characters/duchol/duchol.tscn" id="18_jjr1n"]
+[ext_resource type="Texture2D" uid="uid://yj7hsdb757ss" path="res://interfaces/marker.png" id="22_qktwf"]
 [ext_resource type="Texture2D" uid="uid://dud0s10wjefj0" path="res://environment/2d_out.png" id="34_g7egq"]
 [ext_resource type="Texture2D" uid="uid://1wmam8y4cr27" path="res://environment/3d_orto_out.png" id="38_ohwfu"]
 [ext_resource type="PackedScene" uid="uid://sdkyy54ll57c" path="res://characters/karakan.tscn" id="55_lecbo"]
@@ -55,6 +56,28 @@ radius = 100.0
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_rxu81"]
 points = PackedVector2Array(125, 96, -16, 63, -16, -63, 124, -96)
+
+[sub_resource type="Gradient" id="Gradient_k83mh"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.705882, 0.733333, 0.239216)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qktwf"]
+gradient = SubResource("Gradient_k83mh")
+
+[sub_resource type="Curve" id="Curve_bh8nc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jjr1n"]
+curve = SubResource("Curve_bh8nc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gggvi"]
+particle_flag_disable_z = true
+spread = 50.0
+initial_velocity_min = 367.09
+initial_velocity_max = 606.58
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_jjr1n")
+color_ramp = SubResource("GradientTexture1D_qktwf")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f56u4"]
 radius = 21.21
@@ -390,6 +413,18 @@ debug_color = Color(1, 0, 0, 0.313726)
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="World YSort/Gracz/playerHitBox"]
 shape = SubResource("ConvexPolygonShape2D_rxu81")
 debug_color = Color(1, 0, 0, 0.301961)
+
+[node name="EffectsCenter" type="Node2D" parent="World YSort/Gracz"]
+position = Vector2(0, -120)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="World YSort/Gracz/EffectsCenter"]
+position = Vector2(100, 0)
+emitting = false
+amount = 30
+texture = ExtResource("22_qktwf")
+lifetime = 0.3
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_gggvi")
 
 [node name="FolderAktywator" type="Node2D" parent="World YSort" groups=["AAADwor"]]
 

@@ -179,9 +179,6 @@ func rush_conditions(path, distance_to_player, angle_to_player):
 	var direct_distance = path[0].distance_to(path[-1])
 	
 	#to sprawdza czy slimak jest w kierunku gracza, drugi warunek ponizje
-	
-
-
 	return path_length == distance_to_player and angle_to_player < deg_to_rad(5)
 
 

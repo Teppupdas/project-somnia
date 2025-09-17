@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0afhaylxl4bs"]
+[gd_scene load_steps=6 format=3 uid="uid://b0afhaylxl4bs"]
 
 [ext_resource type="PackedScene" uid="uid://b6c8w8gtre7d4" path="res://characters/duchol/duchol.blend" id="1_1vawh"]
 [ext_resource type="Script" uid="uid://8tbeanaj7qp4" path="res://characters/duchol/duchol.gd" id="1_5lev1"]
@@ -8,6 +8,9 @@ radius = 34.27
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5lev1"]
 radius = 113.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdomv"]
+radius = 267.21
 
 [node name="duchol" type="CharacterBody2D"]
 collision_layer = 4
@@ -44,3 +47,11 @@ position = Vector2(140, 0)
 shape = SubResource("CircleShape2D_5lev1")
 disabled = true
 debug_color = Color(0.988651, 0, 0.29957, 0.42)
+
+[node name="RotatoeHitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RotatoeHitbox"]
+shape = SubResource("CircleShape2D_gdomv")
+disabled = true

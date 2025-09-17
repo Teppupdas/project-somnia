@@ -8,6 +8,11 @@ extends CharacterBody2D
 @onready var model_3d = $SubViewport/Gracz
 @onready var anim_player = model_3d.get_node("AnimationPlayer")
 
+@onready var player_hitbox = $playerHitBox
+@onready var effects_center = $EffectsCenter
+@onready var player_particles = $EffectsCenter/GPUParticles2D
+
+
 
 
 var max_health: int
@@ -20,7 +25,7 @@ var current_health: int
 
 var move_vector = Vector2.DOWN
 var move_vector_normalized = Vector2.DOWN
-const STANDARD_SPEED = 800 #standardowa i maksymalna;    dla klawiatury
+const STANDARD_SPEED = 700 #standardowa i maksymalna;    dla klawiatury
 var move_speed_multiplier #korekta dla joysitcka; wolniejsze chodzenie
 
 
@@ -34,7 +39,6 @@ const DASH_SPEED = 3000 #nie może się mnożyć z joystickiem
 const DASH_LENGTH = 0.1
 const DASH_COOLDOWN = 0.5
 
-@onready var player_hitbox = $playerHitBox
 var damage
 var trafieni: Array = []  # Lista już trafionych przeciwników
 
@@ -112,6 +116,7 @@ func _physics_process(delta):
 		#Atak 
 		if (Input.is_action_just_pressed("szybki") or Input.is_action_just_pressed("silny")):
 			player_hitbox.rotation = action_direction.angle()
+			effects_center.rotation = action_direction.angle()
 			player_hitbox.monitoring = true
 			player_hitbox.monitorable = true
 
@@ -119,6 +124,7 @@ func _physics_process(delta):
 				current_action = Actions.QUICK_ATTACK
 				damage = 1
 				#await get_tree().create_timer(1).timeout
+				player_particles.emitting = true
 				await get_tree().create_timer(anim_player.get_animation("AtakRekaSzybki1").length).timeout
 			elif Input.is_action_just_pressed("silny"):
 				current_action = Actions.STRONG_ATTACK
