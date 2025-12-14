@@ -1,0 +1,149 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjj27f0pv8uy6"]
+
+[ext_resource type="Script" uid="uid://ctjw0kif6he8d" path="res://characters/janucha/janucha.gd" id="1_f6mve"]
+[ext_resource type="Texture2D" uid="uid://0kmscmphr8na" path="res://characters/janucha/janucha.png" id="1_pwwed"]
+
+[node name="janucha" type="Node2D"]
+script = ExtResource("1_f6mve")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Elemetny" type="Node2D" parent="."]
+
+[node name="Leb" type="Polygon2D" parent="Elemetny"]
+offset = Vector2(0, 100)
+texture = ExtResource("1_pwwed")
+texture_offset = Vector2(350, 450)
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(-118.205, -458.306, -113.618, -283.998, 98.916, -277.881, 114.206, -460.599)
+uv = PackedVector2Array(-118.205, -458.306, -113.618, -283.998, 98.916, -277.881, 114.206, -460.599)
+bones = ["Base", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon", PackedFloat32Array(1, 1, 1, 1), "Base/Bebzon/Reka R", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka L", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU/Noga LD", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU/Noga RD", PackedFloat32Array(0, 0, 0, 0)]
+
+[node name="Reka L" type="Polygon2D" parent="Elemetny"]
+offset = Vector2(50, 50)
+texture = ExtResource("1_pwwed")
+texture_offset = Vector2(350, 450)
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(-348.733, -84.3096, -283.477, -244.372, -95.0953, -262.841, -129.57, -128.635, -269.933, -28.9033)
+uv = PackedVector2Array(-348.733, -84.3096, -283.477, -244.372, -95.0953, -262.841, -129.57, -128.635, -269.933, -28.9033)
+bones = ["Base", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Bebzon", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Bebzon/Reka R", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Bebzon/Reka L", PackedFloat32Array(1, 1, 1, 1, 1), "Base/Noga LU", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Noga LU/Noga LD", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Noga RU", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Noga RU/Noga RD", PackedFloat32Array(0, 0, 0, 0, 0)]
+
+[node name="Reka R" type="Polygon2D" parent="Elemetny"]
+offset = Vector2(-50, 50)
+texture = ExtResource("1_pwwed")
+texture_offset = Vector2(350, 450)
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(315.121, -115.542, 252.032, -213.228, 101.432, -248.843, 111.608, -186.772, 246.944, -75.8574)
+uv = PackedVector2Array(315.121, -115.542, 252.032, -213.228, 101.432, -248.843, 111.608, -186.772, 246.944, -75.8574)
+bones = ["Base", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Bebzon", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Bebzon/Reka R", PackedFloat32Array(1, 1, 1, 1, 1), "Base/Bebzon/Reka L", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Noga LU", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Noga LU/Noga LD", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Noga RU", PackedFloat32Array(0, 0, 0, 0, 0), "Base/Noga RU/Noga RD", PackedFloat32Array(0, 0, 0, 0, 0)]
+
+[node name="Bebzon" type="Polygon2D" parent="Elemetny"]
+offset = Vector2(0, 50)
+texture = ExtResource("1_pwwed")
+texture_offset = Vector2(350, 450)
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(-91.7191, -232.595, -23.6013, -272.12, 59.6539, -272.961, 111.793, -185.501, 108.845, -59.8606, 56.29, -19.8318, -50.512, -14.786, -114.425, -89.6315, -142.177, -163.636)
+uv = PackedVector2Array(-91.7191, -232.595, -23.6013, -272.12, 59.6539, -272.961, 111.793, -185.501, 117.68, -55.9931, 56.29, -19.8318, -50.512, -14.786, -114.425, -89.6315, -142.177, -163.636)
+bones = ["Base", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "Base/Bebzon", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1), "Base/Bebzon/Reka R", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "Base/Bebzon/Reka L", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "Base/Noga LU", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "Base/Noga LU/Noga LD", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "Base/Noga RU", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "Base/Noga RU/Noga RD", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)]
+
+[node name="Kutas" type="Polygon2D" parent="Elemetny"]
+offset = Vector2(0, -50)
+texture = ExtResource("1_pwwed")
+texture_offset = Vector2(350, 450)
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(-72.3005, 46.7982, -72.3005, 92.9215, 79.3378, 95.4488, 75.5468, 45.5345)
+uv = PackedVector2Array(-72.3005, 46.7982, -72.3005, 92.9215, 79.3378, 95.4488, 75.5468, 45.5345)
+bones = ["Base", PackedFloat32Array(1, 1, 1, 1), "Base/Bebzon", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka R", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka L", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU/Noga LD", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU/Noga RD", PackedFloat32Array(0, 0, 0, 0)]
+
+[node name="Noga LD" type="Polygon2D" parent="Elemetny"]
+offset = Vector2(0, -150)
+texture = ExtResource("1_pwwed")
+texture_offset = Vector2(350, 450)
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(-87.3542, 266.641, -3.25818, 267.482, -8.30396, 447.448, -112.583, 441.561)
+uv = PackedVector2Array(-87.3542, 266.641, -3.25818, 267.482, -8.30396, 447.448, -112.583, 441.561)
+bones = ["Base", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka R", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka L", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU/Noga LD", PackedFloat32Array(1, 1, 1, 1), "Base/Noga RU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU/Noga RD", PackedFloat32Array(0, 0, 0, 0)]
+
+[node name="Noga LU" type="Polygon2D" parent="Elemetny"]
+offset = Vector2(0, -100)
+texture = ExtResource("1_pwwed")
+texture_offset = Vector2(350, 450)
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(-76.2031, 92.752, -11.4491, 96.4523, -14.2242, 254.637, -78.9782, 254.637)
+uv = PackedVector2Array(-76.2031, 92.752, -11.4491, 96.4523, -14.2242, 254.637, -78.9782, 254.637)
+bones = ["Base", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka R", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka L", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU", PackedFloat32Array(1, 1, 1, 1), "Base/Noga LU/Noga LD", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU/Noga RD", PackedFloat32Array(0, 0, 0, 0)]
+
+[node name="Noga RD" type="Polygon2D" parent="Elemetny"]
+offset = Vector2(0, -150)
+texture = ExtResource("1_pwwed")
+texture_offset = Vector2(350, 450)
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(7.62408, 266.478, 77.8054, 266.478, 122.13, 437.622, 1.46783, 440.085)
+uv = PackedVector2Array(7.62408, 266.478, 77.8054, 266.478, 122.13, 437.622, 1.46783, 440.085)
+bones = ["Base", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka R", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka L", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU/Noga LD", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU/Noga RD", PackedFloat32Array(1, 1, 1, 1)]
+
+[node name="Noga RU" type="Polygon2D" parent="Elemetny"]
+offset = Vector2(0, -100)
+texture = ExtResource("1_pwwed")
+texture_offset = Vector2(350, 450)
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(10.6324, 97.3691, 66.1359, 89.0436, 70.7611, 255.554, 13.4076, 254.629)
+uv = PackedVector2Array(10.6324, 97.3691, 66.1359, 89.0436, 70.7611, 255.554, 13.4076, 254.629)
+bones = ["Base", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka R", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka L", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU/Noga LD", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU", PackedFloat32Array(1, 1, 1, 1), "Base/Noga RU/Noga RD", PackedFloat32Array(0, 0, 0, 0)]
+
+[node name="Pasek" type="Polygon2D" parent="Elemetny"]
+texture = ExtResource("1_pwwed")
+texture_offset = Vector2(350, 450)
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(-73.2994, -9.33054, -73.2994, 21.2499, 74.7375, 19.8598, 73.3474, -13.5006)
+uv = PackedVector2Array(-73.2994, -9.33054, -73.2994, 21.2499, 74.7375, 19.8598, 73.3474, -13.5006)
+bones = ["Base", PackedFloat32Array(1, 1, 1, 1), "Base/Bebzon", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka R", PackedFloat32Array(0, 0, 0, 0), "Base/Bebzon/Reka L", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga LU/Noga LD", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU", PackedFloat32Array(0, 0, 0, 0), "Base/Noga RU/Noga RD", PackedFloat32Array(0, 0, 0, 0)]
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="Base" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(0, 50)
+rest = Transform2D(1, 0, 0, 1, 0, 50)
+
+[node name="Bebzon" type="Bone2D" parent="Skeleton2D/Base"]
+position = Vector2(0, -35)
+rest = Transform2D(1, 0, 0, 1, 0, -35)
+auto_calculate_length_and_angle = false
+length = 200.0
+bone_angle = -90.0
+
+[node name="Reka R" type="Bone2D" parent="Skeleton2D/Base/Bebzon"]
+position = Vector2(71.175, -176.155)
+rest = Transform2D(1, 0, 0, 1, 71.175, -176.155)
+auto_calculate_length_and_angle = false
+length = 100.0
+bone_angle = 0.0
+
+[node name="Reka L" type="Bone2D" parent="Skeleton2D/Base/Bebzon"]
+position = Vector2(-76.74, -171.41)
+rest = Transform2D(1, 0, 0, 1, -76.74, -171.41)
+auto_calculate_length_and_angle = false
+length = 100.0
+bone_angle = 180.0
+
+[node name="Noga LU" type="Bone2D" parent="Skeleton2D/Base"]
+position = Vector2(-62, -39)
+rest = Transform2D(1, 0, 0, 1, -62, -39)
+
+[node name="Noga LD" type="Bone2D" parent="Skeleton2D/Base/Noga LU"]
+position = Vector2(19, 133)
+rest = Transform2D(1, 0, 0, 1, 19, 133)
+auto_calculate_length_and_angle = false
+length = 100.0
+bone_angle = 90.0
+
+[node name="Noga RU" type="Bone2D" parent="Skeleton2D/Base"]
+position = Vector2(62, -39)
+rest = Transform2D(1, 0, 0, 1, 62, -39)
+
+[node name="Noga RD" type="Bone2D" parent="Skeleton2D/Base/Noga RU"]
+position = Vector2(-19, 133)
+rest = Transform2D(1, 0, 0, 1, -19, 133)
+auto_calculate_length_and_angle = false
+length = 100.0
+bone_angle = 90.0

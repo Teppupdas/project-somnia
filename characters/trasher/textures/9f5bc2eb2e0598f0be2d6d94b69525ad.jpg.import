@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biaausy2ci5qm"
-path="res://.godot/imported/George_Texture.png-40ab9d9fd36144f88ac6bae117bb89c7.ctex"
+uid="uid://craxfuq5onodt"
+path="res://.godot/imported/9f5bc2eb2e0598f0be2d6d94b69525ad.jpg-277a07ac5c8e3f9a9ae974b8301c079f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/a_obce/textures/George_Texture.png"
-dest_files=["res://.godot/imported/George_Texture.png-40ab9d9fd36144f88ac6bae117bb89c7.ctex"]
+source_file="res://characters/trasher/textures/9f5bc2eb2e0598f0be2d6d94b69525ad.jpg"
+dest_files=["res://.godot/imported/9f5bc2eb2e0598f0be2d6d94b69525ad.jpg-277a07ac5c8e3f9a9ae974b8301c079f.ctex"]
 
 [params]
 

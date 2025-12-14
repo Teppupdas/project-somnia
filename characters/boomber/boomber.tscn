@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3hlf2kycy4ns"]
 
 [ext_resource type="Script" uid="uid://fluqstdn3as2" path="res://characters/boomber/boomber.gd" id="1_ca4dx"]
-[ext_resource type="PackedScene" uid="uid://bv4hgqvms2tp1" path="res://characters/boomber/boomber.glb" id="2_mgthw"]
+[ext_resource type="PackedScene" uid="uid://d1h44tq4bcyjg" path="res://characters/boomber/boomber.blend" id="2_mgthw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgthw"]
 radius = 73.09

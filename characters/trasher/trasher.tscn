@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dx5lg3x0hh3si"]
 
 [ext_resource type="Script" uid="uid://8fsojvs4vdbo" path="res://characters/trasher/trasher.gd" id="1_3fvew"]
-[ext_resource type="PackedScene" uid="uid://di4kvx40nbeac" path="res://characters/trasher/trasher.glb" id="2_ic8s2"]
+[ext_resource type="PackedScene" uid="uid://cf20d7gaile5b" path="res://characters/trasher/trasher.blend" id="2_ic8s2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tgtbp"]
 radius = 30.0

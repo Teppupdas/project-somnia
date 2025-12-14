@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=50 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" uid="uid://bg7jeyw8fk5p8" path="res://scripts/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" uid="uid://bef53gjnn5gke" path="res://characters/a_gracz/Player.gd" id="1_f6crp"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://b3hlf2kycy4ns" path="res://characters/boomber/boomber.tscn" id="17_bh8nc"]
 [ext_resource type="PackedScene" uid="uid://b0afhaylxl4bs" path="res://characters/duchol/duchol.tscn" id="18_jjr1n"]
 [ext_resource type="Texture2D" uid="uid://yj7hsdb757ss" path="res://interfaces/marker.png" id="22_qktwf"]
+[ext_resource type="PackedScene" uid="uid://cjj27f0pv8uy6" path="res://characters/janucha/janucha.tscn" id="31_bh8nc"]
 [ext_resource type="Texture2D" uid="uid://dud0s10wjefj0" path="res://environment/2d_out.png" id="34_g7egq"]
 [ext_resource type="Texture2D" uid="uid://1wmam8y4cr27" path="res://environment/3d_orto_out.png" id="38_ohwfu"]
 [ext_resource type="PackedScene" uid="uid://sdkyy54ll57c" path="res://characters/karakan.tscn" id="55_lecbo"]
@@ -353,6 +354,9 @@ position = Vector2(-798, -3370)
 
 [node name="Karakan" parent="World YSort" instance=ExtResource("55_lecbo")]
 position = Vector2(7289, 279)
+
+[node name="janucha" parent="World YSort" instance=ExtResource("31_bh8nc")]
+position = Vector2(7990, -61)
 
 [node name="Gracz" type="CharacterBody2D" parent="World YSort"]
 collision_layer = 2

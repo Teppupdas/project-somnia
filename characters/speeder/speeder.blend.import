@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://smwyeiyjk2xj"
-valid=false
+path="res://.godot/imported/speeder.blend-25b7f88404da28eb954d268c0beb5a68.scn"
 
 [deps]
 
 source_file="res://characters/speeder/speeder.blend"
+dest_files=["res://.godot/imported/speeder.blend-25b7f88404da28eb954d268c0beb5a68.scn"]
 
 [params]
 

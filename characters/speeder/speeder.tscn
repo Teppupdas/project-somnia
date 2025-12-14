@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dokxn10v5j6al"]
 
 [ext_resource type="Script" uid="uid://dsd2k5oxpuleb" path="res://characters/speeder/speeder.gd" id="1_vynh2"]
-[ext_resource type="PackedScene" uid="uid://r2wadbklw7mu" path="res://characters/speeder/speeder.glb" id="2_oy2f1"]
+[ext_resource type="PackedScene" uid="uid://smwyeiyjk2xj" path="res://characters/speeder/speeder.blend" id="2_oy2f1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sxk8t"]
 radius = 27.0

@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cf20d7gaile5b"
-valid=false
+path="res://.godot/imported/trasher.blend-e884759e7adf078fb49df0da1b784183.scn"
 
 [deps]
 
 source_file="res://characters/trasher/trasher.blend"
+dest_files=["res://.godot/imported/trasher.blend-e884759e7adf078fb49df0da1b784183.scn"]
 
 [params]
 

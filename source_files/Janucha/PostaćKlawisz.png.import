@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dftgklal7wcgk"
-path="res://.godot/imported/Leela_Texture.png-8517c10d970d57953d5f28f95290fa8c.ctex"
+uid="uid://d21pqyuba50tv"
+path="res://.godot/imported/PostaćKlawisz.png-77e1e84e215d73c70daaff1b6dc4896c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/a_obce/textures/Leela_Texture.png"
-dest_files=["res://.godot/imported/Leela_Texture.png-8517c10d970d57953d5f28f95290fa8c.ctex"]
+source_file="res://source_files/Janucha/PostaćKlawisz.png"
+dest_files=["res://.godot/imported/PostaćKlawisz.png-77e1e84e215d73c70daaff1b6dc4896c.ctex"]
 
 [params]
 
