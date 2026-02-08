@@ -1,6 +1,6 @@
 extends Node
 
-@onready var player = $"../World YSort/Gracz"
+@onready var player = $"../World/Gracz"
 @onready var ui = $"../CanvasLayer"
 
 
@@ -36,7 +36,7 @@ func save_game():
 	data_file.set_value("player", "max_health", player.max_health)
 
 
-	data_file.set_value("actions", "kiedro10czaha", get_node("../World YSort/Kiedro10czaha").base_actions)
+	data_file.set_value("actions", "kiedro10czaha", get_node("../World/Kiedro10czaha").base_actions)
 
 
 	var error = data_file.save("user://save_game.txt")  # Zapis
@@ -59,11 +59,11 @@ func load_game():
 	ui.update_hearts(player.max_health)
 	
 	if data_file.get_value("player", "pentagram", ""):
-		set_pentagram(get_node("../World YSort/" + data_file.get_value("player", "pentagram", ""))) #zapalenie swieczki i jej wybor
+		set_pentagram(get_node("../World/" + data_file.get_value("player", "pentagram", ""))) #zapalenie swieczki i jej wybor
 		player.position = current_pentagram.position #pozycja gracza na pentagram
 		
-	get_node("../World YSort/Kiedro10czaha").base_actions = data_file.get_value("actions", "kiedro10czaha", ["CZAHA1"])
-	get_node("../World YSort/Kiedro10czaha").to_action_prompt = data_file.get_value("actions", "kiedro10czaha", ["CZAHA1"])
+	get_node("../World/Kiedro10czaha").base_actions = data_file.get_value("actions", "kiedro10czaha", ["CZAHA1"])
+	get_node("../World/Kiedro10czaha").to_action_prompt = data_file.get_value("actions", "kiedro10czaha", ["CZAHA1"])
 
 
 

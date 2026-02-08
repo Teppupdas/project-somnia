@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var direction = Vector2.ZERO
-var speed = 2137
+var speed = 2137/20
 func _ready() -> void:
 	pass
 

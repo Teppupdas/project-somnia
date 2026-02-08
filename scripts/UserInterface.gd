@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var fps_label = $FPS_label
+@onready var vram_label = $VRAM_label
 
 @onready var pasek_serc = $baseInterface/Serduszka
 @onready var heart_prefab = preload("res://interfaces/serce.tscn")
@@ -54,20 +55,19 @@ func _ready() -> void:
 	
 	
 	
-	if OS.has_feature("editor"):
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	
+
 
 
 
 
 
 func _process(delta: float) -> void:
-	fps_label.set_text("FPS: " + str(Engine.get_frames_per_second()))
-	update_hearts($"../World YSort/Gracz".current_health) #kurwa dodane tu co klatke, bo sie jebalo gdy podnoszenie serduszka itp
+	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
+	vram_label.text = "VRAM: " + str(int(Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED) / (1024**2))) + " MB"
+	update_hearts($"../World/Gracz".current_health) #kurwa dodane tu co klatke, bo sie jebalo gdy podnoszenie serduszka itp
 
+	
+	
 	
 	if Input.is_action_just_pressed("pauza"):
 		if mapa_aktywna: # sprawia ze da sie wylaczyc mape escapem. przetestowac to na padzie itp

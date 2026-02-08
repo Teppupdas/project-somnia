@@ -1,6 +1,6 @@
 extends Camera2D
 
-@onready var player = $"../World YSort/Gracz"
+@onready var player = $"../World/Gracz"
 var speed = 3
 
 var camera_offset = Vector2.ZERO

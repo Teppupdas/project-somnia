@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba38u4uhcywai"]
+
+[ext_resource type="Texture2D" uid="uid://d8yevrsa0jyx" path="res://environment/lampa_blokowa/lampa_blokowa.png" id="1_ntjxu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntjxu"]
+radius = 35.0
+
+[node name="lampa_blokowa" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ntjxu")
+offset = Vector2(0, -231.39)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ntjxu")

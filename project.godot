@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=3840
 window/size/viewport_height=2160
+window/size/mode=4
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -158,3 +159,4 @@ common/physics_ticks_per_second=120
 
 renderer/rendering_method="mobile"
 anti_aliasing/quality/msaa_2d=3
+environment/defaults/default_clear_color=Color(0.197937, 0.197937, 0.197937, 1)

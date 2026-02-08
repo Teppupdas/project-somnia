@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@onready var player = $"../Gracz"
+@onready var player = $"../../Gracz"
 
 @onready var sprite_2d = $Sprite2D
 @onready var nav_agent = $NavigationAgent2D

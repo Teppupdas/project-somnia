@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://8qhpmlocmgej"]
+[gd_scene load_steps=54 format=3 uid="uid://8qhpmlocmgej"]
 
 [ext_resource type="Script" uid="uid://bg7jeyw8fk5p8" path="res://scripts/WorldManager.gd" id="1_6b4vu"]
 [ext_resource type="Script" uid="uid://bef53gjnn5gke" path="res://characters/a_gracz/Player.gd" id="1_f6crp"]
@@ -14,13 +14,16 @@
 [ext_resource type="Texture2D" uid="uid://csc4h1ogugnwu" path="res://interfaces/cursor.png" id="7_wj8ab"]
 [ext_resource type="Texture2D" uid="uid://d0133ffuapiow" path="res://environment/3d_orto_in.png" id="8_38b17"]
 [ext_resource type="Texture2D" uid="uid://sm3ie14sl7na" path="res://environment/arena.png" id="9_o3ebs"]
+[ext_resource type="PackedScene" uid="uid://bkcfl2dfo4rd2" path="res://environment/blok/blok.tscn" id="11_gggvi"]
 [ext_resource type="PackedScene" uid="uid://ptgeqdi5k5m0" path="res://characters/a_gracz/gracz.blend" id="15_4h6ng"]
 [ext_resource type="PackedScene" uid="uid://dx5lg3x0hh3si" path="res://characters/trasher/trasher.tscn" id="15_k83mh"]
 [ext_resource type="PackedScene" uid="uid://dokxn10v5j6al" path="res://characters/speeder/speeder.tscn" id="16_qktwf"]
 [ext_resource type="PackedScene" uid="uid://b3hlf2kycy4ns" path="res://characters/boomber/boomber.tscn" id="17_bh8nc"]
 [ext_resource type="PackedScene" uid="uid://b0afhaylxl4bs" path="res://characters/duchol/duchol.tscn" id="18_jjr1n"]
 [ext_resource type="Texture2D" uid="uid://yj7hsdb757ss" path="res://interfaces/marker.png" id="22_qktwf"]
+[ext_resource type="Shader" uid="uid://i50e7wucn85s" path="res://shit/Highlight.gdshader" id="24_w44yn"]
 [ext_resource type="PackedScene" uid="uid://cjj27f0pv8uy6" path="res://characters/janucha/janucha.tscn" id="31_bh8nc"]
+[ext_resource type="PackedScene" uid="uid://ba38u4uhcywai" path="res://environment/lampa_blokowa/lampa_blokowa.tscn" id="33_gggvi"]
 [ext_resource type="Texture2D" uid="uid://dud0s10wjefj0" path="res://environment/2d_out.png" id="34_g7egq"]
 [ext_resource type="Texture2D" uid="uid://1wmam8y4cr27" path="res://environment/3d_orto_out.png" id="38_ohwfu"]
 [ext_resource type="PackedScene" uid="uid://sdkyy54ll57c" path="res://characters/karakan.tscn" id="55_lecbo"]
@@ -36,12 +39,6 @@
 vertices = PackedVector2Array(4918.52, 5253.97, 5397.73, 5391.17, 5753.54, 5628.71, 6064.94, 5953.05, 6283.66, 6331.82, 6398.01, 6775.3, 6402.98, 7305.36, 6251.94, 7738.61, 5964.42, 8191.27, 5557.76, 8525.35, 5091.46, 8721.21, 4644.05, 8771.92, 4177.72, 8712.26, 3633.66, 8470.57, 3282.86, 8132.69, 3017.29, 7694.04, 2903.01, 7268.71, 2907.98, 6697.57, 3049.09, 6245.43, 3350.49, 5810.74, 3730.3, 5482.63, 4168.83, 5303.64, 4478.84, 5245.02, 438.227, 3076.91, 813.219, 3190.3, 1146.22, 3359.28, 1424.53, 3619.7, 1658.27, 3926.04, 1822.33, 4323.78, 1895.93, 4744.48, 1868.11, 5105.07, 1735.8, 5524.89, 1507.06, 5908.78, 1200.84, 6211.03, 858.688, 6415.91, 488.859, 6549.13, 105.18, 6580.94, -329.453, 6526.24, -690.188, 6380.15, -1074.05, 6110.65, -1389.34, 5712.82, -1581.28, 5269.25, -1644.9, 4821.96, -1576.28, 4328.73, -1380.4, 3880.29, -1114.95, 3556.18, -763.852, 3281.67, -452.859, 3149.52, -46.0391, 3049.06, -2697.21, -368.172, -2324.76, -235.078, -1779.55, 171.828, -1405.51, 790.594, -1310.13, 1314.19, -1376.75, 1779.54, -1534.97, 2211.42, -1767.42, 2556.13, -2166.22, 2875.36, -2660.41, 3088.15, -3217.15, 3132.89, -3856.63, 2971.78, -4358.82, 2597.87, -4646.13, 2207.17, -4837.02, 1704.09, -4844.98, 1131.25, -4711.76, 645.133, -4417.34, 188.562, -4039.59, -148.406, -3553.43, -351.227, -3087.88, -405.938, -344.75, -4254.6, 128.547, -3976.18, 544.289, -3506.74, 756.094, -2941.95, 784.922, -2414.99, 651.641, -1895.79, 436.031, -1522.21, 66.0234, -1164.13, -336.727, -944.352, -764.242, -832.008, -1237.46, -835.977, -1736.57, -990.094, -2201.01, -1310.32, -2513.22, -1720.98, -2683.31, -2136.75, -2749.92, -2543.37, -2712.14, -2962.92, -2579.94, -3353.55, -2276.52, -3810.18, -1864.95, -4142.22, -1412.69, -4317.16, -830.711, -4366.9, 5176.84, 2198.99, 5203.16, 2089.52, 5869.15, 1583.24, 6068.82, 1878.27, 6174.1, 2243.79, 6200.97, 2602.05, 6178.08, 2973.26, 5188.42, 1980.04, 5609.24, 1302.42, 5098.95, 1898.99, 5400.4, 1141.31, 5064.47, 948.5, 4978.54, 1865.78, 4666.96, 870.977, 4839.23, 1888.65, 4213.16, 866.008, 3432.78, 1172.19, 3764.79, 975.367, 4744.55, 1982.28, 3149.42, 1407.82, 5083.84, 2264.82, 6083.69, 3290.23, 2873.97, 1802.6, 4729.89, 2090.17, 2760.62, 2119.8, 3720.06, 4229.76, 3304.51, 3973.26, 2983.4, 3611.4, 2762.73, 3149.18, 2682.13, 2481.45, 4749.81, 2207.61, 4160.67, 4354.08, 5030.62, 4286.51, 4619.13, 4380.93, 4842.54, 2277.15, 5419.44, 4094.58, 5951.55, 3550.52, 5719.78, 3834.02, 4969.65, 2311.54)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22), PackedInt32Array(23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48), PackedInt32Array(49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69), PackedInt32Array(70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91), PackedInt32Array(92, 93, 94, 95, 96, 97, 98), PackedInt32Array(94, 93, 99, 100), PackedInt32Array(100, 99, 101, 102), PackedInt32Array(103, 102, 101, 104, 105), PackedInt32Array(105, 104, 106, 107), PackedInt32Array(108, 109, 107, 106, 110, 111), PackedInt32Array(112, 92, 98, 113), PackedInt32Array(114, 111, 110, 115, 116), PackedInt32Array(117, 118, 119, 120, 121, 116, 115, 122, 123), PackedInt32Array(124, 125, 123, 122, 126, 127), PackedInt32Array(128, 129, 127, 126, 130, 113), PackedInt32Array(113, 130, 112)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(4668, 861, 5068, 939, 5406, 1133, 5616, 1295, 5877, 1577, 6078, 1874, 6184, 2242, 6211, 2602, 6188, 2975, 6093, 3294, 5960, 3556, 5727, 3841, 5425, 4103, 5034, 4296, 4620, 4391, 4159, 4364, 3716, 4239, 3298, 3981, 2975, 3617, 2753, 3152, 2672, 2481, 2751, 2117, 2865, 1798, 3142, 1401, 3427, 1164, 3761, 966, 4212, 856), PackedVector2Array(4754, 1987, 4740, 2090, 4759, 2202, 4847, 2268, 4969, 2301, 5079, 2256, 5168, 2193, 5193, 2089, 5179, 1985, 5094, 1908, 4978, 1876, 4844, 1898), PackedVector2Array(-1122, 3549, -769, 3273, -456, 3140, -47, 3039, 440, 3067, 817, 3181, 1152, 3351, 1432, 3613, 1667, 3921, 1832, 4321, 1906, 4744, 1878, 5107, 1745, 5529, 1515, 5915, 1207, 6219, 863, 6425, 491, 6559, 105, 6591, -332, 6536, -695, 6389, -1081, 6118, -1398, 5718, -1591, 5272, -1655, 4822, -1586, 4326, -1389, 3875), PackedVector2Array(4478, 5235, 4166, 5294, 3725, 5474, 3343, 5804, 3040, 6241, 2898, 6696, 2893, 7270, 3008, 7698, 3275, 8139, 3628, 8479, 4175, 8722, 4644, 8782, 5094, 8731, 5563, 8534, 5972, 8198, 6261, 7743, 6413, 7307, 6408, 6774, 6293, 6328, 6073, 5947, 5760, 5621, 5402, 5382, 4920, 5244), PackedVector2Array(-3088, -416, -3556, -361, -4045, -157, -4425, 182, -4721, 641, -4855, 1130, -4847, 1706, -4655, 2212, -4366, 2605, -3861, 2981, -3218, 3143, -2658, 3098, -2161, 2884, -1760, 2563, -1526, 2216, -1367, 1782, -1300, 1314, -1396, 787, -1772, 165, -2320, -244, -2695, -378), PackedVector2Array(766, -2944, 553, -3512, 135, -3984, -341, -4264, -830, -4377, -1415, -4327, -1870, -4151, -2284, -3817, -2589, -3358, -2722, -2965, -2760, -2543, -2693, -2134, -2522, -1716, -2208, -1303, -1741, -981, -1239, -826, -763, -822, -333, -935, 72, -1156, 444, -1516, 661, -1892, 795, -2414)])
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ji7yj"]
-size = Vector2(244, 65)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_buol0"]
-size = Vector2(219, 75)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qt4xt"]
 radius = 50.0
@@ -90,11 +87,26 @@ size = Vector2(241, 113)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p08bh"]
 size = Vector2(225, 87)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ah6f"]
+shader = ExtResource("24_w44yn")
+shader_parameter/visible = true
+shader_parameter/speed = 1.0
+shader_parameter/line_width = 0.1
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/pause_duration = 0.15
+shader_parameter/offset = 2.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7icdn"]
 size = Vector2(223, 340)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hx21"]
 radius = 288.95
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ji7yj"]
+size = Vector2(244, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buol0"]
+size = Vector2(219, 75)
 
 [node name="Root" type="Node"]
 process_mode = 1
@@ -119,6 +131,16 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 38
 text = "FPS: 2137"
+
+[node name="VRAM_label" type="Label" parent="CanvasLayer"]
+offset_left = 30.0
+offset_top = 175.0
+offset_right = 246.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 38
+text = "VRAM: 2137"
 
 [node name="debugLabel" type="Label" parent="CanvasLayer"]
 auto_translate_mode = 2
@@ -242,186 +264,73 @@ grow_vertical = 2
 process_callback = 0
 script = ExtResource("3_w3pet")
 
-[node name="World Backgorund" type="Node2D" parent="."]
-
-[node name="Trawka1" type="Polygon2D" parent="World Backgorund" groups=["AAADwor"]]
-texture_repeat = 2
-position = Vector2(7, -175)
-scale = Vector2(1, 0.996311)
-texture = ExtResource("4_57ajs")
-polygon = PackedVector2Array(1842, -1934, 2503, -1930, 2506, -1757, 2889, -1756, 2898, -1930, 3567, -1935, 3547, -2879, 16500, -4580.9, 16551, 11547.6, -4605, 11890.9, -7443, -5371.82, 1831, -4244)
-
-[node name="Arena1" type="Sprite2D" parent="World Backgorund"]
-position = Vector2(4447, 2617)
-scale = Vector2(2, 2)
-texture = ExtResource("9_o3ebs")
-
-[node name="Arena2" type="Sprite2D" parent="World Backgorund"]
-position = Vector2(126, 4809)
-scale = Vector2(2, 2)
-texture = ExtResource("9_o3ebs")
-
-[node name="Arena3" type="Sprite2D" parent="World Backgorund"]
-position = Vector2(4644, 7005)
-scale = Vector2(2, 2)
-texture = ExtResource("9_o3ebs")
-
-[node name="Arena4" type="Sprite2D" parent="World Backgorund"]
-position = Vector2(-3090, 1364)
-scale = Vector2(2, 2)
-texture = ExtResource("9_o3ebs")
-
-[node name="Arena5" type="Sprite2D" parent="World Backgorund"]
-position = Vector2(-979, -2597)
-scale = Vector2(2, 2)
-texture = ExtResource("9_o3ebs")
-
-[node name="Pentagram" parent="World Backgorund" instance=ExtResource("56_7fx65")]
-position = Vector2(540, -978)
-
-[node name="Pentagram2" parent="World Backgorund" instance=ExtResource("56_7fx65")]
-position = Vector2(6056, -971)
-
-[node name="4kSize" type="Sprite2D" parent="World Backgorund"]
-position = Vector2(-4859, -3749)
-texture = ExtResource("4_628y8")
-
-[node name="TestDomek1In" type="StaticBody2D" parent="World Backgorund" groups=["TestDomek1"]]
-position = Vector2(2695, -2478)
-collision_mask = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="World Backgorund/TestDomek1In"]
-modulate = Color(1, 1, 1, 0)
-texture = ExtResource("6_6qc55")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Backgorund/TestDomek1In"]
-polygon = PackedVector2Array(-105, 553, -110, 721, -901, 667, -932, -590, 907, -581, 931, 643, 108, 724, 110, 554, 867, 565, 863, -462, -862, -456, -865, 560)
-disabled = true
-
-[node name="Area2D" type="Area2D" parent="World Backgorund/TestDomek1In"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World Backgorund/TestDomek1In/Area2D"]
-position = Vector2(0, 700)
-shape = SubResource("RectangleShape2D_ji7yj")
-disabled = true
-
-[node name="Test_3d_orto_In" type="StaticBody2D" parent="World Backgorund" groups=["Test3D_orto"]]
-position = Vector2(5200, -3000)
-collision_mask = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="World Backgorund/Test_3d_orto_In"]
-modulate = Color(1, 1, 1, 0)
-texture = ExtResource("8_38b17")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Backgorund/Test_3d_orto_In"]
-polygon = PackedVector2Array(1030, 250, -223, 233, -1020, 441, -1023, 1077, 439, 1074, 443, 1250, -1215, 1270, -1108, -15, 1236, -28, 1168, 1256, 672, 1259, 672, 1074, 1027, 1070)
-disabled = true
-
-[node name="Area2D" type="Area2D" parent="World Backgorund/Test_3d_orto_In"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World Backgorund/Test_3d_orto_In/Area2D"]
-position = Vector2(558.5, 1066.5)
-shape = SubResource("RectangleShape2D_buol0")
-disabled = true
-
-[node name="World YSort" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Limak" parent="World YSort" instance=ExtResource("107_tje1l")]
-position = Vector2(4447, 2617)
-
-[node name="Trahser" parent="World YSort" instance=ExtResource("15_k83mh")]
-position = Vector2(549, 4999)
-
-[node name="Speeder1" parent="World YSort" instance=ExtResource("16_qktwf")]
-position = Vector2(5223, 7301)
-
-[node name="Speeder2" parent="World YSort" instance=ExtResource("16_qktwf")]
-position = Vector2(3965, 6629)
-
-[node name="Speeder3" parent="World YSort" instance=ExtResource("16_qktwf")]
-position = Vector2(3932, 7977)
-
-[node name="boomber" parent="World YSort" instance=ExtResource("17_bh8nc")]
-position = Vector2(-3304, 1481)
-
-[node name="duchol" parent="World YSort" instance=ExtResource("18_jjr1n")]
-position = Vector2(-798, -3370)
-
-[node name="Karakan" parent="World YSort" instance=ExtResource("55_lecbo")]
-position = Vector2(7289, 279)
-
-[node name="janucha" parent="World YSort" instance=ExtResource("31_bh8nc")]
-position = Vector2(7990, -61)
-
-[node name="Gracz" type="CharacterBody2D" parent="World YSort"]
+[node name="Gracz" type="CharacterBody2D" parent="World"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_f6crp")
 
-[node name="Sprite2Dgracz" type="Sprite2D" parent="World YSort/Gracz"]
+[node name="Sprite2Dgracz" type="Sprite2D" parent="World/Gracz"]
 offset = Vector2(0, -125)
 
-[node name="SubViewport" type="SubViewport" parent="World YSort/Gracz"]
+[node name="SubViewport" type="SubViewport" parent="World/Gracz"]
 own_world_3d = true
 transparent_bg = true
 size = Vector2i(300, 300)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="World YSort/Gracz/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="World/Gracz/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 6.2, 6)
 projection = 1
 current = true
 size = 1.1
 
-[node name="Gracz" parent="World YSort/Gracz/SubViewport" instance=ExtResource("15_4h6ng")]
+[node name="Gracz" parent="World/Gracz/SubViewport" instance=ExtResource("15_4h6ng")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Gracz"]
 shape = SubResource("CircleShape2D_qt4xt")
 
-[node name="playerHurtBox" type="Area2D" parent="World YSort/Gracz"]
+[node name="playerHurtBox" type="Area2D" parent="World/Gracz"]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz/playerHurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Gracz/playerHurtBox"]
 shape = SubResource("CircleShape2D_56jup")
 
-[node name="playerHurtBoxUp" type="Area2D" parent="World YSort/Gracz"]
+[node name="playerHurtBoxUp" type="Area2D" parent="World/Gracz"]
 position = Vector2(0, -130)
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz/playerHurtBoxUp"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Gracz/playerHurtBoxUp"]
 shape = SubResource("CircleShape2D_56jup")
 
-[node name="playerHitBox" type="Area2D" parent="World YSort/Gracz"]
+[node name="playerHitBox" type="Area2D" parent="World/Gracz"]
 position = Vector2(0, -69)
 collision_layer = 0
 collision_mask = 4
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gracz/playerHitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Gracz/playerHitBox"]
 shape = SubResource("CircleShape2D_6ddr7")
 debug_color = Color(1, 0.00183215, 0.0773995, 0.42)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="World YSort/Gracz/playerHitBox"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/Gracz/playerHitBox"]
 position = Vector2(150, 0)
 shape = SubResource("CircleShape2D_5gwrr")
 debug_color = Color(1, 0, 0, 0.313726)
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="World YSort/Gracz/playerHitBox"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World/Gracz/playerHitBox"]
 shape = SubResource("ConvexPolygonShape2D_rxu81")
 debug_color = Color(1, 0, 0, 0.301961)
 
-[node name="EffectsCenter" type="Node2D" parent="World YSort/Gracz"]
+[node name="EffectsCenter" type="Node2D" parent="World/Gracz"]
 position = Vector2(0, -120)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="World YSort/Gracz/EffectsCenter"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="World/Gracz/EffectsCenter"]
 position = Vector2(100, 0)
 emitting = false
 amount = 30
@@ -430,113 +339,245 @@ lifetime = 0.3
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_gggvi")
 
-[node name="FolderAktywator" type="Node2D" parent="World YSort" groups=["AAADwor"]]
+[node name="Lokacja blokowa" type="Node2D" parent="World"]
+y_sort_enabled = true
 
-[node name="Drzewo1" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
+[node name="lampa_blokowa" parent="World/Lokacja blokowa" instance=ExtResource("33_gggvi")]
+position = Vector2(8554, 1753)
+
+[node name="blok" parent="World/Lokacja blokowa" instance=ExtResource("11_gggvi")]
+position = Vector2(14254, 1799)
+
+[node name="trasher" parent="World/Lokacja blokowa" instance=ExtResource("15_k83mh")]
+position = Vector2(9999, 2121)
+
+[node name="Limak" parent="World" instance=ExtResource("107_tje1l")]
+position = Vector2(4447, 2617)
+
+[node name="Speeder1" parent="World" instance=ExtResource("16_qktwf")]
+position = Vector2(5223, 7301)
+
+[node name="Speeder2" parent="World" instance=ExtResource("16_qktwf")]
+position = Vector2(3965, 6629)
+
+[node name="Speeder3" parent="World" instance=ExtResource("16_qktwf")]
+position = Vector2(3932, 7977)
+
+[node name="boomber" parent="World" instance=ExtResource("17_bh8nc")]
+position = Vector2(-3304, 1481)
+
+[node name="duchol" parent="World" instance=ExtResource("18_jjr1n")]
+position = Vector2(-798, -3370)
+
+[node name="Karakan" parent="World" instance=ExtResource("55_lecbo")]
+position = Vector2(4225, -898)
+
+[node name="janucha" parent="World" instance=ExtResource("31_bh8nc")]
+position = Vector2(9855, 1027)
+
+[node name="FolderAktywator" type="Node2D" parent="World" groups=["AAADwor"]]
+
+[node name="Drzewo1" type="StaticBody2D" parent="World" groups=["AAADwor"]]
 position = Vector2(3019, 64)
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="World YSort/Drzewo1"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Drzewo1"]
 texture = ExtResource("3_eo4ki")
 offset = Vector2(48, -272)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Drzewo1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Drzewo1"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_f56u4")
 
-[node name="Drzewo2" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
+[node name="Drzewo2" type="StaticBody2D" parent="World" groups=["AAADwor"]]
 position = Vector2(4963, 2096)
 scale = Vector2(1.5, 1.5)
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="World YSort/Drzewo2"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Drzewo2"]
 texture = ExtResource("3_eo4ki")
 offset = Vector2(48, -272)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Drzewo2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Drzewo2"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_f56u4")
 
-[node name="TestDomek1Out" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
+[node name="TestDomek1Out" type="StaticBody2D" parent="World" groups=["AAADwor"]]
 position = Vector2(2696, -1951)
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="World YSort/TestDomek1Out"]
+[node name="Sprite2D" type="Sprite2D" parent="World/TestDomek1Out"]
 texture = ExtResource("34_g7egq")
 offset = Vector2(0, -300)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World YSort/TestDomek1Out"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/TestDomek1Out"]
 position = Vector2(153, -300)
 scale = Vector2(0.418702, 1.13707)
 polygon = PackedVector2Array(-2554.24, 171.911, -2573.35, 296.793, -2310.63, 296.793, -2267.64, 284.481, -832.251, 282.722, -820.31, 432.229, -631.631, 429.591, -641.185, -26.8455, -103.81, -29.4838, -84.7031, 429.591, 96.8101, 433.108, 103.975, 282.722, 1541.75, 284.481, 1589.52, 296.793, 1873.73, 301.19, 1849.85, 190.379, 1687.44, 174.549, 1692.22, -314.426, -2396.61, -346.087, -2377.5, 158.719)
 
-[node name="Area2D" type="Area2D" parent="World YSort/TestDomek1Out"]
+[node name="Area2D" type="Area2D" parent="World/TestDomek1Out"]
 position = Vector2(-2696, 1951)
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/TestDomek1Out/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/TestDomek1Out/Area2D"]
 position = Vector2(2697, -2023)
 shape = SubResource("RectangleShape2D_rodtt")
 
-[node name="Test_3d_orto_Out" type="StaticBody2D" parent="World YSort" groups=["AAADwor"]]
+[node name="Test_3d_orto_Out" type="StaticBody2D" parent="World" groups=["AAADwor"]]
 position = Vector2(5200, -3000)
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="World YSort/Test_3d_orto_Out"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Test_3d_orto_Out"]
 texture = ExtResource("38_ohwfu")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World YSort/Test_3d_orto_Out"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Test_3d_orto_Out"]
 polygon = PackedVector2Array(1031, 1081, 669, 1079, 665, 683, 446, 683, 443, 1078, -1023, 1077, -1032, -29, 1030, -38)
 
-[node name="Area2D" type="Area2D" parent="World YSort/Test_3d_orto_Out"]
+[node name="Area2D" type="Area2D" parent="World/Test_3d_orto_Out"]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Test_3d_orto_Out/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Test_3d_orto_Out/Area2D"]
 position = Vector2(556.5, 916)
 shape = SubResource("RectangleShape2D_p08bh")
 
-[node name="Kiedro10czaha" type="Node2D" parent="World YSort"]
+[node name="Kiedro10czaha" type="Node2D" parent="World"]
 position = Vector2(1127, 458)
 script = ExtResource("58_aji7q")
 
-[node name="Sprite2D" type="Sprite2D" parent="World YSort/Kiedro10czaha"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Kiedro10czaha"]
+material = SubResource("ShaderMaterial_6ah6f")
 texture = ExtResource("58_54fh3")
 
-[node name="Area2D" type="Area2D" parent="World YSort/Kiedro10czaha"]
+[node name="Area2D" type="Area2D" parent="World/Kiedro10czaha"]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Kiedro10czaha/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Kiedro10czaha/Area2D"]
 position = Vector2(-14.5, 211)
 shape = SubResource("RectangleShape2D_7icdn")
 
-[node name="Gadatek" type="Node2D" parent="World YSort"]
+[node name="Gadatek" type="Node2D" parent="World"]
 position = Vector2(309, 900)
 script = ExtResource("63_ac084")
 
-[node name="Sprite2D" type="Sprite2D" parent="World YSort/Gadatek"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Gadatek"]
 texture = ExtResource("63_n3kdl")
 
-[node name="Area2D" type="Area2D" parent="World YSort/Gadatek"]
+[node name="Area2D" type="Area2D" parent="World/Gadatek"]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World YSort/Gadatek/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Gadatek/Area2D"]
 shape = SubResource("CircleShape2D_1hx21")
 
-[node name="Serducho1" parent="World YSort" instance=ExtResource("65_ct3wn")]
+[node name="Serducho1" parent="World" instance=ExtResource("65_ct3wn")]
 position = Vector2(1962, 181)
 
-[connection signal="body_entered" from="World Backgorund/TestDomek1In/Area2D" to="." method="TestDomek1_exited"]
-[connection signal="body_entered" from="World Backgorund/Test_3d_orto_In/Area2D" to="." method="orto_exited"]
-[connection signal="area_entered" from="World YSort/Gracz/playerHurtBox" to="World YSort/Gracz" method="_on_player_hurt_box_area_entered"]
-[connection signal="area_entered" from="World YSort/Gracz/playerHurtBoxUp" to="World YSort/Gracz" method="_on_player_hurt_box_area_entered"]
-[connection signal="body_entered" from="World YSort/Gracz/playerHitBox" to="World YSort/Gracz" method="_on_player_hit_box_body_entered"]
-[connection signal="body_entered" from="World YSort/TestDomek1Out/Area2D" to="." method="TestDomek1_entered"]
-[connection signal="body_entered" from="World YSort/Test_3d_orto_Out/Area2D" to="." method="orto_entered"]
-[connection signal="body_entered" from="World YSort/Kiedro10czaha/Area2D" to="World YSort/Kiedro10czaha" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="World YSort/Kiedro10czaha/Area2D" to="World YSort/Kiedro10czaha" method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="World YSort/Gadatek/Area2D" to="World YSort/Gadatek" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="World YSort/Gadatek/Area2D" to="World YSort/Gadatek" method="_on_area_2d_body_exited"]
+[node name="Arena1" type="Sprite2D" parent="World"]
+z_index = -1
+position = Vector2(4447, 2617)
+scale = Vector2(2, 2)
+texture = ExtResource("9_o3ebs")
+
+[node name="Arena2" type="Sprite2D" parent="World"]
+z_index = -1
+position = Vector2(126, 4809)
+scale = Vector2(2, 2)
+texture = ExtResource("9_o3ebs")
+
+[node name="Arena3" type="Sprite2D" parent="World"]
+z_index = -1
+position = Vector2(4644, 7005)
+scale = Vector2(2, 2)
+texture = ExtResource("9_o3ebs")
+
+[node name="Arena4" type="Sprite2D" parent="World"]
+z_index = -1
+position = Vector2(-3090, 1364)
+scale = Vector2(2, 2)
+texture = ExtResource("9_o3ebs")
+
+[node name="Arena5" type="Sprite2D" parent="World"]
+z_index = -1
+position = Vector2(-979, -2597)
+scale = Vector2(2, 2)
+texture = ExtResource("9_o3ebs")
+
+[node name="4kSize" type="Sprite2D" parent="World"]
+z_index = -1
+position = Vector2(-4859, -3749)
+texture = ExtResource("4_628y8")
+
+[node name="Pentagram" parent="World" instance=ExtResource("56_7fx65")]
+z_index = -1
+position = Vector2(540, -978)
+
+[node name="Pentagram2" parent="World" instance=ExtResource("56_7fx65")]
+z_index = -1
+position = Vector2(6056, -971)
+
+[node name="TestDomek1In" type="StaticBody2D" parent="World" groups=["TestDomek1"]]
+z_index = -1
+position = Vector2(2695, -2478)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="World/TestDomek1In"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("6_6qc55")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/TestDomek1In"]
+polygon = PackedVector2Array(-105, 553, -110, 721, -901, 667, -932, -590, 907, -581, 931, 643, 108, 724, 110, 554, 867, 565, 863, -462, -862, -456, -865, 560)
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="World/TestDomek1In"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/TestDomek1In/Area2D"]
+position = Vector2(0, 700)
+shape = SubResource("RectangleShape2D_ji7yj")
+disabled = true
+
+[node name="Test_3d_orto_In" type="StaticBody2D" parent="World" groups=["Test3D_orto"]]
+z_index = -1
+position = Vector2(5200, -3000)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Test_3d_orto_In"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("8_38b17")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Test_3d_orto_In"]
+polygon = PackedVector2Array(1030, 250, -223, 233, -1020, 441, -1023, 1077, 439, 1074, 443, 1250, -1215, 1270, -1108, -15, 1236, -28, 1168, 1256, 672, 1259, 672, 1074, 1027, 1070)
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="World/Test_3d_orto_In"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Test_3d_orto_In/Area2D"]
+position = Vector2(558.5, 1066.5)
+shape = SubResource("RectangleShape2D_buol0")
+disabled = true
+
+[node name="Trawka1" type="Polygon2D" parent="World" groups=["AAADwor"]]
+z_index = -2
+texture_repeat = 2
+position = Vector2(7, -175)
+scale = Vector2(1, 0.996311)
+texture = ExtResource("4_57ajs")
+polygon = PackedVector2Array(1842, -1934, 2503, -1930, 2506, -1757, 2889, -1756, 2898, -1930, 3567, -1935, 3547, -2879, 16500, -4580.9, 16551, 11547.6, -4605, 11890.9, -7443, -5371.82, 1831, -4244)
+
+[connection signal="area_entered" from="World/Gracz/playerHurtBox" to="World/Gracz" method="_on_player_hurt_box_area_entered"]
+[connection signal="area_entered" from="World/Gracz/playerHurtBoxUp" to="World/Gracz" method="_on_player_hurt_box_area_entered"]
+[connection signal="body_entered" from="World/Gracz/playerHitBox" to="World/Gracz" method="_on_player_hit_box_body_entered"]
+[connection signal="body_entered" from="World/TestDomek1Out/Area2D" to="." method="TestDomek1_entered"]
+[connection signal="body_entered" from="World/Test_3d_orto_Out/Area2D" to="." method="orto_entered"]
+[connection signal="body_entered" from="World/Kiedro10czaha/Area2D" to="World/Kiedro10czaha" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="World/Kiedro10czaha/Area2D" to="World/Kiedro10czaha" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="World/Gadatek/Area2D" to="World/Gadatek" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="World/Gadatek/Area2D" to="World/Gadatek" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="World/TestDomek1In/Area2D" to="." method="TestDomek1_exited"]
+[connection signal="body_entered" from="World/Test_3d_orto_In/Area2D" to="." method="orto_exited"]

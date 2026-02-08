@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkcfl2dfo4rd2"]
+
+[ext_resource type="Texture2D" uid="uid://cnorpg6ah2sv8" path="res://environment/blok/blok.png" id="1_2yu5q"]
+[ext_resource type="Texture2D" uid="uid://dfo8qrognk40k" path="res://environment/blok/ogrodek.png" id="3_2vsel"]
+
+[node name="blok" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Blok" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-3187, -117)
+texture = ExtResource("1_2yu5q")
+offset = Vector2(610.46, -1943.65)
+
+[node name="Ogrodek" type="Sprite2D" parent="."]
+position = Vector2(967, 217)
+texture = ExtResource("3_2vsel")
+offset = Vector2(0, 107.455)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-6406, -2742, -5506, -2381, -433, -102, -307, -253, 347, 10, 167, 220, 1347, 685, 2447, -635, -6445, -4138, -7058, -2788, -6530, -2594)
